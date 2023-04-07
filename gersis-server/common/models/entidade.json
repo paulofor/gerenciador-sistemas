@@ -1,0 +1,33 @@
+{
+  "name": "Entidade",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nome": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "sistema": {
+      "type": "belongsTo",
+      "model": "Sistema",
+      "foreignKey": ""
+    },
+    "atributoEntidades": {
+      "type": "hasMany",
+      "model": "AtributoEntidade",
+      "foreignKey": ""
+    },
+    "metodoServers": {
+      "type": "hasMany",
+      "model": "MetodoServer",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

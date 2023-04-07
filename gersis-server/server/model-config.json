@@ -1,0 +1,70 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Sistema": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "AtributoEntidade": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "MetodoServer": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "ParametroMetodoServer": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "ProcessoJava": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "PassoProcessoJava": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "LinuxInternet": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "Entidade": {
+    "dataSource": "mysqlds",
+    "public": true
+  }
+}

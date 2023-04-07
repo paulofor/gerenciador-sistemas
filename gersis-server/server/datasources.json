@@ -1,0 +1,15 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mysqlds": {
+    "host": "d555d.vps-kinghost.net",
+    "port": 3306,
+    "database": "gersisdb",
+    "password": "GerSisDigi01$",
+    "name": "mysqlds",
+    "user": "gersisnode",
+    "connector": "mysql"
+  }
+}

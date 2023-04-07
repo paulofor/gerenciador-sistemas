@@ -1,0 +1,33 @@
+{
+  "name": "ProcessoJava",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nomeClasseMain": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "sistema": {
+      "type": "belongsTo",
+      "model": "Sistema",
+      "foreignKey": ""
+    },
+    "passoProcessoJavas": {
+      "type": "hasMany",
+      "model": "PassoProcessoJava",
+      "foreignKey": ""
+    },
+    "linuxInternet": {
+      "type": "belongsTo",
+      "model": "LinuxInternet",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

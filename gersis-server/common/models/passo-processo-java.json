@@ -1,0 +1,29 @@
+{
+  "name": "PassoProcessoJava",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string"
+    },
+    "ordenacao": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "processoJava": {
+      "type": "belongsTo",
+      "model": "ProcessoJava",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

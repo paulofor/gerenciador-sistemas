@@ -1,0 +1,28 @@
+{
+  "name": "MetodoServer",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nome": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "entidade": {
+      "type": "belongsTo",
+      "model": "Entidade",
+      "foreignKey": ""
+    },
+    "parametroMetodoServers": {
+      "type": "hasMany",
+      "model": "ParametroMetodoServer",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,26 @@
+{
+  "name": "LinuxInternet",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "fornecedor": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "processoJavas": {
+      "type": "hasMany",
+      "model": "ProcessoJava",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
