@@ -26,6 +26,16 @@
       "type": "hasMany",
       "model": "MetodoServer",
       "foreignKey": ""
+    },
+    "relacionamentos1": {
+      "type": "hasMany",
+      "model": "RelacionamentoEntidade",
+      "foreignKey": "entidade1Id"
+    },
+    "relacionamentosN": {
+      "type": "hasMany",
+      "model": "RelacionamentoEntidade",
+      "foreignKey": "entidadeNId"
     }
   },
   "acls": [],

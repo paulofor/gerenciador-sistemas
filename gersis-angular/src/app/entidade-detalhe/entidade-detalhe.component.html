@@ -1,0 +1,24 @@
+<div class="dgc-painel" *ngIf="principal">
+  <div class="dgc-painel-header">
+      <span>{{principal.nome}}</span>
+  </div>
+  
+  <div class="dgc-card">
+    <div class="dgc-card-header">
+        <span>Atributos</span>
+    </div>
+    <div class="dgc-card-comandos">
+      <button class="btn-primary btn-sm btn" (click)="editaAtributo()">Novo</button>
+    </div> 
+  </div>
+
+  <div class="dgc-card">
+    <div class="dgc-card-header">
+        <span>Relacionamentos</span>
+    </div>
+    <div class="dgc-card-comandos">
+      <button class="btn-primary btn-sm btn" (click)="editaRelacionamento()">Novo</button>
+    </div> 
+  </div>
+
+</div>

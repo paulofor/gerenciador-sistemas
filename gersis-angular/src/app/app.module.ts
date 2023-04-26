@@ -35,9 +35,20 @@ import { ImageUploadModule } from "angular2-image-upload";
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgDragDropModule } from 'ng-drag-drop';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import { PlataformaListComponent } from './plataforma-list/plataforma-list.component';
-import { PlataformaEditComponent } from './plataforma-edit/plataforma-edit.component';
-import { ProdutoHotmartListComponent } from './produto-hotmart-list/produto-hotmart-list.component';
+import { SistemaListComponent } from './sistema-list/sistema-list.component';
+import { SistemaEditComponent } from './sistema-edit/sistema-edit.component';
+import { EntidadeListComponent } from './entidade-list/entidade-list.component';
+import { EntidadeEditComponent } from './entidade-edit/entidade-edit.component';
+import { EntidadeDetalheComponent } from './entidade-detalhe/entidade-detalhe.component';
+import { LinuxInternetListComponent } from './linux-internet-list/linux-internet-list.component';
+import { LinuxInternetEditComponent } from './linux-internet-edit/linux-internet-edit.component';
+import { MetodoServerListComponent } from './metodo-server-list/metodo-server-list.component';
+import { MetodoServerEditComponent } from './metodo-server-edit/metodo-server-edit.component';
+import { ProcessoJavaListComponent } from './processo-java-list/processo-java-list.component';
+import { ProcessoJavaEditComponent } from './processo-java-edit/processo-java-edit.component';
+import { AtributoEntidadeEditComponent } from './atributo-entidade-edit/atributo-entidade-edit.component';
+import { RelacionamentoEntidadeEditComponent } from './relacionamento-entidade-edit/relacionamento-entidade-edit.component';
+
 
 
 //import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
@@ -50,9 +61,20 @@ registerLocaleData(localePt, 'pt-BR');
     AppComponent,
     SidebarComponent,
     HomeComponent,
-    PlataformaListComponent,
-    PlataformaEditComponent,
-    ProdutoHotmartListComponent
+    SistemaListComponent,
+    SistemaEditComponent,
+    EntidadeListComponent,
+    EntidadeEditComponent,
+    EntidadeDetalheComponent,
+    LinuxInternetListComponent,
+    LinuxInternetEditComponent,
+    MetodoServerListComponent,
+    MetodoServerEditComponent,
+    ProcessoJavaListComponent,
+    ProcessoJavaEditComponent,
+    AtributoEntidadeEditComponent,
+    RelacionamentoEntidadeEditComponent
+
   ],
   imports: [
     BrowserModule,
@@ -101,7 +123,12 @@ registerLocaleData(localePt, 'pt-BR');
     //{ provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
   ],
   entryComponents : [
-
+    LinuxInternetEditComponent,
+    EntidadeEditComponent,
+    MetodoServerEditComponent,
+    ProcessoJavaEditComponent,
+    AtributoEntidadeEditComponent,
+    RelacionamentoEntidadeEditComponent
   ],
   bootstrap: [AppComponent]
 })

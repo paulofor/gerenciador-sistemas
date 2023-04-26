@@ -66,5 +66,9 @@
   "Entidade": {
     "dataSource": "mysqlds",
     "public": true
+  },
+  "RelacionamentoEntidade": {
+    "dataSource": "mysqlds",
+    "public": true
   }
 }

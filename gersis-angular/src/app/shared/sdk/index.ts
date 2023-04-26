@@ -49,10 +49,15 @@ import { SocketBrowser } from './sockets/socket.browser';
 import { SocketConnection } from './sockets/socket.connections';
 import { RealTime } from './services/core/real.time';
 import { UserApi } from './services/custom/User';
-import { PlataformaVendaApi } from './services/custom/PlataformaVenda';
-import { ProdutoPlataformaApi } from './services/custom/ProdutoPlataforma';
-import { VisitaProdutoPlataformaApi } from './services/custom/VisitaProdutoPlataforma';
-import { ProdutoHotmartApi } from './services/custom/ProdutoHotmart';
+import { SistemaApi } from './services/custom/Sistema';
+import { AtributoEntidadeApi } from './services/custom/AtributoEntidade';
+import { MetodoServerApi } from './services/custom/MetodoServer';
+import { ParametroMetodoServerApi } from './services/custom/ParametroMetodoServer';
+import { ProcessoJavaApi } from './services/custom/ProcessoJava';
+import { PassoProcessoJavaApi } from './services/custom/PassoProcessoJava';
+import { LinuxInternetApi } from './services/custom/LinuxInternet';
+import { EntidadeApi } from './services/custom/Entidade';
+import { RelacionamentoEntidadeApi } from './services/custom/RelacionamentoEntidade';
 /**
 * @module SDKBrowserModule
 * @description
@@ -84,13 +89,17 @@ export class SDKBrowserModule {
         SDKModels,
         RealTime,
         UserApi,
-        PlataformaVendaApi,
-        ProdutoPlataformaApi,
-        VisitaProdutoPlataformaApi,
-        ProdutoHotmartApi,
+        SistemaApi,
+        AtributoEntidadeApi,
+        MetodoServerApi,
+        ParametroMetodoServerApi,
+        ProcessoJavaApi,
+        PassoProcessoJavaApi,
+        LinuxInternetApi,
+        EntidadeApi,
+        RelacionamentoEntidadeApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser }
-
       ]
     };
   }

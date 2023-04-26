@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BASE_URL } from '../constantes/base.url';
+import { Sistema, SistemaApi } from '../shared/sdk';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,12 +9,30 @@ import { BASE_URL } from '../constantes/base.url';
 })
 export class SidebarComponent implements OnInit {
 
+  listaSistema:Sistema[];
+
   ambiente: string = '';
 
-  constructor() { }
+  sistemaId;
+
+  constructor(private srv:SistemaApi) { }
 
   ngOnInit() {
-    if (BASE_URL.indexOf("21101")==-1) this.ambiente = ' Desen'; 
+    this.montaCombos();
+  }
+
+  montaCombos() {
+    let filtro = {'order' : 'nome'}
+    this.srv.find(filtro)
+      .subscribe((result:Sistema[])=> {
+        console.log('Listasistema' , result);
+        this.listaSistema = result;
+      })
+  }
+
+  onChangeSistema(evento) {
+    console.log('Evento:' , evento);
+    this.sistemaId = evento.value;
   }
 
 }

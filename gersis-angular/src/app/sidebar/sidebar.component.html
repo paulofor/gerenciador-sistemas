@@ -8,22 +8,55 @@
     </a>
   </div>
 
+  
   <ul class="nav responsive-nav">
     <li width="100%">
-      <a routerLink="/plataforma">
+      <a routerLink="/sistema">
         <i class="fa fa-search"></i>
-        <p>Plataformas</p>
+        <p>Sistemas</p>
       </a>
     </li>
   </ul>
 
   <ul class="nav responsive-nav">
     <li width="100%">
-      <a routerLink="/produtoHotmart">
+      <a routerLink="/linuxInternet">
         <i class="fa fa-search"></i>
-        <p>Produto Hotmart</p>
+        <p>Servidores Linux</p>
       </a>
     </li>
   </ul>
+
+
+  <div class="dgc-combo-menu" *ngIf="listaSistema">
+    <form (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-select placeholder="Sistema" (selectionChange)="onChangeSistema($event)" name="sistema">
+          <mat-option *ngFor="let sistema of listaSistema" [value]="sistema.id">
+            {{ sistema.nome }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <ul class="nav responsive-nav" *ngIf="sistemaId">
+    <li width="100%">
+      <a routerLink="/entidade/{{sistemaId}}">
+        <i class="fa fa-search"></i>
+        <p>Entidades</p>
+      </a>
+    </li>
+  </ul>
+
+  <ul class="nav responsive-nav" *ngIf="sistemaId">
+    <li width="100%">
+      <a routerLink="/processoJava/{{sistemaId}}">
+        <i class="fa fa-search"></i>
+        <p>Processos Java</p>
+      </a>
+    </li>
+  </ul>
+
 
 </div>

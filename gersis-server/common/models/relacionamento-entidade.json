@@ -1,0 +1,24 @@
+{
+  "name": "RelacionamentoEntidade",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "entidade1": {
+      "type": "belongsTo",
+      "model": "Entidade",
+      "foreignKey": ""
+    },
+    "entidadeN": {
+      "type": "belongsTo",
+      "model": "Entidade",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
