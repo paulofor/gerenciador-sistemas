@@ -26,6 +26,7 @@ export class BaseItemIdComponent implements OnInit {
             console.log('ID:' , id);
             this.srv.findById(id, this.getFiltro())
               .subscribe((result: any) => {
+                console.log('Principal:' , result);
                 this.principal = result;
                 this.posCarregaLista();
               })

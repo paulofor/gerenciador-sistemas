@@ -7,6 +7,9 @@
     <div class="dgc-card-header">
         <span>Atributos</span>
     </div>
+    <div class="dgc-detalhe" *ngFor="let item of principal.atributoEntidades">
+      <span class="dgc-link" (click)="editaAtributo(item)">{{item.nome}}</span><span> : {{item.tipoBd}}</span>
+    </div>
     <div class="dgc-card-comandos">
       <button class="btn-primary btn-sm btn" (click)="editaAtributo()">Novo</button>
     </div> 
@@ -16,8 +19,26 @@
     <div class="dgc-card-header">
         <span>Relacionamentos</span>
     </div>
+    <div class="dgc-detalhe" *ngFor="let item of principal.relacionamentos1">
+      <span>1 {{item.entidade1.nome}}</span>
+    </div>
+    <div class="dgc-detalhe" *ngFor="let item of principal.relacionamentosN">
+      <span>* {{item.entidadeN.nome}}</span>
+    </div>
     <div class="dgc-card-comandos">
       <button class="btn-primary btn-sm btn" (click)="editaRelacionamento()">Novo</button>
+    </div> 
+  </div>
+
+  <div class="dgc-card">
+    <div class="dgc-card-header">
+        <span>Método Server</span>
+    </div>
+    <div class="dgc-detalhe" *ngFor="let item of principal.metodoServers">
+      <span class="dgc-link" (click)="editaMetodo(item)">{{item.nome}}</span>
+    </div>
+    <div class="dgc-card-comandos">
+      <button class="btn-primary btn-sm btn" (click)="editaMetodo()">Novo</button>
     </div> 
   </div>
 

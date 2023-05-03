@@ -8,6 +8,10 @@ import {
 declare var Object: any;
 export interface ProcessoJavaInterface {
   "nomeClasseMain"?: string;
+  "pacoteClasseMain"?: string;
+  "projeto"?: string;
+  "jar"?: string;
+  "crontab"?: string;
   "id"?: number;
   "sistemaId"?: number;
   "linuxInternetId"?: number;
@@ -18,6 +22,10 @@ export interface ProcessoJavaInterface {
 
 export class ProcessoJava implements ProcessoJavaInterface {
   "nomeClasseMain": string;
+  "pacoteClasseMain": string;
+  "projeto": string;
+  "jar": string;
+  "crontab": string;
   "id": number;
   "sistemaId": number;
   "linuxInternetId": number;
@@ -59,6 +67,22 @@ export class ProcessoJava implements ProcessoJavaInterface {
       properties: {
         "nomeClasseMain": {
           name: 'nomeClasseMain',
+          type: 'string'
+        },
+        "pacoteClasseMain": {
+          name: 'pacoteClasseMain',
+          type: 'string'
+        },
+        "projeto": {
+          name: 'projeto',
+          type: 'string'
+        },
+        "jar": {
+          name: 'jar',
+          type: 'string'
+        },
+        "crontab": {
+          name: 'crontab',
           type: 'string'
         },
         "id": {

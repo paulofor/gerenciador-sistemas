@@ -6,14 +6,17 @@
     "validateUpsert": true
   },
   "properties": {
-    "nome": {
+    "nomeClasse": {
+      "type": "string"
+    },
+    "pacoteClasse": {
       "type": "string"
     },
     "tipo": {
       "type": "string"
     },
     "ordenacao": {
-      "type": "string"
+      "type": "number"
     }
   },
   "validations": [],
@@ -21,6 +24,11 @@
     "processoJava": {
       "type": "belongsTo",
       "model": "ProcessoJava",
+      "foreignKey": ""
+    },
+    "metodoServer": {
+      "type": "belongsTo",
+      "model": "MetodoServer",
       "foreignKey": ""
     }
   },

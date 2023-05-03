@@ -8,6 +8,12 @@
   "properties": {
     "nome": {
       "type": "string"
+    },
+    "resposta": {
+      "type": "string"
+    },
+    "tipoResposta": {
+      "type": "string"
     }
   },
   "validations": [],
@@ -20,6 +26,11 @@
     "parametroMetodoServers": {
       "type": "hasMany",
       "model": "ParametroMetodoServer",
+      "foreignKey": ""
+    },
+    "passoProcessoJavas": {
+      "type": "hasMany",
+      "model": "PassoProcessoJava",
       "foreignKey": ""
     }
   },

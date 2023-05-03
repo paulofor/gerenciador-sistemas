@@ -8,6 +8,12 @@
   "properties": {
     "nome": {
       "type": "string"
+    },
+    "sigla": {
+      "type": "string"
+    },
+    "nomeBancoDados": {
+      "type": "string"
     }
   },
   "validations": [],

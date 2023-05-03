@@ -8,6 +8,9 @@
   "properties": {
     "nome": {
       "type": "string"
+    },
+    "tipoBd": {
+      "type": "string"
     }
   },
   "validations": [],

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MetodoServerListComponent } from './metodo-server-list.component';
+import { PassoProcessoEditComponent } from './passo-processo-edit.component';
 
-describe('MetodoServerListComponent', () => {
-  let component: MetodoServerListComponent;
-  let fixture: ComponentFixture<MetodoServerListComponent>;
+describe('PassoProcessoEditComponent', () => {
+  let component: PassoProcessoEditComponent;
+  let fixture: ComponentFixture<PassoProcessoEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MetodoServerListComponent ]
+      declarations: [ PassoProcessoEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MetodoServerListComponent);
+    fixture = TestBed.createComponent(PassoProcessoEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

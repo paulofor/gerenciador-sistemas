@@ -1,25 +1,32 @@
 /* tslint:disable */
 import {
-  ProcessoJava
+  ProcessoJava,
+  MetodoServer
 } from '../index';
 
 declare var Object: any;
 export interface PassoProcessoJavaInterface {
-  "nome"?: string;
+  "nomeClasse"?: string;
+  "pacoteClasse"?: string;
   "tipo"?: string;
-  "ordenacao"?: string;
+  "ordenacao"?: number;
   "id"?: number;
   "processoJavaId"?: number;
+  "metodoServerId"?: number;
   processoJava?: ProcessoJava;
+  metodoServer?: MetodoServer;
 }
 
 export class PassoProcessoJava implements PassoProcessoJavaInterface {
-  "nome": string;
+  "nomeClasse": string;
+  "pacoteClasse": string;
   "tipo": string;
-  "ordenacao": string;
+  "ordenacao": number;
   "id": number;
   "processoJavaId": number;
+  "metodoServerId": number;
   processoJava: ProcessoJava;
+  metodoServer: MetodoServer;
   constructor(data?: PassoProcessoJavaInterface) {
     Object.assign(this, data);
   }
@@ -53,8 +60,12 @@ export class PassoProcessoJava implements PassoProcessoJavaInterface {
       path: 'PassoProcessoJavas',
       idName: 'id',
       properties: {
-        "nome": {
-          name: 'nome',
+        "nomeClasse": {
+          name: 'nomeClasse',
+          type: 'string'
+        },
+        "pacoteClasse": {
+          name: 'pacoteClasse',
           type: 'string'
         },
         "tipo": {
@@ -63,7 +74,7 @@ export class PassoProcessoJava implements PassoProcessoJavaInterface {
         },
         "ordenacao": {
           name: 'ordenacao',
-          type: 'string'
+          type: 'number'
         },
         "id": {
           name: 'id',
@@ -71,6 +82,10 @@ export class PassoProcessoJava implements PassoProcessoJavaInterface {
         },
         "processoJavaId": {
           name: 'processoJavaId',
+          type: 'number'
+        },
+        "metodoServerId": {
+          name: 'metodoServerId',
           type: 'number'
         },
       },
@@ -81,6 +96,14 @@ export class PassoProcessoJava implements PassoProcessoJavaInterface {
           model: 'ProcessoJava',
           relationType: 'belongsTo',
                   keyFrom: 'processoJavaId',
+          keyTo: 'id'
+        },
+        metodoServer: {
+          name: 'metodoServer',
+          type: 'MetodoServer',
+          model: 'MetodoServer',
+          relationType: 'belongsTo',
+                  keyFrom: 'metodoServerId',
           keyTo: 'id'
         },
       }

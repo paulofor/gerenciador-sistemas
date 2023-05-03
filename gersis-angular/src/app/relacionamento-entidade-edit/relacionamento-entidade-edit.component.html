@@ -1,3 +1,29 @@
-<p>
-  relacionamento-entidade-edit works!
-</p>
+<h2 mat-dialog-title *ngIf="origem">Relacionamento - {{origem.nome}}</h2>
+
+<form *ngIf="listaEntidade" class="example-full-width" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+
+    <mat-form-field class="example-half-width">
+      <mat-select placeholder="Tipo" #cardinal [(ngModel)]="tela.cardinal" name="cardinal">
+        <mat-option value="1">Ùnico</mat-option>
+        <mat-option value="N">Vários</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-half-width">
+      <mat-select placeholder="Entidade" #entidadeId [(ngModel)]="tela.entidadeId" name="entidadeId">
+        <mat-option *ngFor="let entidade of listaEntidade" [value]="entidade.id">
+          {{ entidade.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button>Salvar</button>
+    <button mat-raised-button mat-dialog-close>Fechar</button>
+  </mat-dialog-actions>
+
+</form>

@@ -1,3 +1,43 @@
-<p>
-  processo-java-edit works!
-</p>
+<h2 mat-dialog-title>Processo Java</h2>
+
+<form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="150" #nomeClasseMain [(ngModel)]="item.nomeClasseMain" name="nomeClasseMain" placeholder="Classe Main" autocomplete="off" />
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="50" #pacoteClasseMain [(ngModel)]="item.pacoteClasseMain" name="pacoteClasseMain" placeholder="Pacote Main" autocomplete="off" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="150" #projeto [(ngModel)]="item.projeto" name="projeto" placeholder="Projeto" autocomplete="off" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="150" #jar [(ngModel)]="item.jar" name="jar" placeholder="jar" autocomplete="off" />
+    </mat-form-field>
+ 
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="150" #crontab [(ngModel)]="item.crontab" name="crontab" placeholder="Crontab" autocomplete="off" />
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width" *ngIf="listaLinux">
+      <mat-select placeholder="Servidores"  #linuxInternetId [(ngModel)]="item.linuxInternetId" name="linuxInternetId">
+        <mat-option *ngFor="let servidor of listaLinux" [value]="servidor.id">
+          {{ servidor.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button>Salvar</button>
+    <button mat-raised-button mat-dialog-close>Fechar</button>
+  </mat-dialog-actions>
+
+</form>

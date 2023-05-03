@@ -1,12 +1,12 @@
-<h2 mat-dialog-title *ngIf="origem">Método Server - {{origem.nome}}</h2>
+<h2 mat-dialog-title *ngIf="origem">Passo - {{origem.nomeClasseMain}}</h2>
 
 <form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
 
   <mat-dialog-content>
     <mat-form-field class="example-full-width">
-      <input matInput maxlength="50" #nome [(ngModel)]="item.nome" name="nome" placeholder="Nome" autocomplete="off" />
+      <input matInput maxlength="50" #nomeClasse [(ngModel)]="item.nomeClasse" name="nomeClasse" placeholder="Nome da Classe" autocomplete="off" />
     </mat-form-field>
-
+ 
 
   </mat-dialog-content>
 

@@ -1,0 +1,22 @@
+<div class="dgc-painel" *ngIf="principal">
+  <div class="dgc-painel-header">
+      <span>{{principal.nomeClasseMain}}</span>
+  </div>
+  
+  <div class="dgc-card">
+    <div class="dgc-card-header">
+        <span>Passos</span>
+    </div>
+    <div class="dgc-detalhe" *ngFor="let item of principal.atributoEntidades">
+      <span class="dgc-link" (click)="editaPasso(item)">{{item.nomeClasse}}</span>
+    </div>
+    <div class="dgc-card-comandos">
+      <button class="btn-primary btn-sm btn" (click)="editaPasso()">Novo</button>
+    </div> 
+  </div>
+
+
+
+
+
+</div>

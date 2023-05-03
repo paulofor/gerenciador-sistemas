@@ -1,3 +1,21 @@
-<p>
-  atributo-entidade-edit works!
-</p>
+<h2 mat-dialog-title *ngIf="origem">Atributo - {{origem.nome}}</h2>
+
+<form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="50" #nome [(ngModel)]="item.nome" name="nome" placeholder="Nome" autocomplete="off" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="50" #tipoBd [(ngModel)]="item.tipoBd" name="tipoBd" placeholder="Tipo Banco de Dados" autocomplete="off" />
+    </mat-form-field>
+
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button>Salvar</button>
+    <button mat-raised-button mat-dialog-close>Fechar</button>
+  </mat-dialog-actions>
+
+</form>

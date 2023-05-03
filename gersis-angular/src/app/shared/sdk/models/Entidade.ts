@@ -9,6 +9,7 @@ import {
 declare var Object: any;
 export interface EntidadeInterface {
   "nome"?: string;
+  "usado"?: number;
   "id"?: number;
   "sistemaId"?: number;
   sistema?: Sistema;
@@ -20,6 +21,7 @@ export interface EntidadeInterface {
 
 export class Entidade implements EntidadeInterface {
   "nome": string;
+  "usado": number;
   "id": number;
   "sistemaId": number;
   sistema: Sistema;
@@ -64,6 +66,10 @@ export class Entidade implements EntidadeInterface {
           name: 'nome',
           type: 'string'
         },
+        "usado": {
+          name: 'usado',
+          type: 'number'
+        },
         "id": {
           name: 'id',
           type: 'number'
@@ -104,7 +110,7 @@ export class Entidade implements EntidadeInterface {
           model: 'RelacionamentoEntidade',
           relationType: 'hasMany',
                   keyFrom: 'id',
-          keyTo: 'entidade1Id'
+          keyTo: 'entidadeNId'
         },
         relacionamentosN: {
           name: 'relacionamentosN',
@@ -112,7 +118,7 @@ export class Entidade implements EntidadeInterface {
           model: 'RelacionamentoEntidade',
           relationType: 'hasMany',
                   keyFrom: 'id',
-          keyTo: 'entidadeNId'
+          keyTo: 'entidade1Id'
         },
       }
     }

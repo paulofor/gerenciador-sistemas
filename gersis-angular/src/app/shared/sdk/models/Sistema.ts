@@ -7,6 +7,8 @@ import {
 declare var Object: any;
 export interface SistemaInterface {
   "nome"?: string;
+  "sigla"?: string;
+  "nomeBancoDados"?: string;
   "id"?: number;
   processoJavas?: ProcessoJava[];
   entidades?: Entidade[];
@@ -14,6 +16,8 @@ export interface SistemaInterface {
 
 export class Sistema implements SistemaInterface {
   "nome": string;
+  "sigla": string;
+  "nomeBancoDados": string;
   "id": number;
   processoJavas: ProcessoJava[];
   entidades: Entidade[];
@@ -52,6 +56,14 @@ export class Sistema implements SistemaInterface {
       properties: {
         "nome": {
           name: 'nome',
+          type: 'string'
+        },
+        "sigla": {
+          name: 'sigla',
+          type: 'string'
+        },
+        "nomeBancoDados": {
+          name: 'nomeBancoDados',
           type: 'string'
         },
         "id": {

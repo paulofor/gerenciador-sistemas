@@ -1,23 +1,30 @@
 /* tslint:disable */
 import {
   ParametroMetodoServer,
+  PassoProcessoJava,
   Entidade
 } from '../index';
 
 declare var Object: any;
 export interface MetodoServerInterface {
   "nome"?: string;
+  "resposta"?: string;
+  "tipoResposta"?: string;
   "id"?: number;
   "entidadeId"?: number;
   parametroMetodoServers?: ParametroMetodoServer[];
+  passoProcessoJavas?: PassoProcessoJava[];
   entidade?: Entidade;
 }
 
 export class MetodoServer implements MetodoServerInterface {
   "nome": string;
+  "resposta": string;
+  "tipoResposta": string;
   "id": number;
   "entidadeId": number;
   parametroMetodoServers: ParametroMetodoServer[];
+  passoProcessoJavas: PassoProcessoJava[];
   entidade: Entidade;
   constructor(data?: MetodoServerInterface) {
     Object.assign(this, data);
@@ -56,6 +63,14 @@ export class MetodoServer implements MetodoServerInterface {
           name: 'nome',
           type: 'string'
         },
+        "resposta": {
+          name: 'resposta',
+          type: 'string'
+        },
+        "tipoResposta": {
+          name: 'tipoResposta',
+          type: 'string'
+        },
         "id": {
           name: 'id',
           type: 'number'
@@ -70,6 +85,14 @@ export class MetodoServer implements MetodoServerInterface {
           name: 'parametroMetodoServers',
           type: 'ParametroMetodoServer[]',
           model: 'ParametroMetodoServer',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'metodoServerId'
+        },
+        passoProcessoJavas: {
+          name: 'passoProcessoJavas',
+          type: 'PassoProcessoJava[]',
+          model: 'PassoProcessoJava',
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'metodoServerId'

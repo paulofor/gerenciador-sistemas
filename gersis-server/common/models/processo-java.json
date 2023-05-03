@@ -8,6 +8,18 @@
   "properties": {
     "nomeClasseMain": {
       "type": "string"
+    },
+    "pacoteClasseMain" : {
+      "type" : "string"
+    },
+    "projeto": {
+      "type": "string"
+    },
+    "jar": {
+      "type": "string"
+    },
+    "crontab": {
+      "type": "string"
     }
   },
   "validations": [],

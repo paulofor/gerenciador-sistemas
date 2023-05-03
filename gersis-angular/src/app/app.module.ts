@@ -42,12 +42,13 @@ import { EntidadeEditComponent } from './entidade-edit/entidade-edit.component';
 import { EntidadeDetalheComponent } from './entidade-detalhe/entidade-detalhe.component';
 import { LinuxInternetListComponent } from './linux-internet-list/linux-internet-list.component';
 import { LinuxInternetEditComponent } from './linux-internet-edit/linux-internet-edit.component';
-import { MetodoServerListComponent } from './metodo-server-list/metodo-server-list.component';
 import { MetodoServerEditComponent } from './metodo-server-edit/metodo-server-edit.component';
 import { ProcessoJavaListComponent } from './processo-java-list/processo-java-list.component';
 import { ProcessoJavaEditComponent } from './processo-java-edit/processo-java-edit.component';
 import { AtributoEntidadeEditComponent } from './atributo-entidade-edit/atributo-entidade-edit.component';
 import { RelacionamentoEntidadeEditComponent } from './relacionamento-entidade-edit/relacionamento-entidade-edit.component';
+import { ProcessoJavaDetalheComponent } from './processo-java-detalhe/processo-java-detalhe.component';
+import { PassoProcessoEditComponent } from './passo-processo-edit/passo-processo-edit.component';
 
 
 
@@ -68,12 +69,13 @@ registerLocaleData(localePt, 'pt-BR');
     EntidadeDetalheComponent,
     LinuxInternetListComponent,
     LinuxInternetEditComponent,
-    MetodoServerListComponent,
     MetodoServerEditComponent,
     ProcessoJavaListComponent,
     ProcessoJavaEditComponent,
     AtributoEntidadeEditComponent,
-    RelacionamentoEntidadeEditComponent
+    RelacionamentoEntidadeEditComponent,
+    ProcessoJavaDetalheComponent,
+    PassoProcessoEditComponent
 
   ],
   imports: [
@@ -128,7 +130,8 @@ registerLocaleData(localePt, 'pt-BR');
     MetodoServerEditComponent,
     ProcessoJavaEditComponent,
     AtributoEntidadeEditComponent,
-    RelacionamentoEntidadeEditComponent
+    RelacionamentoEntidadeEditComponent,
+    PassoProcessoEditComponent
   ],
   bootstrap: [AppComponent]
 })

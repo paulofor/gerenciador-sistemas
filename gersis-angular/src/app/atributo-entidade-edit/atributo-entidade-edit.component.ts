@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../base-component/base-edit-component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { AtributoEntidadeApi } from '../shared/sdk';
+import { AtributoEntidade, AtributoEntidadeApi } from '../shared/sdk';
 
 @Component({
   selector: 'app-atributo-entidade-edit',
@@ -14,6 +14,14 @@ export class AtributoEntidadeEditComponent extends BaseEditComponent {
     , @Inject(MAT_DIALOG_DATA) protected data: any, protected servico: AtributoEntidadeApi,
   ) {
     super(dialogRef,data,servico);
+  }
+
+
+  criaItem() {
+    let novo : AtributoEntidade = new AtributoEntidade();
+    console.log('Origem:' , this.origem);
+    novo['entidadeId'] = this.origem.id;
+    return novo;
   }
 
 }
