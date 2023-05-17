@@ -39,6 +39,16 @@
       "type": "hasMany",
       "model": "RelacionamentoEntidade",
       "foreignKey": "entidade1Id"
+    },
+    "processoJavaComoEntrada": {
+      "type": "hasMany",
+      "model": "ProcessoEntidadeEntradaRel",
+      "foreignKey": ""
+    },
+    "processoJavaComoSaida": {
+      "type": "hasMany",
+      "model": "ProcessoEntidadeSaidaRel",
+      "foreignKey": ""
     }
   },
   "acls": [],

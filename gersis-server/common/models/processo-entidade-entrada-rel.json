@@ -1,0 +1,33 @@
+{
+  "name": "ProcessoEntidadeEntradaRel",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "entidadeId": {
+      "type": "number",
+      "id": true
+    },
+    "processoJavaId": {
+      "type": "number",
+      "id": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "entidade": {
+      "type": "belongsTo",
+      "model": "Entidade",
+      "foreignKey": ""
+    },
+    "processoJava": {
+      "type": "belongsTo",
+      "model": "ProcessoJava",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

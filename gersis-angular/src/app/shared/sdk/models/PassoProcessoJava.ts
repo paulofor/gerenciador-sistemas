@@ -1,7 +1,9 @@
 /* tslint:disable */
 import {
   ProcessoJava,
-  MetodoServer
+  MetodoServer,
+  DadoPassoProcessoEntradaRel,
+  DadoPassoProcessoSaidaRel
 } from '../index';
 
 declare var Object: any;
@@ -10,11 +12,14 @@ export interface PassoProcessoJavaInterface {
   "pacoteClasse"?: string;
   "tipo"?: string;
   "ordenacao"?: number;
+  "dentroLoop"?: number;
   "id"?: number;
   "processoJavaId"?: number;
   "metodoServerId"?: number;
   processoJava?: ProcessoJava;
   metodoServer?: MetodoServer;
+  dadoPassoEntrada?: DadoPassoProcessoEntradaRel[];
+  dadoPassoSaida?: DadoPassoProcessoSaidaRel[];
 }
 
 export class PassoProcessoJava implements PassoProcessoJavaInterface {
@@ -22,11 +27,14 @@ export class PassoProcessoJava implements PassoProcessoJavaInterface {
   "pacoteClasse": string;
   "tipo": string;
   "ordenacao": number;
+  "dentroLoop": number;
   "id": number;
   "processoJavaId": number;
   "metodoServerId": number;
   processoJava: ProcessoJava;
   metodoServer: MetodoServer;
+  dadoPassoEntrada: DadoPassoProcessoEntradaRel[];
+  dadoPassoSaida: DadoPassoProcessoSaidaRel[];
   constructor(data?: PassoProcessoJavaInterface) {
     Object.assign(this, data);
   }
@@ -76,6 +84,10 @@ export class PassoProcessoJava implements PassoProcessoJavaInterface {
           name: 'ordenacao',
           type: 'number'
         },
+        "dentroLoop": {
+          name: 'dentroLoop',
+          type: 'number'
+        },
         "id": {
           name: 'id',
           type: 'number'
@@ -105,6 +117,22 @@ export class PassoProcessoJava implements PassoProcessoJavaInterface {
           relationType: 'belongsTo',
                   keyFrom: 'metodoServerId',
           keyTo: 'id'
+        },
+        dadoPassoEntrada: {
+          name: 'dadoPassoEntrada',
+          type: 'DadoPassoProcessoEntradaRel[]',
+          model: 'DadoPassoProcessoEntradaRel',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'passoProcessoJavaId'
+        },
+        dadoPassoSaida: {
+          name: 'dadoPassoSaida',
+          type: 'DadoPassoProcessoSaidaRel[]',
+          model: 'DadoPassoProcessoSaidaRel',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'passoProcessoJavaId'
         },
       }
     }

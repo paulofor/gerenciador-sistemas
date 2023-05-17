@@ -58,6 +58,11 @@ import { PassoProcessoJavaApi } from './services/custom/PassoProcessoJava';
 import { LinuxInternetApi } from './services/custom/LinuxInternet';
 import { EntidadeApi } from './services/custom/Entidade';
 import { RelacionamentoEntidadeApi } from './services/custom/RelacionamentoEntidade';
+import { ProcessoEntidadeEntradaRelApi } from './services/custom/ProcessoEntidadeEntradaRel';
+import { ProcessoEntidadeSaidaRelApi } from './services/custom/ProcessoEntidadeSaidaRel';
+import { DadoProcessoApi } from './services/custom/DadoProcesso';
+import { DadoPassoProcessoEntradaRelApi } from './services/custom/DadoPassoProcessoEntradaRel';
+import { DadoPassoProcessoSaidaRelApi } from './services/custom/DadoPassoProcessoSaidaRel';
 /**
 * @module SDKBrowserModule
 * @description
@@ -98,6 +103,11 @@ export class SDKBrowserModule {
         LinuxInternetApi,
         EntidadeApi,
         RelacionamentoEntidadeApi,
+        ProcessoEntidadeEntradaRelApi,
+        ProcessoEntidadeSaidaRelApi,
+        DadoProcessoApi,
+        DadoPassoProcessoEntradaRelApi,
+        DadoPassoProcessoSaidaRelApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser }
       ]

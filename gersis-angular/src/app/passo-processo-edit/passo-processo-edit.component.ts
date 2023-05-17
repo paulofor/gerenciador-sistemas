@@ -21,6 +21,7 @@ export class PassoProcessoEditComponent  extends BaseEditComponent {
     let novo : PassoProcessoJava = new PassoProcessoJava();
     console.log('Origem:' , this.origem);
     novo['processoJavaId'] = this.origem.id;
+    novo['ordenacao'] = this.origem.passoProcessoJavas.length + 1;
     return novo;
   }
 

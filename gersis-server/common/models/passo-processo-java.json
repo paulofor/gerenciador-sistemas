@@ -17,6 +17,9 @@
     },
     "ordenacao": {
       "type": "number"
+    },
+    "dentroLoop": {
+      "type": "number"
     }
   },
   "validations": [],
@@ -29,6 +32,16 @@
     "metodoServer": {
       "type": "belongsTo",
       "model": "MetodoServer",
+      "foreignKey": ""
+    },
+    "dadoPassoEntrada": {
+      "type": "hasMany",
+      "model": "DadoPassoProcessoEntradaRel",
+      "foreignKey": ""
+    },
+    "dadoPassoSaida": {
+      "type": "hasMany",
+      "model": "DadoPassoProcessoSaidaRel",
       "foreignKey": ""
     }
   },

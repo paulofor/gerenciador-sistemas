@@ -3,7 +3,9 @@ import {
   Sistema,
   AtributoEntidade,
   MetodoServer,
-  RelacionamentoEntidade
+  RelacionamentoEntidade,
+  ProcessoEntidadeEntradaRel,
+  ProcessoEntidadeSaidaRel
 } from '../index';
 
 declare var Object: any;
@@ -17,6 +19,8 @@ export interface EntidadeInterface {
   metodoServers?: MetodoServer[];
   relacionamentos1?: RelacionamentoEntidade[];
   relacionamentosN?: RelacionamentoEntidade[];
+  processoJavaComoEntrada?: ProcessoEntidadeEntradaRel[];
+  processoJavaComoSaida?: ProcessoEntidadeSaidaRel[];
 }
 
 export class Entidade implements EntidadeInterface {
@@ -29,6 +33,8 @@ export class Entidade implements EntidadeInterface {
   metodoServers: MetodoServer[];
   relacionamentos1: RelacionamentoEntidade[];
   relacionamentosN: RelacionamentoEntidade[];
+  processoJavaComoEntrada: ProcessoEntidadeEntradaRel[];
+  processoJavaComoSaida: ProcessoEntidadeSaidaRel[];
   constructor(data?: EntidadeInterface) {
     Object.assign(this, data);
   }
@@ -119,6 +125,22 @@ export class Entidade implements EntidadeInterface {
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'entidade1Id'
+        },
+        processoJavaComoEntrada: {
+          name: 'processoJavaComoEntrada',
+          type: 'ProcessoEntidadeEntradaRel[]',
+          model: 'ProcessoEntidadeEntradaRel',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'entidadeId'
+        },
+        processoJavaComoSaida: {
+          name: 'processoJavaComoSaida',
+          type: 'ProcessoEntidadeSaidaRel[]',
+          model: 'ProcessoEntidadeSaidaRel',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'entidadeId'
         },
       }
     }

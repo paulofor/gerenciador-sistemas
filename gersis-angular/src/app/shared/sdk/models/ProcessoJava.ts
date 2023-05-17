@@ -2,7 +2,10 @@
 import {
   Sistema,
   PassoProcessoJava,
-  LinuxInternet
+  LinuxInternet,
+  ProcessoEntidadeEntradaRel,
+  ProcessoEntidadeSaidaRel,
+  DadoProcesso
 } from '../index';
 
 declare var Object: any;
@@ -18,6 +21,9 @@ export interface ProcessoJavaInterface {
   sistema?: Sistema;
   passoProcessoJavas?: PassoProcessoJava[];
   linuxInternet?: LinuxInternet;
+  processoEntidadeEntrada?: ProcessoEntidadeEntradaRel[];
+  processoEntidadeSaida?: ProcessoEntidadeSaidaRel[];
+  dadoProcessos?: DadoProcesso[];
 }
 
 export class ProcessoJava implements ProcessoJavaInterface {
@@ -32,6 +38,9 @@ export class ProcessoJava implements ProcessoJavaInterface {
   sistema: Sistema;
   passoProcessoJavas: PassoProcessoJava[];
   linuxInternet: LinuxInternet;
+  processoEntidadeEntrada: ProcessoEntidadeEntradaRel[];
+  processoEntidadeSaida: ProcessoEntidadeSaidaRel[];
+  dadoProcessos: DadoProcesso[];
   constructor(data?: ProcessoJavaInterface) {
     Object.assign(this, data);
   }
@@ -122,6 +131,30 @@ export class ProcessoJava implements ProcessoJavaInterface {
           relationType: 'belongsTo',
                   keyFrom: 'linuxInternetId',
           keyTo: 'id'
+        },
+        processoEntidadeEntrada: {
+          name: 'processoEntidadeEntrada',
+          type: 'ProcessoEntidadeEntradaRel[]',
+          model: 'ProcessoEntidadeEntradaRel',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'processoJavaId'
+        },
+        processoEntidadeSaida: {
+          name: 'processoEntidadeSaida',
+          type: 'ProcessoEntidadeSaidaRel[]',
+          model: 'ProcessoEntidadeSaidaRel',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'processoJavaId'
+        },
+        dadoProcessos: {
+          name: 'dadoProcessos',
+          type: 'DadoProcesso[]',
+          model: 'DadoProcesso',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'processoJavaId'
         },
       }
     }

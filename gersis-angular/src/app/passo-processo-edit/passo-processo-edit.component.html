@@ -1,12 +1,19 @@
-<h2 mat-dialog-title *ngIf="origem">Passo - {{origem.nomeClasseMain}}</h2>
+<h2 mat-dialog-title *ngIf="origem && item">Passo {{item.ordenacao}} em {{origem.nomeClasseMain}}</h2>
 
 <form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
 
   <mat-dialog-content>
+
     <mat-form-field class="example-full-width">
       <input matInput maxlength="50" #nomeClasse [(ngModel)]="item.nomeClasse" name="nomeClasse" placeholder="Nome da Classe" autocomplete="off" />
     </mat-form-field>
  
+    <mat-form-field class="example-half-width">
+      <mat-select placeholder="Dentro de loop" #dentroLoop [(ngModel)]="item.dentroLoop" name="dentroLoop">
+        <mat-option value="1">Sim</mat-option>
+        <mat-option value="0">Não</mat-option>
+      </mat-select>
+    </mat-form-field>
 
   </mat-dialog-content>
 

@@ -1,0 +1,65 @@
+{
+  "name": "DadoPassoProcessoEntradaRel",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "passoProcessoJavaId": {
+      "type": "number",
+      "id": true
+    },
+    "dadoProcessoId": {
+      "type": "number",
+      "id": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "passoProcessoJava": {
+      "type": "belongsTo",
+      "model": "PassoProcessoJava",
+      "foreignKey": ""
+    },
+    "dadoProcesso": {
+      "type": "belongsTo",
+      "model": "DadoProcesso",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {
+    "AtualizaPorPassoProcesso": {
+      "accepts": [
+        {
+          "arg": "idPassoProcesso",
+          "type": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "arg": "lista",
+          "type": "array",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "result",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/atualizaPorPassoProcesso",
+          "verb": "post"
+        }
+      ]
+    }
+  }
+}

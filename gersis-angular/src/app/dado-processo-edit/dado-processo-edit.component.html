@@ -1,0 +1,35 @@
+<h2 mat-dialog-title *ngIf="origem && item">Dado em {{origem.nomeClasseMain}}</h2>
+
+<form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="50" #nome [(ngModel)]="item.nome" name="nome" placeholder="Nome" autocomplete="off" />
+    </mat-form-field>
+ 
+    <mat-form-field class="example-full-width" *ngIf="listaEntidade">
+      <mat-select placeholder="Tipo Objeto"  #tipoEntidadeId [(ngModel)]="item.tipoEntidadeId" name="tipoEntidadeId">
+        <mat-option *ngFor="let entidade of listaEntidade" [value]="entidade.id">
+          {{ entidade.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width" *ngIf="listaEntidade">
+      <mat-select placeholder="Tipo Simples"  #tipoSimples [(ngModel)]="item.tipoSimples" name="tipoSimples">
+        <mat-option [value]="String">String</mat-option>
+        <mat-option [value]="long">long</mat-option>
+        <mat-option [value]="int">int</mat-option>
+        <mat-option [value]="double">double</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button>Salvar</button>
+    <button mat-raised-button mat-dialog-close>Fechar</button>
+  </mat-dialog-actions>
+
+</form>

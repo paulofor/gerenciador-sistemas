@@ -9,8 +9,8 @@
     "nomeClasseMain": {
       "type": "string"
     },
-    "pacoteClasseMain" : {
-      "type" : "string"
+    "pacoteClasseMain": {
+      "type": "string"
     },
     "projeto": {
       "type": "string"
@@ -38,8 +38,49 @@
       "type": "belongsTo",
       "model": "LinuxInternet",
       "foreignKey": ""
+    },
+    "dadoProcessos": {
+      "type": "hasMany",
+      "model": "DadoProcesso",
+      "foreignKey": ""
+    },
+    "processoEntidadeEntrada": {
+      "type": "hasMany",
+      "model": "ProcessoEntidadeEntradaRel",
+      "foreignKey": ""
+    },
+    "processoEntidadeSaida": {
+      "type": "hasMany",
+      "model": "ProcessoEntidadeSaidaRel",
+      "foreignKey": ""
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "ListaEntidadeDisponivel": {
+      "accepts": [
+        {
+          "arg": "idProcesso",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "lista",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/listaEntidadeDisponivel",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }

@@ -70,5 +70,25 @@
   "RelacionamentoEntidade": {
     "dataSource": "mysqlds",
     "public": true
+  },
+  "ProcessoEntidadeEntradaRel": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "ProcessoEntidadeSaidaRel": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "DadoProcesso": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "DadoPassoProcessoEntradaRel": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "DadoPassoProcessoSaidaRel": {
+    "dataSource": "mysqlds",
+    "public": true
   }
 }

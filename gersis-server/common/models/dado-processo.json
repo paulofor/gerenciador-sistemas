@@ -1,0 +1,36 @@
+{
+  "name": "DadoProcesso",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "tipoSimples": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "tipoEntidade": {
+      "type": "belongsTo",
+      "model": "Entidade",
+      "foreignKey": ""
+    },
+    "passoProcessoJavaComoEntrada": {
+      "type": "hasMany",
+      "model": "DadoPassoProcessoEntradaRel",
+      "foreignKey": ""
+    },
+    "passoProcessoJavaComoSaida": {
+      "type": "hasMany",
+      "model": "DadoPassoProcessoSaidaRel",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

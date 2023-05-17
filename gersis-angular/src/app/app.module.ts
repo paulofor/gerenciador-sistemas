@@ -49,6 +49,11 @@ import { AtributoEntidadeEditComponent } from './atributo-entidade-edit/atributo
 import { RelacionamentoEntidadeEditComponent } from './relacionamento-entidade-edit/relacionamento-entidade-edit.component';
 import { ProcessoJavaDetalheComponent } from './processo-java-detalhe/processo-java-detalhe.component';
 import { PassoProcessoEditComponent } from './passo-processo-edit/passo-processo-edit.component';
+import { DadoProcessoEntradaEditComponent } from './dado-processo-entrada-edit/dado-processo-entrada-edit.component';
+import { DadoProcessoSaidaEditComponent } from './dado-processo-saida-edit/dado-processo-saida-edit.component';
+import { EscolheEntidadeEntradaParaProcessoComponent } from './escolhe-entidade-entrada-para-processo/escolhe-entidade-entrada-para-processo.component';
+import { EscolheEntidadeSaidaParaProcessoComponent } from './escolhe-entidade-saida-para-processo/escolhe-entidade-saida-para-processo.component';
+import { DadoProcessoEditComponent } from './dado-processo-edit/dado-processo-edit.component';
 
 
 
@@ -75,8 +80,12 @@ registerLocaleData(localePt, 'pt-BR');
     AtributoEntidadeEditComponent,
     RelacionamentoEntidadeEditComponent,
     ProcessoJavaDetalheComponent,
-    PassoProcessoEditComponent
-
+    PassoProcessoEditComponent,
+    DadoProcessoEntradaEditComponent,
+    DadoProcessoSaidaEditComponent,
+    EscolheEntidadeEntradaParaProcessoComponent,
+    EscolheEntidadeSaidaParaProcessoComponent,
+    DadoProcessoEditComponent
   ],
   imports: [
     BrowserModule,
@@ -131,7 +140,12 @@ registerLocaleData(localePt, 'pt-BR');
     ProcessoJavaEditComponent,
     AtributoEntidadeEditComponent,
     RelacionamentoEntidadeEditComponent,
-    PassoProcessoEditComponent
+    PassoProcessoEditComponent,
+    DadoProcessoEntradaEditComponent,
+    DadoProcessoSaidaEditComponent,
+    EscolheEntidadeEntradaParaProcessoComponent,
+    EscolheEntidadeSaidaParaProcessoComponent,
+    DadoProcessoEditComponent
   ],
   bootstrap: [AppComponent]
 })

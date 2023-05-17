@@ -10,6 +10,11 @@ import { PassoProcessoJava } from '../../models/PassoProcessoJava';
 import { LinuxInternet } from '../../models/LinuxInternet';
 import { Entidade } from '../../models/Entidade';
 import { RelacionamentoEntidade } from '../../models/RelacionamentoEntidade';
+import { ProcessoEntidadeEntradaRel } from '../../models/ProcessoEntidadeEntradaRel';
+import { ProcessoEntidadeSaidaRel } from '../../models/ProcessoEntidadeSaidaRel';
+import { DadoProcesso } from '../../models/DadoProcesso';
+import { DadoPassoProcessoEntradaRel } from '../../models/DadoPassoProcessoEntradaRel';
+import { DadoPassoProcessoSaidaRel } from '../../models/DadoPassoProcessoSaidaRel';
 
 export interface Models { [name: string]: any }
 
@@ -27,6 +32,11 @@ export class SDKModels {
     LinuxInternet: LinuxInternet,
     Entidade: Entidade,
     RelacionamentoEntidade: RelacionamentoEntidade,
+    ProcessoEntidadeEntradaRel: ProcessoEntidadeEntradaRel,
+    ProcessoEntidadeSaidaRel: ProcessoEntidadeSaidaRel,
+    DadoProcesso: DadoProcesso,
+    DadoPassoProcessoEntradaRel: DadoPassoProcessoEntradaRel,
+    DadoPassoProcessoSaidaRel: DadoPassoProcessoSaidaRel,
     
   };
 
