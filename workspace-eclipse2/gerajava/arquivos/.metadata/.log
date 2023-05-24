@@ -1,0 +1,10 @@
+!SESSION 2023-05-24 06:44:07.532 -----------------------------------------------
+eclipse.buildId=4.11.0.I20190307-0500
+java.version=1.8.0_201
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=pt_BR
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -data /home/usuario/aplicacoes/GerenciadorSistemas/workspace-eclipse2/gerajava/arquivos -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.core 1 0 2023-05-24 06:44:19.873
+!MESSAGE Using Apache MINA sshd as ssh client.

@@ -14,6 +14,9 @@
     },
     "nomeBancoDados": {
       "type": "string"
+    },
+    "pathProjeto" : {
+      "type": "string"
     }
   },
   "validations": [],
@@ -30,5 +33,31 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "ObtemParaGerarJava": {
+      "accepts": [
+        {
+          "arg": "idSistema",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "sistema",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/obtemParaGerarJava",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }

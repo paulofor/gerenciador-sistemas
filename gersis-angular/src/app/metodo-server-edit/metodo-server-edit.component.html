@@ -7,6 +7,13 @@
       <input matInput maxlength="50" #nome [(ngModel)]="item.nome" name="nome" placeholder="Nome" autocomplete="off" />
     </mat-form-field>
 
+    <mat-form-field class="example-half-width">
+      <mat-select placeholder="Tipo" #tipoMetodo [(ngModel)]="item.tipoMetodo" name="tipoMetodo">
+        <mat-option value="GET">GET</mat-option>
+        <mat-option value="POST">POST</mat-option>
+      </mat-select>
+    </mat-form-field>
+
 
   </mat-dialog-content>
 

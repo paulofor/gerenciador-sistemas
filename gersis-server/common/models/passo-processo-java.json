@@ -20,6 +20,9 @@
     },
     "dentroLoop": {
       "type": "number"
+    },
+    "tipoPasso": {
+      "type": "string"
     }
   },
   "validations": [],
@@ -46,5 +49,56 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "SobeItem": {
+      "accepts": [
+        {
+          "arg": "idPasso",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/sobeItem",
+          "verb": "post"
+        }
+      ]
+    },
+    "DesceItem": {
+      "accepts": [
+        {
+          "arg": "idPasso",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/desceItem",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }

@@ -5,7 +5,8 @@ import {
   LinuxInternet,
   ProcessoEntidadeEntradaRel,
   ProcessoEntidadeSaidaRel,
-  DadoProcesso
+  DadoProcesso,
+  ProcessoMetodoRel
 } from '../index';
 
 declare var Object: any;
@@ -24,6 +25,7 @@ export interface ProcessoJavaInterface {
   processoEntidadeEntrada?: ProcessoEntidadeEntradaRel[];
   processoEntidadeSaida?: ProcessoEntidadeSaidaRel[];
   dadoProcessos?: DadoProcesso[];
+  processoMetodoRels?: ProcessoMetodoRel[];
 }
 
 export class ProcessoJava implements ProcessoJavaInterface {
@@ -41,6 +43,7 @@ export class ProcessoJava implements ProcessoJavaInterface {
   processoEntidadeEntrada: ProcessoEntidadeEntradaRel[];
   processoEntidadeSaida: ProcessoEntidadeSaidaRel[];
   dadoProcessos: DadoProcesso[];
+  processoMetodoRels: ProcessoMetodoRel[];
   constructor(data?: ProcessoJavaInterface) {
     Object.assign(this, data);
   }
@@ -152,6 +155,14 @@ export class ProcessoJava implements ProcessoJavaInterface {
           name: 'dadoProcessos',
           type: 'DadoProcesso[]',
           model: 'DadoProcesso',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'processoJavaId'
+        },
+        processoMetodoRels: {
+          name: 'processoMetodoRels',
+          type: 'ProcessoMetodoRel[]',
+          model: 'ProcessoMetodoRel',
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'processoJavaId'

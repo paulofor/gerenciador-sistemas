@@ -2,14 +2,15 @@ import { OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { PERCENTUAL_AVISO } from "../constantes/base.url";
 import { ActivatedRoute } from "@angular/router";
-import { BaseLoopBackApi } from "../shared/sdk";
+import { BaseLoopBackApi, Sistema, SistemaApi } from "../shared/sdk";
 
 export abstract class BaseListSistemaComponent implements OnInit{
 
   listaBase: any[];
   idSistema = 0;
+  sistema:Sistema;
 
-  constructor(protected dialog: MatDialog, protected srv:BaseLoopBackApi, protected router: ActivatedRoute) { }
+  constructor(protected dialog: MatDialog, protected srv:BaseLoopBackApi, protected router: ActivatedRoute, protected srvSistema:SistemaApi) { }
 
 
   ngOnInit() {
@@ -31,7 +32,11 @@ export abstract class BaseListSistemaComponent implements OnInit{
             console.log('result: ' , result);
             this.listaBase = result;
             this.posCarregaLista();
-        })
+        });
+        this.srvSistema.findById(this.idSistema)
+            .subscribe((result:Sistema) => {
+                this.sistema = result;
+            })
       })
     
   }

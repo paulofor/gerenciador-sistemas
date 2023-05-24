@@ -29,37 +29,5 @@
     }
   },
   "acls": [],
-  "methods": {
-    "AtualizaPorPassoProcesso": {
-      "accepts": [
-        {
-          "arg": "idPassoProcesso",
-          "type": "number",
-          "required": false,
-          "description": ""
-        },
-        {
-          "arg": "lista",
-          "type": "array",
-          "required": false,
-          "description": ""
-        }
-      ],
-      "returns": [
-        {
-          "arg": "result",
-          "type": "object",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/atualizaPorPassoProcesso",
-          "verb": "post"
-        }
-      ]
-    }
-  }
+  "methods": {}
 }

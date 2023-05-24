@@ -11,6 +11,15 @@
     },
     "tipoSimples": {
       "type": "string"
+    },
+    "tipoEntidadeLista": {
+      "type": "string"
+    },
+    "tipoEntidadeId": {
+      "type": "number"
+    },
+    "processoJavaId": {
+      "type": "number"
     }
   },
   "validations": [],

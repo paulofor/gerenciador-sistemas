@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sisacao-angular": {
+    "gersis-angular": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sisacao-angular",
+            "outputPath": "dist/gersis-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -52,18 +52,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sisacao-angular:build"
+            "browserTarget": "gersis-angular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sisacao-angular:build:production"
+              "browserTarget": "gersis-angular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sisacao-angular:build"
+            "browserTarget": "gersis-angular:build"
           }
         },
         "test": {
@@ -97,7 +97,7 @@
         }
       }
     },
-    "sisacao-angular-e2e": {
+    "gersis-angular-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -105,11 +105,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "sisacao-angular:serve"
+            "devServerTarget": "gersis-angular:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "sisacao-angular:serve:production"
+              "devServerTarget": "gersis-angular:serve:production"
             }
           }
         },
@@ -125,5 +125,5 @@
       }
     }
   },
-  "defaultProject": "sisacao-angular"
+  "defaultProject": "gersis-angular"
 }

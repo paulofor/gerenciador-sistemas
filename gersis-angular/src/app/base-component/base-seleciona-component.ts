@@ -74,6 +74,9 @@ export abstract class BaseSelecionaEditComponent implements OnInit{
         listaEnvio.push(this.listaItem[i][this.getNomePropriedadeRel()][0]);
       }
     };
+    if (!this.srvRel[this.getNomeFuncaoAtualizacaoRelacionamento()]) {
+      console.log('Não existe ' , this.getNomeFuncaoAtualizacaoRelacionamento() , ' em ' , this.srvRel);
+    }
     this.srvRel[this.getNomeFuncaoAtualizacaoRelacionamento()](this.origem.id, listaEnvio)
       .subscribe((resultado) => {
         this.dialogRef.close('Pizza!');

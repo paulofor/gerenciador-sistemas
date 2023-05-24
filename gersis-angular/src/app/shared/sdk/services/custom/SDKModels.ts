@@ -15,6 +15,7 @@ import { ProcessoEntidadeSaidaRel } from '../../models/ProcessoEntidadeSaidaRel'
 import { DadoProcesso } from '../../models/DadoProcesso';
 import { DadoPassoProcessoEntradaRel } from '../../models/DadoPassoProcessoEntradaRel';
 import { DadoPassoProcessoSaidaRel } from '../../models/DadoPassoProcessoSaidaRel';
+import { ProcessoMetodoRel } from '../../models/ProcessoMetodoRel';
 
 export interface Models { [name: string]: any }
 
@@ -37,6 +38,7 @@ export class SDKModels {
     DadoProcesso: DadoProcesso,
     DadoPassoProcessoEntradaRel: DadoPassoProcessoEntradaRel,
     DadoPassoProcessoSaidaRel: DadoPassoProcessoSaidaRel,
+    ProcessoMetodoRel: ProcessoMetodoRel,
     
   };
 

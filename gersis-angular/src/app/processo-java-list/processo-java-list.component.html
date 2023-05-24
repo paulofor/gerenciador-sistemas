@@ -1,5 +1,6 @@
-<div class="dgc-painel">
+<div class="dgc-painel" *ngIf="sistema">
   <div class="dgc-painel-header">
+      <span>{{sistema.nome}} - </span>
       <span>Processos Java</span>
       <button class="btn btn-primary btn-sm dgc-botao-comando dgc-direita" (click)="edita()">Nova</button>
   </div>
@@ -7,6 +8,9 @@
       <div class="dgc-card" *ngFor="let item of listaBase">
           <div class="dgc-card-header">
               <span class="dgc-link" routerLink="/processoJavaDetalhe/{{item.id}}">{{item.nomeClasseMain}}</span>
+          </div>
+          <div class="dgc-card-detalhe">
+            <span>Projeto: {{item.projeto}}</span>
           </div>
           <div class="dgc-card-detalhe">
             <span>{{item.jar}}</span>

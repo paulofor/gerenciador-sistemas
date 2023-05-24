@@ -14,5 +14,6 @@ export * from './ProcessoEntidadeSaidaRel';
 export * from './DadoProcesso';
 export * from './DadoPassoProcessoEntradaRel';
 export * from './DadoPassoProcessoSaidaRel';
+export * from './ProcessoMetodoRel';
 export * from './BaseModels';
 export * from './FireLoopRef';

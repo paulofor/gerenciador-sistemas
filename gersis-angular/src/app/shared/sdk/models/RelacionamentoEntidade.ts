@@ -5,6 +5,8 @@ import {
 
 declare var Object: any;
 export interface RelacionamentoEntidadeInterface {
+  "nome1"?: string;
+  "nomeN"?: string;
   "id"?: number;
   "entidade1Id"?: number;
   "entidadeNId"?: number;
@@ -13,6 +15,8 @@ export interface RelacionamentoEntidadeInterface {
 }
 
 export class RelacionamentoEntidade implements RelacionamentoEntidadeInterface {
+  "nome1": string;
+  "nomeN": string;
   "id": number;
   "entidade1Id": number;
   "entidadeNId": number;
@@ -51,6 +55,14 @@ export class RelacionamentoEntidade implements RelacionamentoEntidadeInterface {
       path: 'RelacionamentoEntidades',
       idName: 'id',
       properties: {
+        "nome1": {
+          name: 'nome1',
+          type: 'string'
+        },
+        "nomeN": {
+          name: 'nomeN',
+          type: 'string'
+        },
         "id": {
           name: 'id',
           type: 'number'

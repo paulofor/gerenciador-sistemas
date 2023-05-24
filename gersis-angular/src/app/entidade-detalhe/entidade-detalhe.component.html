@@ -19,11 +19,19 @@
     <div class="dgc-card-header">
         <span>Relacionamentos</span>
     </div>
-    <div class="dgc-detalhe" *ngFor="let item of principal.relacionamentos1">
-      <span>1 {{item.entidade1.nome}}</span>
+    <div class="dgc-card-detalhe" *ngFor="let item of principal.relacionamentos1">
+      <span class="dgc-link" routerLink="/entidadeDetalhe/{{item.entidade1.id}}">1 {{item.entidade1.nome}}</span>
+      <span>&nbsp;&nbsp;({{item.nome1}})</span>
+      <div class="dgc-direita">
+        <button class="btn-primary btn-sm btn" (click)="editaRelacionamento(item)">Altera</button>
+      </div>
     </div>
-    <div class="dgc-detalhe" *ngFor="let item of principal.relacionamentosN">
-      <span>* {{item.entidadeN.nome}}</span>
+    <div class="dgc-card-detalhe" *ngFor="let item of principal.relacionamentosN">
+      <span class="dgc-link" routerLink="/entidadeDetalhe/{{item.entidadeN.id}}">* {{item.entidadeN.nome}}</span>
+      <span>&nbsp;&nbsp;({{item.nomeN}})</span>
+      <div class="dgc-direita">
+        <button class="btn-primary btn-sm btn" (click)="editaRelacionamento(item)">Altera</button>
+      </div>
     </div>
     <div class="dgc-card-comandos">
       <button class="btn-primary btn-sm btn" (click)="editaRelacionamento()">Novo</button>
@@ -34,12 +42,22 @@
     <div class="dgc-card-header">
         <span>Método Server</span>
     </div>
-    <div class="dgc-detalhe" *ngFor="let item of principal.metodoServers">
-      <span class="dgc-link" (click)="editaMetodo(item)">{{item.nome}}</span>
+    <div class="dgc-card-detalhe" *ngFor="let item of principal.metodoServers">
+      <span>{{item.nome}}&nbsp;&nbsp;</span>
+      <span>({{item.tipoMetodo}})</span>
+      <div class="dgc-direita">
+        <button class="btn-primary btn-sm btn" (click)="editaMetodo(item)">Altera</button>
+      </div>
     </div>
     <div class="dgc-card-comandos">
       <button class="btn-primary btn-sm btn" (click)="editaMetodo()">Novo</button>
     </div> 
+  </div>
+
+  <div class="dgc-card">
+    <div class="dgc-card-header">
+        <span>Processos Gravação</span>
+    </div>
   </div>
 
 </div>

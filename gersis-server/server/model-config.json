@@ -90,5 +90,9 @@
   "DadoPassoProcessoSaidaRel": {
     "dataSource": "mysqlds",
     "public": true
+  },
+  "ProcessoMetodoRel": {
+    "dataSource": "mysqlds",
+    "public": true
   }
 }

@@ -154,6 +154,39 @@ export class ProcessoEntidadeEntradaRelApi extends BaseLoopBackApi {
   }
 
   /**
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+   *
+   * @param {object} data Request data.
+   *
+   *  - `idProcesso` – `{number}` - 
+   *
+   *  - `lista` – `{any}` - 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `ProcessoEntidadeEntradaRel` object.)
+   * </em>
+   */
+  public AtualizaPorProcesso(idProcesso: any = {}, lista: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/ProcessoEntidadeEntradaRels/atualizaPorProcesso";
+    let _routeParams: any = {};
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof idProcesso !== 'undefined' && idProcesso !== null) _urlParams.idProcesso = idProcesso;
+    if (typeof lista !== 'undefined' && lista !== null) _urlParams.lista = lista;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
    * The name of the model represented by this $resource,
    * i.e. `ProcessoEntidadeEntradaRel`.
    */

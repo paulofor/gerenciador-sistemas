@@ -1,52 +1,26 @@
 <div class="dgc-painel" *ngIf="principal">
-  <div class="dgc-painel-header">
+  <div class="dgc-painel-header" *ngIf="principal">
       <span>Processo: {{principal.nomeClasseMain}}</span>
   </div>
-  <div>
+  <div *ngIf="principal">
     <span>Projeto Eclipse: {{principal.projeto}}</span>
   </div>  
-  <div class="dgc-card">
-    <div *ngFor="let item of principal.passoProcessoJavas">
-      <div class="dgc-card-header" >
-        <span *ngIf="item.dentroLoop==1">*</span><span>{{item.ordenacao}}. {{item.nomeClasse}}  </span><span *ngIf="item.dentroLoop==1"> (loop)</span>
-        <div class="dgc-direita">
-          <button class="btn-primary btn-sm btn" (click)="novaEntrada(item)">Entrada</button>
-          <button class="btn-primary btn-sm btn" (click)="novaSaida(item)">Saída</button>
-          <button class="btn-primary btn-sm btn" (click)="editaPasso(item)">Altera</button>
-        </div>
-      </div>
-      <div class="dgc-card-detalhe" *ngFor="let dado of item.dadoPassoEntrada">
-        <span>(in) {{dado.dadoProcesso.nome}}</span><span *ngIf="dado.dadoProcesso.tipoEntidade"> : {{dado.dadoProcesso.tipoEntidade.nome}}</span>
-        <div class="dgc-direita">
-          <button class="btn-primary btn-sm btn" (click)="editaDadoEntrada(dado,item)">Altera</button>
-        </div>
-      </div>
-      <div class="dgc-card-detalhe" *ngFor="let dado of item.dadoPassoSaida">
-        <span>(out) {{dado.dadoProcesso.nome}}</span><span *ngIf="dado.dadoProcesso.tipoEntidade"> : {{dado.dadoProcesso.tipoEntidade.nome}}</span>
-        <div class="dgc-direita">
-          <button class="btn-primary btn-sm btn" (click)="editaDadoSaida(dado,item)">Altera</button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="dgc-card-comandos">
-      <button class="btn-primary btn-sm btn" (click)="editaPasso()">Novo</button>
-    </div> 
+  <div *ngIf="principal.linuxInternet">
+    <span>Servidor: {{principal.linuxInternet.nome}}</span>
+  </div>
+  <div *ngIf="principal">
+    <span>Cron: {{principal.crontab}}</span>
   </div>
 
   <div class="dgc-card">
     <div class="dgc-card-header">
-      <span>Dataset</span>
+      <span>Saídas</span>
     </div>
-    <div class="dgc-card-detalhe" *ngFor="let dado of principal.dadoProcessos">
-      <span>{{dado.nome}}</span> <span *ngIf="dado.tipoEntidade">: {{dado.tipoEntidade.nome}}</span>
-      <div class="dgc-direita">
-        <button class="btn-primary btn-sm btn" (click)="editaDadoProcesso(principal,dado)">Altera</button>
-      </div>
+    <div class="dgc-card-detalhe" *ngFor="let rel of principal.processoEntidadeSaida">
+      <span>{{rel.entidade.nome}}</span>
     </div>
     <div class="dgc-card-comandos">
-      <button class="btn-primary btn-sm btn" (click)="editaDadoProcesso(principal)">Novo</button>
+      <button class="btn-primary btn-sm btn" (click)="editaEntidadeSaida(principal)">Novo</button>
     </div> 
   </div>
 
@@ -62,17 +36,58 @@
     </div> 
   </div>
 
+
+
   <div class="dgc-card">
     <div class="dgc-card-header">
-      <span>Saídas</span>
+      <span>Passos</span>
     </div>
-    <div class="dgc-card-detalhe" *ngFor="let rel of principal.processoEntidadeSaida">
-      <span>{{rel.entidade.nome}}</span>
+    <div *ngFor="let item of principal.passoProcessoJavas">
+      <div class="dgc-card-header" >
+        <span *ngIf="item.dentroLoop==1">*</span><span>{{item.ordenacao}}. {{item.nomeClasse}}  </span><span *ngIf="item.dentroLoop==1"> (loop)</span>
+        <div class="dgc-direita">
+          <button class="btn-primary btn-sm btn" (click)="subirItem(item)">Subir</button>
+          <button class="btn-primary btn-sm btn" (click)="novaEntrada(item)">Entrada</button>
+          <button class="btn-primary btn-sm btn" (click)="novaSaida(item)">Saída</button>
+          <button class="btn-primary btn-sm btn" (click)="editaPasso(item)">Altera</button>
+        </div>
+      </div>
+      <div class="dgc-card-detalhe" *ngFor="let dado of item.dadoPassoEntrada">
+        <span>(in) {{dado.dadoProcesso.nome}}</span>
+        <span *ngIf="dado.dadoProcesso.tipoEntidade"> : <span *ngIf="dado.dadoProcesso.tipoEntidadeLista==1">*</span>{{dado.dadoProcesso.tipoEntidade.nome}}</span>
+        <span *ngIf="dado.dadoProcesso.tipoSimples"> : {{dado.dadoProcesso.tipoSimples}}</span>
+      </div>
+      <div class="dgc-card-detalhe" *ngFor="let dado of item.dadoPassoSaida">
+        <span>(out) {{dado.dadoProcesso.nome}}</span>
+        <span *ngIf="dado.dadoProcesso.tipoEntidade"> : <span *ngIf="dado.dadoProcesso.tipoEntidadeLista==1">*</span>{{dado.dadoProcesso.tipoEntidade.nome}}</span>
+        <span *ngIf="dado.dadoProcesso.tipoSimples"> : {{dado.dadoProcesso.tipoSimples}}</span>
+      </div>
     </div>
+    
+
     <div class="dgc-card-comandos">
-      <button class="btn-primary btn-sm btn" (click)="editaEntidadeSaida(principal)">Novo</button>
+      <button class="btn-primary btn-sm btn" (click)="editaPasso()">Novo</button>
     </div> 
   </div>
+
+  <div class="dgc-card">
+    <div class="dgc-card-header">
+      <span>Dataset</span>
+    </div>
+    <div class="dgc-card-detalhe" *ngFor="let dado of principal.dadoProcessos">
+      <span>{{dado.nome}}</span>
+      <span *ngIf="dado.tipoEntidade">: <span *ngIf="dado.tipoEntidadeLista==1">*</span>{{dado.tipoEntidade.nome}}</span>
+      <span *ngIf="dado.tipoSimples"> : {{dado.tipoSimples}}</span>
+      <div class="dgc-direita">
+        <button class="btn-primary btn-sm btn" (click)="editaDadoProcesso(principal,dado)">Altera</button>
+      </div>
+    </div>
+    <div class="dgc-card-comandos">
+      <button class="btn-primary btn-sm btn" (click)="editaDadoProcesso(principal)">Novo</button>
+    </div> 
+  </div>
+
+
 
 
 

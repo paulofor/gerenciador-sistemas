@@ -14,5 +14,6 @@ export * from './ProcessoEntidadeSaidaRel';
 export * from './DadoProcesso';
 export * from './DadoPassoProcessoEntradaRel';
 export * from './DadoPassoProcessoSaidaRel';
+export * from './ProcessoMetodoRel';
 export * from './SDKModels';
 export * from './logger.service';

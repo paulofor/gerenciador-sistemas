@@ -1,0 +1,33 @@
+{
+  "name": "ProcessoMetodoRel",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "metodoServerId": {
+      "type": "number",
+      "id": true
+    },
+    "processoJavaId": {
+      "type": "number",
+      "id": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "metodoServer": {
+      "type": "belongsTo",
+      "model": "MetodoServer",
+      "foreignKey": ""
+    },
+    "processoJava": {
+      "type": "belongsTo",
+      "model": "ProcessoJava",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -5,7 +5,14 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "nome1": {
+      "type": "string"
+    },
+    "nomeN": {
+      "type": "string"
+    }
+  },
   "validations": [],
   "relations": {
     "entidade1": {

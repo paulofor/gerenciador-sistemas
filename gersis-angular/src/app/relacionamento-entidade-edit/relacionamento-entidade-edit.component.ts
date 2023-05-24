@@ -20,6 +20,18 @@ export class RelacionamentoEntidadeEditComponent extends BaseEditComponent {
     super(dialogRef,data,servico);
   }
 
+  posItem() {
+    if ( this.item.entidade1Id == this.origem.id) {
+      this.tela.entidadeId = this.item.entidadeNId; 
+      this.tela.cardinal='N'
+    } 
+    if (this.item.entidadeNId == this.origem.id) {
+      this.tela.entidadeId = this.item.entidade1Id;
+      this.tela.cardinal='1'
+    } 
+  }
+
+
   preSubmit(): void {
       console.log('Tela:' , this.tela);
       if (this.tela.cardinal=='N') {

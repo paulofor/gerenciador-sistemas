@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { BaseItemIdComponent } from '../base-component/base-item-id-component';
-import { DadoPassoProcessoEntradaRel, DadoPassoProcessoSaidaRel, PassoProcessoJava, ProcessoJavaApi } from '../shared/sdk';
+import { DadoPassoProcessoEntradaRel, DadoPassoProcessoSaidaRel, PassoProcessoJava, PassoProcessoJavaApi, ProcessoJavaApi } from '../shared/sdk';
 import { PassoProcessoEditComponent } from '../passo-processo-edit/passo-processo-edit.component';
 import { DadoProcessoSaidaEditComponent } from '../dado-processo-saida-edit/dado-processo-saida-edit.component';
 import { DadoProcessoEntradaEditComponent } from '../dado-processo-entrada-edit/dado-processo-entrada-edit.component';
@@ -17,7 +17,8 @@ import { DadoProcessoEditComponent } from '../dado-processo-edit/dado-processo-e
 })
 export class ProcessoJavaDetalheComponent extends BaseItemIdComponent {
 
-  constructor(protected dialog: MatDialog, protected srv: ProcessoJavaApi, protected router: ActivatedRoute) {
+  constructor(protected dialog: MatDialog, protected srv: ProcessoJavaApi, protected router: ActivatedRoute, 
+      protected srvPasso: PassoProcessoJavaApi) {
     super(dialog, srv, router);
   }
 
@@ -32,11 +33,19 @@ export class ProcessoJavaDetalheComponent extends BaseItemIdComponent {
           ]} },
         { 'relation' : 'processoEntidadeEntrada', 'scope' : {'include' : 'entidade'}},
         { 'relation' : 'processoEntidadeSaida' , 'scope' : {'include' : 'entidade'}},
-        { 'relation' : 'dadoProcessos' , 'scope' : {'include' : 'tipoEntidade'}}
+        { 'relation' : 'dadoProcessos' , 'scope' : {'include' : 'tipoEntidade'}},
+        'linuxInternet'
       ]
     }
   }
 
+
+  subirItem(item:PassoProcessoJava) {
+    this.srvPasso.DesceItem(item.id) 
+      .subscribe((result) => {
+        this.carregaTela();
+      })
+  }
 
   editaDadoProcesso(origem,edicao?) {
     this.dialog.afterAllClosed.subscribe(result => {

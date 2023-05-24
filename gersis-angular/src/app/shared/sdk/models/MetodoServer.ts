@@ -2,7 +2,8 @@
 import {
   ParametroMetodoServer,
   PassoProcessoJava,
-  Entidade
+  Entidade,
+  ProcessoMetodoRel
 } from '../index';
 
 declare var Object: any;
@@ -10,22 +11,26 @@ export interface MetodoServerInterface {
   "nome"?: string;
   "resposta"?: string;
   "tipoResposta"?: string;
+  "tipoMetodo"?: string;
   "id"?: number;
   "entidadeId"?: number;
   parametroMetodoServers?: ParametroMetodoServer[];
   passoProcessoJavas?: PassoProcessoJava[];
   entidade?: Entidade;
+  processoMetodoRels?: ProcessoMetodoRel[];
 }
 
 export class MetodoServer implements MetodoServerInterface {
   "nome": string;
   "resposta": string;
   "tipoResposta": string;
+  "tipoMetodo": string;
   "id": number;
   "entidadeId": number;
   parametroMetodoServers: ParametroMetodoServer[];
   passoProcessoJavas: PassoProcessoJava[];
   entidade: Entidade;
+  processoMetodoRels: ProcessoMetodoRel[];
   constructor(data?: MetodoServerInterface) {
     Object.assign(this, data);
   }
@@ -71,6 +76,10 @@ export class MetodoServer implements MetodoServerInterface {
           name: 'tipoResposta',
           type: 'string'
         },
+        "tipoMetodo": {
+          name: 'tipoMetodo',
+          type: 'string'
+        },
         "id": {
           name: 'id',
           type: 'number'
@@ -104,6 +113,14 @@ export class MetodoServer implements MetodoServerInterface {
           relationType: 'belongsTo',
                   keyFrom: 'entidadeId',
           keyTo: 'id'
+        },
+        processoMetodoRels: {
+          name: 'processoMetodoRels',
+          type: 'ProcessoMetodoRel[]',
+          model: 'ProcessoMetodoRel',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'metodoServerId'
         },
       }
     }

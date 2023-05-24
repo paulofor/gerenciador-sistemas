@@ -14,6 +14,9 @@
     },
     "tipoResposta": {
       "type": "string"
+    },
+    "tipoMetodo": {
+      "type": "string"
     }
   },
   "validations": [],
@@ -31,6 +34,11 @@
     "passoProcessoJavas": {
       "type": "hasMany",
       "model": "PassoProcessoJava",
+      "foreignKey": ""
+    },
+    "processoMetodoRels": {
+      "type": "hasMany",
+      "model": "ProcessoMetodoRel",
       "foreignKey": ""
     }
   },

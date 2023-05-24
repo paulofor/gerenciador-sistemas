@@ -53,6 +53,11 @@
       "type": "hasMany",
       "model": "ProcessoEntidadeSaidaRel",
       "foreignKey": ""
+    },
+    "processoMetodoRels": {
+      "type": "hasMany",
+      "model": "ProcessoMetodoRel",
+      "foreignKey": ""
     }
   },
   "acls": [],

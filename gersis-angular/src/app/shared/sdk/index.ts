@@ -63,6 +63,7 @@ import { ProcessoEntidadeSaidaRelApi } from './services/custom/ProcessoEntidadeS
 import { DadoProcessoApi } from './services/custom/DadoProcesso';
 import { DadoPassoProcessoEntradaRelApi } from './services/custom/DadoPassoProcessoEntradaRel';
 import { DadoPassoProcessoSaidaRelApi } from './services/custom/DadoPassoProcessoSaidaRel';
+import { ProcessoMetodoRelApi } from './services/custom/ProcessoMetodoRel';
 /**
 * @module SDKBrowserModule
 * @description
@@ -108,6 +109,7 @@ export class SDKBrowserModule {
         DadoProcessoApi,
         DadoPassoProcessoEntradaRelApi,
         DadoPassoProcessoSaidaRelApi,
+        ProcessoMetodoRelApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser }
       ]

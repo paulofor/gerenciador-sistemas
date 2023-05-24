@@ -47,12 +47,12 @@ export class DadoProcessoSaidaEditComponent extends BaseSelecionaEditComponent{
     return {
       'where' : {'processoJavaId' : this.origem.processoJavaId},
       'order' : 'nome',
-      'include' : {
+      'include' : [{
         'relation' : 'passoProcessoJavaComoSaida',
         'scope' : {
           'where' : {'dadoProcessoId' : this.origem.id }
         } 
-      }
+      }, 'tipoEntidade']
     }
   }
 

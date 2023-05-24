@@ -4,6 +4,16 @@
 
   <mat-dialog-content>
 
+
+    <mat-form-field class="example-half-width">
+      <input matInput maxlength="100" #nome1 [(ngModel)]="item.nome1" name="nome1" placeholder="Nome 1" autocomplete="off" />
+    </mat-form-field>
+
+    <mat-form-field class="example-half-width">
+      <input matInput maxlength="100" #nomeN [(ngModel)]="item.nomeN" name="nomeN" placeholder="Nome N" autocomplete="off" />
+    </mat-form-field>
+
+
     <mat-form-field class="example-half-width">
       <mat-select placeholder="Tipo" #cardinal [(ngModel)]="tela.cardinal" name="cardinal">
         <mat-option value="1">Ùnico</mat-option>

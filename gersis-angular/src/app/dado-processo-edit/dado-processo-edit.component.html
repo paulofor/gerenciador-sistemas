@@ -7,7 +7,7 @@
       <input matInput maxlength="50" #nome [(ngModel)]="item.nome" name="nome" placeholder="Nome" autocomplete="off" />
     </mat-form-field>
  
-    <mat-form-field class="example-full-width" *ngIf="listaEntidade">
+    <mat-form-field class="example-half-width" *ngIf="listaEntidade">
       <mat-select placeholder="Tipo Objeto"  #tipoEntidadeId [(ngModel)]="item.tipoEntidadeId" name="tipoEntidadeId">
         <mat-option *ngFor="let entidade of listaEntidade" [value]="entidade.id">
           {{ entidade.nome }}
@@ -15,13 +15,19 @@
       </mat-select>
     </mat-form-field>
 
+    <mat-form-field class="example-half-width" *ngIf="listaEntidade">
+      <mat-select placeholder="Lista"  #tipoEntidadeLista [(ngModel)]="item.tipoEntidadeLista" name="tipoEntidadeLista">
+        <mat-option value=0>Único</mat-option>
+        <mat-option value=1>Lista</mat-option>
+      </mat-select>
+    </mat-form-field>
 
     <mat-form-field class="example-full-width" *ngIf="listaEntidade">
       <mat-select placeholder="Tipo Simples"  #tipoSimples [(ngModel)]="item.tipoSimples" name="tipoSimples">
-        <mat-option [value]="String">String</mat-option>
-        <mat-option [value]="long">long</mat-option>
-        <mat-option [value]="int">int</mat-option>
-        <mat-option [value]="double">double</mat-option>
+        <mat-option value="String">String</mat-option>
+        <mat-option value="long">long</mat-option>
+        <mat-option value="int">int</mat-option>
+        <mat-option value="double">double</mat-option>
       </mat-select>
     </mat-form-field>
 
