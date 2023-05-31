@@ -173,10 +173,10 @@ export class DadoPassoProcessoSaidaRelApi extends BaseLoopBackApi {
    * This usually means the response is a `DadoPassoProcessoSaidaRel` object.)
    * </em>
    */
-  public AtualizaPorPassoProcesso(idPassoProcesso: any = {}, lista: any = {}, customHeaders?: Function): Observable<any> {
+  public AtualizaPorPassoProcessoSaida(idPassoProcesso: any = {}, lista: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DadoPassoProcessoSaidaRels/atualizaPorPassoProcesso";
+    "/DadoPassoProcessoSaidaRels/atualizaPorPassoProcessoSaida";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};

@@ -34,7 +34,7 @@ export class EscolheEntidadeSaidaParaProcessoComponent extends BaseSelecionaEdit
     return "processoJavaId";
   }
   getNomeFuncaoAtualizacaoRelacionamento(): string {
-    return "AtualizaPorProcesso";
+    return "AtualizaPorProcessoSaida";
   }
 
   getFiltro() {

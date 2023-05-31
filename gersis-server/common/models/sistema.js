@@ -8,6 +8,9 @@ module.exports = function(Sistema) {
             'include' : [   
                 { 'relation' : 'entidades' , 'scope' : {
                     'include' : ['atributoEntidades']
+                }},
+                { 'relation' : 'processoJavas' , 'scope' : {
+                    'include' : ['passoProcessoJavas']
                 }}
             ]
         }

@@ -1,6 +1,11 @@
 package br.com.gersis.loopback.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import com.strongloop.android.loopback.Model;
+import com.strongloop.android.remoting.BeanUtil;
 
 public class Sistema extends Model{
 
@@ -8,6 +13,22 @@ public class Sistema extends Model{
 	private String sigla;
 	private String nomeBancoDados;
 	private String pathProjeto;
+	
+	private List<ProcessoJava> processoJavas;
+	
+	
+	
+	public List<ProcessoJava> getProcessoJavas() {
+		return processoJavas;
+	}
+	public void setProcessoJavas(List<ProcessoJava> processoJavas) {
+		this.processoJavas = new ArrayList<ProcessoJava>();
+		for (int i = 0; i < processoJavas.size(); i++) {
+			Object objeto = new ProcessoJava();
+			BeanUtil.setProperties(objeto, (Map<String, ? extends Object>) processoJavas.get(i), true);
+			this.processoJavas.add((ProcessoJava) objeto);
+		}
+	}
 	public String getNome() {
 		return nome;
 	}

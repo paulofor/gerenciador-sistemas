@@ -2,7 +2,7 @@
 
 module.exports = function(Dadopassoprocessoentradarel) {
 
-    Dadopassoprocessoentradarel.AtualizaPorPassoProcesso = function (idPassoProcesso, lista, callback) {
+    Dadopassoprocessoentradarel.AtualizaPorPassoProcessoEntrada = function (idPassoProcesso, lista, callback) {
         var sqlDelete = "delete from DadoPassoProcessoEntradaRel where passoProcessoJavaId = " + idPassoProcesso;
 
         var ds = Dadopassoprocessoentradarel.dataSource;

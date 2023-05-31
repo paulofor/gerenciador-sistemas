@@ -40,7 +40,7 @@ export class DadoProcessoSaidaEditComponent extends BaseSelecionaEditComponent{
     return "passoProcessoJavaId";
   }
   getNomeFuncaoAtualizacaoRelacionamento(): string {
-    return "AtualizaPorPassoProcesso";
+    return "AtualizaPorPassoProcessoSaida";
   }
 
   getFiltro() {

@@ -9,6 +9,7 @@ export interface SistemaInterface {
   "nome"?: string;
   "sigla"?: string;
   "nomeBancoDados"?: string;
+  "pathProjeto"?: string;
   "id"?: number;
   processoJavas?: ProcessoJava[];
   entidades?: Entidade[];
@@ -18,6 +19,7 @@ export class Sistema implements SistemaInterface {
   "nome": string;
   "sigla": string;
   "nomeBancoDados": string;
+  "pathProjeto": string;
   "id": number;
   processoJavas: ProcessoJava[];
   entidades: Entidade[];
@@ -64,6 +66,10 @@ export class Sistema implements SistemaInterface {
         },
         "nomeBancoDados": {
           name: 'nomeBancoDados',
+          type: 'string'
+        },
+        "pathProjeto": {
+          name: 'pathProjeto',
           type: 'string'
         },
         "id": {

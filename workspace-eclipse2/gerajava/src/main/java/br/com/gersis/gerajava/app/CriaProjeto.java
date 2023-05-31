@@ -5,11 +5,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import org.apache.commons.io.FileUtils;
-
 import br.com.gersis.daobase.DaoBase;
+import br.com.gersis.gerajava.GeradorPassoProcesso;
 import br.com.gersis.gerajava.loopback.DaoAplicacao;
 import br.com.gersis.gerajava.loopback.DatasetGersis;
+import br.com.gersis.loopback.modelo.PassoProcessoJava;
+import br.com.gersis.loopback.modelo.ProcessoJava;
 import br.com.gersis.loopback.modelo.Sistema;
 
 public class CriaProjeto extends DaoAplicacao {
@@ -17,31 +18,89 @@ public class CriaProjeto extends DaoAplicacao {
 	private Sistema sistema = null;
 	private String pathWorkspace = null;
 	private File directory = null;
+	private DatasetGersis ds = null;
+	
+	private String diretorioPassos = null;
+	
 	
 	@Override
 	protected void executaImpl() {
-		sistema = ((DatasetGersis)this.getComum()).getSistema();
-		this.pathWorkspace = sistema.getPathProjeto() + File.separator + "workspace-eclipse-gerador";
+		ds = (DatasetGersis) this.getComum();
+		sistema = ds.getSistema();
+	
+		
+		this.pathWorkspace = sistema.getPathProjeto() + File.separator + NOME_WORKSPACE;
+		ds.setNomePastaWorkspace(pathWorkspace);
 		directory = new File(this.pathWorkspace);
         if (!directory.exists()) {
         	directory.mkdirs(); // Cria o diretório se ele não existir
         }
+    	
         try {
         	//criaGitIgnore();
-        	copiarDiretorio("arquivos",this.pathWorkspace);
+        	copiarDiretorioSeNaoVazio("arquivos",this.pathWorkspace);
+        	for (ProcessoJava processo:sistema.getProcessoJavas()) {
+        		System.out.println("Vai criar o processo..." + processo.getNomeClasseMain());
+        		criaProjeto(processo);
+        		
+        		
+
+        		ds.setProcessoCorrente(processo);
+        		executaProximoSemFinalizar();
+        	}
+        	finalizar();
         } catch (Exception e) {
         	e.printStackTrace();
         }
 	}
 	
-	private void copiarDiretorio(String origem, String destino) throws IOException {
-		File origemDir = new File(origem);
-	    File destinoDir = new File(destino);
+	
 
-	    // Copiar o diretório usando FileUtils.copyDirectory()
-	    FileUtils.copyDirectory(origemDir, destinoDir);
-	    System.out.println("Diretorio copiado");
+	
+	
+	private void criaProjeto(ProcessoJava processo) {
+		String nomePasta = this.pathWorkspace ;
+		this.verificarECriarDiretorio(nomePasta);
+		String nomePastaFonteJava = processo.getNomeClasseMain().toLowerCase() + "/src/main/java/gerador/" + processo.getNomeClasseMain().toLowerCase();
+		this.verificaECriaSubdiretorios(nomePasta, nomePastaFonteJava);
+		ds.setNomePastaFonteCorrente(nomePasta + File.separator + nomePastaFonteJava);
+	}
+	
+	private void verificaECriaSubdiretorios(String principal, String caminho) {
+		 File diretorio = new File(principal);
+        // Cria os subdiretórios
+        String[] subdiretorios = caminho.split("/");
+        for (String subdiretorio : subdiretorios) {
+            diretorio = new File(diretorio, subdiretorio);
+            if (!diretorio.exists()) {
+                diretorio.mkdir();
+                System.out.println("Subdiretório '" + subdiretorio + "' criado.");
+            } else {
+                System.out.println("Subdiretório '" + subdiretorio + "' já existe.");
+            }
+        }
+	}
+	
+	private void verificarECriarDiretorio(String nomeDiretorio) {
+		
+        File diretorio = new File(nomeDiretorio);
+
+        if (diretorio.exists()) {
+            System.out.println("O diretório já existe.");
+        } else {
+        	System.out.println("Vai criar " + nomeDiretorio);
+            boolean criado = diretorio.mkdir();
+
+            if (criado) {
+                System.out.println("Diretório criado com sucesso.");
+            } else {
+                System.out.println("Falha ao criar o diretório.");
+            }
+        }
     }
+	
+	
+
 	
 	private void criaGitIgnore() throws IOException {
 		File file = new File(directory, ".gitignore");
@@ -57,7 +116,7 @@ public class CriaProjeto extends DaoAplicacao {
 
 	@Override
 	protected DaoBase getProximo() {
-		return new CriaClasseBasica();
+		return new CriaClasseBasicaProjeto();
 	}
 
 }
