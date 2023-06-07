@@ -24,5 +24,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/daobase"/>
+    <classpathentry combineaccessrules="false" kind="src" path="/loopback"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

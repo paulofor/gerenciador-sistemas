@@ -1,10 +1,23 @@
 package br.com.gersis.gerajava;
 
-public abstract class GeradorArquivoJava extends GeradorArquivo {
+import java.io.IOException;
+
+public class GeradorArquivoJava extends GeradorArquivo {
 
 	public GeradorArquivoJava(String nome) {
 		super(nome);
 	}
+	
+	
+
+	@Override
+	public void criaArquivo() throws IOException {
+		super.criaArquivo();
+		this.linha("package " + getNomePacote() + ";");
+		this.linha("");
+	}
+
+
 
 	protected String getNomePacote() {
 		String nomePacote = "";
@@ -19,12 +32,12 @@ public abstract class GeradorArquivoJava extends GeradorArquivo {
 				nomePacote += "." + paths[i];
 			}
 		}
-		return nomePacote.substring(1,nomePacote.length()-1);
+		return nomePacote.substring(1,nomePacote.length());
 	}
 	
 	protected String getNomeClasse() {
 		String paths[] = nomeArquivo.split("/");
-		String nomeArquivo = paths[paths.length];
+		String nomeArquivo = paths[paths.length-1];
 		// MeuArquivo.java
 		// 012345678901234
 		return nomeArquivo.substring(0, nomeArquivo.length() - 5);

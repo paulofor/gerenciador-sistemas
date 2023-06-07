@@ -18,6 +18,9 @@ public class GeradorArquivo {
 		fw.write(texto);
 		fw.write("\n");
 	}
+	public void linha() throws IOException {
+		fw.write("\n");
+	}
 	public void fecha() throws IOException {
 		fw.close();
 		System.out.println("Arquivo " + nomeArquivo + " gerado com sucesso.");

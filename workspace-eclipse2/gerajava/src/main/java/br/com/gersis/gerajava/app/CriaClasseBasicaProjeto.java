@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import br.com.gersis.daobase.DaoBase;
 import br.com.gersis.gerajava.GeradorArquivo;
+import br.com.gersis.gerajava.GeradorArquivoJava;
 import br.com.gersis.gerajava.GeradorPassoProcesso;
 import br.com.gersis.gerajava.loopback.DaoAplicacao;
 import br.com.gersis.gerajava.loopback.DatasetGersis;
@@ -26,22 +27,14 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 	protected void executaImpl() {
 		// TODO Auto-generated method stub
 		ds = (DatasetGersis) this.getComum();
-		
 		this.processo = ds.getProcessoCorrente();
 		this.diretorioProjeto = ds.getNomePastaWorkspace() + File.separator + this.processo.getNomeClasseMain().toLowerCase();
-		diretorioApp = ds.getNomePastaFonteCorrente() + "/app";
-		diretorioLoopback = ds.getNomePastaFonteCorrente() + "/loopback";
-		diretorioPasso = ds.getNomePastaFonteCorrente() + "/passo";
-		this.verificarECriarDiretorio(this.diretorioApp);
-		this.verificarECriarDiretorio(this.diretorioLoopback);
-		this.verificarECriarDiretorio(this.diretorioPasso);
 		try {
-			System.out.println("Diretorio do projeto: " + this.diretorioProjeto);
-			
-			copiarDiretorioSeNaoVazio("projeto",this.diretorioProjeto);
-			copiarDiretorio("daobase-arquivos",ds.getNomePastaWorkspace());
+			this.criaArquivosProjeto();
+			this.criaPacoteFonte();
 			this.criaArquivoMain();
-			this.criaArquivoProject();
+			this.criaDataset();
+			this.criaDaoAplicacao();
 			for (PassoProcessoJava passo : processo.getPassoProcessoJavas()) {
         		criaPasso(passo);
     		}
@@ -51,10 +44,75 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		finalizar();
 	}
 	
+	private void criaDataset() throws IOException {
+		String nomeArquivo = this.diretorioLoopback + File.separator + "DaoAplicacao.java";
+		GeradorArquivoJava arq = new GeradorArquivoJava(nomeArquivo);
+		arq.criaArquivo();
+		arq.linha();
+		arq.linha("import com.strongloop.android.loopback.RestAdapter;");
+		arq.linha();
+		arq.linha("import br.com.gersis.daobase.DaoBase;");
+		arq.linha("import br.com.gersis.daobase.IDatasetComum;");
+		arq.linha("import br.com.gersis.daobase.comum.DaoBaseComum;");
+		arq.linha();
+		arq.linha("public abstract class DaoAplicacao extends DaoBase {");
+		arq.linha();
+		arq.linha("	private RestAdapter adapter = new RestAdapter(DaoBaseComum.urlLoopback);");
+		arq.linha();
+		arq.linha();
+		arq.linha("	@Override");
+		arq.linha("	protected long getTempo() {");
+		arq.linha("		return 10000;");
+		arq.linha("	}");
+		arq.linha();
+		arq.linha("	@Override");
+		arq.linha("	protected IDatasetComum criaDataSet() {");
+		arq.linha("		return new DatasetAplicacao();");
+		arq.linha("	}");
+		arq.linha();
+		arq.linha("	@Override");
+		arq.linha("	protected DaoBase getProximo() {");
+		arq.linha("		return null;");
+		arq.linha("	} ");
+		arq.linha();
+		arq.linha("}");
+		arq.fecha();
+	}
+	private void criaDaoAplicacao() throws IOException {
+		String nomeArquivo = this.diretorioLoopback + File.separator + "DatasetAplicacao.java";
+		GeradorArquivoJava arq = new GeradorArquivoJava(nomeArquivo);
+		arq.criaArquivo();
+		arq.linha();
+		arq.linha("import br.com.gersis.daobase.IDatasetComum;");
+		arq.linha();
+		arq.linha("public class DatasetAplicacao  implements IDatasetComum {");
+		arq.linha("}");
+		arq.fecha();
+	}
+	
+	private void criaArquivosProjeto() throws IOException {
+		copiarDiretorio("projeto",this.diretorioProjeto);
+		copiarDiretorio("daobase-arquivos",ds.getNomePastaWorkspace());
+		String projetoClienteLoopback = ds.getNomePastaWorkspace() + File.separator + "loopback";
+		copiarDiretorio("cliente-loopback-arquivos",projetoClienteLoopback);
+		this.criaArquivoProject();
+	}
+	
+	private void criaPacoteFonte() {
+		
+		diretorioApp = ds.getNomePastaFonteCorrente() + "/app";
+		diretorioLoopback = ds.getNomePastaFonteCorrente() + "/loopback";
+		diretorioPasso = ds.getNomePastaFonteCorrente() + "/passo";
+		this.verificarECriarDiretorio(this.diretorioApp);
+		this.verificarECriarDiretorio(this.diretorioLoopback);
+		this.verificarECriarDiretorio(this.diretorioPasso);
+	}
+	
+	
 	private void criaPasso(PassoProcessoJava passo) throws IOException {
-		String diretorioPassos = ds.getNomePastaFonteCorrente() + "/passos/";
+		String diretorioPassos = ds.getNomePastaFonteCorrente() + "/passo";
 		String nomeArquivo = diretorioPassos + File.separator + passo.getNomeClasse() + ".java";
-		GeradorPassoProcesso arqPasso = new GeradorPassoProcesso(nomeArquivo,passo);
+		GeradorPassoProcesso arqPasso = new GeradorPassoProcesso(nomeArquivo,passo, this.processo);
 		arqPasso.gerar();
 	}
 	
@@ -143,14 +201,13 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 	private void criaArquivoMain() throws IOException {
 		String nomeArquivoMain = this.diretorioApp + File.separator + processo.getNomeClasseMain() + ".java";
 		String nomePacote = converteNomePacote(this.diretorioApp);
-		GeradorArquivo arq = new GeradorArquivo(nomeArquivoMain);
+		GeradorArquivoJava arq = new GeradorArquivoJava(nomeArquivoMain);
 		arq.criaArquivo();
-		arq.linha("package " + nomePacote + ";");
-		arq.linha("");		
 		arq.linha("import java.io.FileInputStream;");
 		arq.linha("import java.io.IOException;");
 		arq.linha("import java.io.InputStream;");
 		arq.linha("import java.util.Properties;");
+		arq.linha("import " + this.converteNomePacote(diretorioPasso) + ".*;");
 		arq.linha("");
 		arq.linha("import br.com.gersis.daobase.comum.DaoBaseComum;");
 		arq.linha("");
@@ -163,7 +220,8 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		arq.linha("			System.out.println(\"(22-05-2023)\");");
 		arq.linha("		try {");
 		arq.linha("			carregaProp();");
-		arq.linha("			GeraLoopbackObj obj = new GeraLoopbackObj();");
+		PassoProcessoJava objeto = this.processo.getPassoProcessoJavas().get(1);
+		arq.linha("			" + objeto.getNomeClasse() + " obj = new " + objeto.getNomeClasse() + "();");
 		arq.linha("			obj.executa();");
 		arq.linha("			System.exit(0);");
 		arq.linha("		} catch (Exception e) {");
@@ -181,6 +239,12 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		arq.linha("		DaoBaseComum.setUrl(UrlLoopback);");
 		arq.linha("	}");
 		arq.linha("");
+		arq.linha("	private static void preparaComum() {");
+		arq.linha("		DaoBaseComum.setUrl(UrlLoopback);");
+		for (int i=0;i<this.processo.getPassoProcessoJavas().size()-1;i++) {
+			arq.linha("		DaoBaseComum.setProximo(\"" + this.processo.getPassoProcessoJavas().get(i).getNomeClasse() +"\", new " + this.processo.getPassoProcessoJavas().get(i+1).getNomeClasse() +"());");
+		}
+		arq.linha("	}");
 		arq.linha("}");
         arq.fecha();
 	}

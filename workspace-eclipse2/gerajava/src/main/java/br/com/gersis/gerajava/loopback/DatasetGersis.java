@@ -15,10 +15,30 @@ public class DatasetGersis implements IDatasetComum{
 	
 	private ProcessoJava processoCorrente;
 
+	private String nomeDaoAplicacao;
+	private String nomeDataset;
 	
 	
 	
 
+	public String getPacotePrincipalProjetoCorrente() {
+		return pacotePrincipalProjetoCorrente;
+	}
+	public void setPacotePrincipalProjetoCorrente(String pacotePrincipalProjetoCorrente) {
+		this.pacotePrincipalProjetoCorrente = pacotePrincipalProjetoCorrente;
+	}
+	public String getNomeDaoAplicacao() {
+		return nomeDaoAplicacao;
+	}
+	public void setNomeDaoAplicacao(String nomeDaoAplicacao) {
+		this.nomeDaoAplicacao = nomeDaoAplicacao;
+	}
+	public String getNomeDataset() {
+		return nomeDataset;
+	}
+	public void setNomeDataset(String nomeDataset) {
+		this.nomeDataset = nomeDataset;
+	}
 	public String getNomePastaWorkspace() {
 		return nomePastaWorkspace;
 	}

@@ -27,25 +27,11 @@ public class CriaProjeto extends DaoAplicacao {
 	protected void executaImpl() {
 		ds = (DatasetGersis) this.getComum();
 		sistema = ds.getSistema();
-	
-		
-		this.pathWorkspace = sistema.getPathProjeto() + File.separator + NOME_WORKSPACE;
-		ds.setNomePastaWorkspace(pathWorkspace);
-		directory = new File(this.pathWorkspace);
-        if (!directory.exists()) {
-        	directory.mkdirs(); // Cria o diretório se ele não existir
-        }
-    	
         try {
-        	//criaGitIgnore();
-        	copiarDiretorioSeNaoVazio("arquivos",this.pathWorkspace);
+        	criaWorkspace();
         	for (ProcessoJava processo:sistema.getProcessoJavas()) {
-        		System.out.println("Vai criar o processo..." + processo.getNomeClasseMain());
-        		criaProjeto(processo);
-        		
-        		
-
-        		ds.setProcessoCorrente(processo);
+           		ds.setProcessoCorrente(processo);
+         		criaProjeto(processo);
         		executaProximoSemFinalizar();
         	}
         	finalizar();
@@ -55,7 +41,15 @@ public class CriaProjeto extends DaoAplicacao {
 	}
 	
 	
-
+	private void criaWorkspace() throws IOException {
+		this.pathWorkspace = sistema.getPathProjeto() + File.separator + NOME_WORKSPACE;
+		ds.setNomePastaWorkspace(pathWorkspace);
+		directory = new File(this.pathWorkspace);
+        if (!directory.exists()) {
+        	directory.mkdirs(); // Cria o diretório se ele não existir
+        }
+        copiarDiretorioSeNaoVazio("arquivos",this.pathWorkspace);
+	}
 	
 	
 	private void criaProjeto(ProcessoJava processo) {
