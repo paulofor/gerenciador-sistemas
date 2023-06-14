@@ -54,6 +54,8 @@ import { DadoProcessoSaidaEditComponent } from './dado-processo-saida-edit/dado-
 import { EscolheEntidadeEntradaParaProcessoComponent } from './escolhe-entidade-entrada-para-processo/escolhe-entidade-entrada-para-processo.component';
 import { EscolheEntidadeSaidaParaProcessoComponent } from './escolhe-entidade-saida-para-processo/escolhe-entidade-saida-para-processo.component';
 import { DadoProcessoEditComponent } from './dado-processo-edit/dado-processo-edit.component';
+import { ParametroMetodoServerEditComponent } from './parametro-metodo-server-edit/parametro-metodo-server-edit.component';
+import { SaidaMetodoServerEditComponent } from './saida-metodo-server-edit/saida-metodo-server-edit.component';
 
 
 
@@ -85,7 +87,9 @@ registerLocaleData(localePt, 'pt-BR');
     DadoProcessoSaidaEditComponent,
     EscolheEntidadeEntradaParaProcessoComponent,
     EscolheEntidadeSaidaParaProcessoComponent,
-    DadoProcessoEditComponent
+    DadoProcessoEditComponent,
+    ParametroMetodoServerEditComponent,
+    SaidaMetodoServerEditComponent
   ],
   imports: [
     BrowserModule,
@@ -145,7 +149,8 @@ registerLocaleData(localePt, 'pt-BR');
     DadoProcessoSaidaEditComponent,
     EscolheEntidadeEntradaParaProcessoComponent,
     EscolheEntidadeSaidaParaProcessoComponent,
-    DadoProcessoEditComponent
+    DadoProcessoEditComponent,
+    ParametroMetodoServerEditComponent
   ],
   bootstrap: [AppComponent]
 })

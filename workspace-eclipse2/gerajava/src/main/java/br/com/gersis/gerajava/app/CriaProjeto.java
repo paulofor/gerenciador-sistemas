@@ -6,10 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import br.com.gersis.daobase.DaoBase;
-import br.com.gersis.gerajava.GeradorPassoProcesso;
+import br.com.gersis.gerajava.geradores.ModelGerador;
+import br.com.gersis.gerajava.geradores.RepositorioGerador;
 import br.com.gersis.gerajava.loopback.DaoAplicacao;
 import br.com.gersis.gerajava.loopback.DatasetGersis;
-import br.com.gersis.loopback.modelo.PassoProcessoJava;
+import br.com.gersis.loopback.modelo.Entidade;
 import br.com.gersis.loopback.modelo.ProcessoJava;
 import br.com.gersis.loopback.modelo.Sistema;
 
@@ -33,6 +34,16 @@ public class CriaProjeto extends DaoAplicacao {
            		ds.setProcessoCorrente(processo);
          		criaProjeto(processo);
         		executaProximoSemFinalizar();
+        	}
+        	ModelGerador model = new ModelGerador();
+        	RepositorioGerador repositorio = new RepositorioGerador();
+        	model.setDiretorioWorkspace(ds.getNomePastaWorkspace());
+        	repositorio.setDiretorioWorkspace(ds.getNomePastaWorkspace());
+        	for (Entidade entidade:sistema.getEntidades()) {
+        		model.setEntidade(entidade);
+        		repositorio.setEntidade(entidade);
+        		model.gerar();
+        		repositorio.gerar();
         	}
         	finalizar();
         } catch (Exception e) {

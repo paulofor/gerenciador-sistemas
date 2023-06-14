@@ -7,7 +7,10 @@ module.exports = function(Sistema) {
             'where' : {'id' : idSistema},
             'include' : [   
                 { 'relation' : 'entidades' , 'scope' : {
-                    'include' : ['atributoEntidades']
+                    'include' : ['atributoEntidades' , 
+                        { 'relation' : 'relacionamentos1' , 'scope' : {'include' : 'entidade1'}}, 
+                        { 'relation' : 'relacionamentosN' , 'scope' : {'include' : 'entidadeN'}} 
+                    ]
                 }},
                 { 'relation' : 'processoJavas' , 'scope' : {
                     'include' : ['passoProcessoJavas']

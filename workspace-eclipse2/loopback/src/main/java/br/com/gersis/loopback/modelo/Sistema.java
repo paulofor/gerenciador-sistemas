@@ -15,7 +15,21 @@ public class Sistema extends Model{
 	private String pathProjeto;
 	
 	private List<ProcessoJava> processoJavas;
+	private List<Entidade> entidades;
 	
+	
+	
+	public List<Entidade> getEntidades() {
+		return entidades;
+	}
+	public void setEntidades(List<Entidade> entidades) {
+		this.entidades = new ArrayList<Entidade>();
+		for (int i = 0; i < entidades.size(); i++) {
+			Object objeto = new Entidade();
+			BeanUtil.setProperties(objeto, (Map<String, ? extends Object>) entidades.get(i), true);
+			this.entidades.add((Entidade) objeto);
+		}
+	}
 	
 	
 	public List<ProcessoJava> getProcessoJavas() {

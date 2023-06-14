@@ -7,6 +7,8 @@ import br.com.gersis.daobase.DaoBase;
 import br.com.gersis.gerajava.GeradorArquivo;
 import br.com.gersis.gerajava.GeradorArquivoJava;
 import br.com.gersis.gerajava.GeradorPassoProcesso;
+import br.com.gersis.gerajava.geradores.DaoAplicacaoGerador;
+import br.com.gersis.gerajava.geradores.DatasetAplicacaoGerador;
 import br.com.gersis.gerajava.loopback.DaoAplicacao;
 import br.com.gersis.gerajava.loopback.DatasetGersis;
 import br.com.gersis.loopback.modelo.PassoProcessoJava;
@@ -25,7 +27,6 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 	
 	@Override
 	protected void executaImpl() {
-		// TODO Auto-generated method stub
 		ds = (DatasetGersis) this.getComum();
 		this.processo = ds.getProcessoCorrente();
 		this.diretorioProjeto = ds.getNomePastaWorkspace() + File.separator + this.processo.getNomeClasseMain().toLowerCase();
@@ -33,7 +34,7 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 			this.criaArquivosProjeto();
 			this.criaPacoteFonte();
 			this.criaArquivoMain();
-			this.criaDataset();
+			this.criaDatasetAplicacao();
 			this.criaDaoAplicacao();
 			for (PassoProcessoJava passo : processo.getPassoProcessoJavas()) {
         		criaPasso(passo);
@@ -44,50 +45,18 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		finalizar();
 	}
 	
-	private void criaDataset() throws IOException {
-		String nomeArquivo = this.diretorioLoopback + File.separator + "DaoAplicacao.java";
-		GeradorArquivoJava arq = new GeradorArquivoJava(nomeArquivo);
-		arq.criaArquivo();
-		arq.linha();
-		arq.linha("import com.strongloop.android.loopback.RestAdapter;");
-		arq.linha();
-		arq.linha("import br.com.gersis.daobase.DaoBase;");
-		arq.linha("import br.com.gersis.daobase.IDatasetComum;");
-		arq.linha("import br.com.gersis.daobase.comum.DaoBaseComum;");
-		arq.linha();
-		arq.linha("public abstract class DaoAplicacao extends DaoBase {");
-		arq.linha();
-		arq.linha("	private RestAdapter adapter = new RestAdapter(DaoBaseComum.urlLoopback);");
-		arq.linha();
-		arq.linha();
-		arq.linha("	@Override");
-		arq.linha("	protected long getTempo() {");
-		arq.linha("		return 10000;");
-		arq.linha("	}");
-		arq.linha();
-		arq.linha("	@Override");
-		arq.linha("	protected IDatasetComum criaDataSet() {");
-		arq.linha("		return new DatasetAplicacao();");
-		arq.linha("	}");
-		arq.linha();
-		arq.linha("	@Override");
-		arq.linha("	protected DaoBase getProximo() {");
-		arq.linha("		return null;");
-		arq.linha("	} ");
-		arq.linha();
-		arq.linha("}");
-		arq.fecha();
-	}
 	private void criaDaoAplicacao() throws IOException {
-		String nomeArquivo = this.diretorioLoopback + File.separator + "DatasetAplicacao.java";
-		GeradorArquivoJava arq = new GeradorArquivoJava(nomeArquivo);
-		arq.criaArquivo();
-		arq.linha();
-		arq.linha("import br.com.gersis.daobase.IDatasetComum;");
-		arq.linha();
-		arq.linha("public class DatasetAplicacao  implements IDatasetComum {");
-		arq.linha("}");
-		arq.fecha();
+		DaoAplicacaoGerador daoAplicacaoGer = new DaoAplicacaoGerador();
+		daoAplicacaoGer.setDiretorioWorkspace(ds.getNomePastaWorkspace());
+		daoAplicacaoGer.setProcessoJava(processo);
+		daoAplicacaoGer.setListaEntidade(ds.getSistema().getEntidades());
+		daoAplicacaoGer.gerar();
+	}
+	private void criaDatasetAplicacao() throws IOException {
+		DatasetAplicacaoGerador datasetGer = new DatasetAplicacaoGerador();
+		datasetGer.setDiretorioWorkspace(ds.getNomePastaWorkspace());
+		datasetGer.setProcesso(processo);
+		datasetGer.gerar();
 	}
 	
 	private void criaArquivosProjeto() throws IOException {

@@ -6,6 +6,7 @@ import { BaseItemIdComponent } from '../base-component/base-item-id-component';
 import { AtributoEntidadeEditComponent } from '../atributo-entidade-edit/atributo-entidade-edit.component';
 import { RelacionamentoEntidadeEditComponent } from '../relacionamento-entidade-edit/relacionamento-entidade-edit.component';
 import { MetodoServerEditComponent } from '../metodo-server-edit/metodo-server-edit.component';
+import { ParametroMetodoServerEditComponent } from '../parametro-metodo-server-edit/parametro-metodo-server-edit.component';
 
 @Component({
   selector: 'app-entidade-detalhe',
@@ -21,13 +22,26 @@ export class EntidadeDetalheComponent extends BaseItemIdComponent {
   getFiltro() {
     return {
       'include': ['atributoEntidades', 
-        { 'relation': 'metodoServers', 'scope' : {'order' : 'nome'} },
+        { 'relation': 'metodoServers', 
+          'scope' : {'order' : 'nome' , 'include' : {'relation' : 'parametroMetodoServers' , 'scope' : {'order' : 'posicao'} } } },
         { 'relation': 'relacionamentos1', 'scope': { 'include': 'entidade1' } },
         { 'relation': 'relacionamentosN', 'scope': { 'include': 'entidadeN' } }
       ]
     }
   }
 
+  editaParametroMetodoServer(origem, edicao?) {
+    this.dialog.afterAllClosed.subscribe(result => {
+      this.carregaTela();
+    });
+    this.dialog.open(ParametroMetodoServerEditComponent, {
+      width: '800px',
+      data: {
+        item: edicao,
+        origem: origem
+      }
+    });
+  }
 
   editaMetodo(edicao?) {
     this.dialog.afterAllClosed.subscribe(result => {
@@ -42,6 +56,18 @@ export class EntidadeDetalheComponent extends BaseItemIdComponent {
     });
   }
 
+  editaParametro(edicao?) {
+    this.dialog.afterAllClosed.subscribe(result => {
+      this.carregaTela();
+    });
+    this.dialog.open(ParametroMetodoServerEditComponent, {
+      width: '800px',
+      data: {
+        item: edicao,
+        origem: this.principal
+      }
+    });
+  }
 
   editaAtributo(edicao?) {
     this.dialog.afterAllClosed.subscribe(result => {

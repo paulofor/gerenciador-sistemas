@@ -17,6 +17,37 @@ public class ProcessoJava extends Model{
 	
 	private List<PassoProcessoJava> passoProcessoJavas;
 	
+	private List<ProcessoEntidadeEntradaRel> processoEntidadeEntrada;
+	private List<ProcessoEntidadeSaidaRel> processoEntidadeSaida;
+	
+	
+	
+	
+	
+	public List<ProcessoEntidadeEntradaRel> getProcessoEntidadeEntrada() {
+		return processoEntidadeEntrada;
+	}
+	public void setProcessoEntidadeEntrada(List<ProcessoEntidadeEntradaRel> processoEntidadeEntrada) {
+		this.processoEntidadeEntrada = new ArrayList<ProcessoEntidadeEntradaRel>();
+		for (int i = 0; i < passoProcessoJavas.size(); i++) {
+			Object objeto = new ProcessoEntidadeEntradaRel();
+			BeanUtil.setProperties(objeto, (Map<String, ? extends Object>) processoEntidadeEntrada.get(i), true);
+			this.processoEntidadeEntrada.add((ProcessoEntidadeEntradaRel) objeto);
+		}
+	}
+	
+	
+	public List<ProcessoEntidadeSaidaRel> getProcessoEntidadeSaida() {
+		return processoEntidadeSaida;
+	}
+	public void setProcessoEntidadeSaida(List<ProcessoEntidadeSaidaRel> processoEntidadeSaida) {
+		this.processoEntidadeSaida = new ArrayList<ProcessoEntidadeSaidaRel>();
+		for (int i = 0; i < processoEntidadeSaida.size(); i++) {
+			Object objeto = new ProcessoEntidadeSaidaRel();
+			BeanUtil.setProperties(objeto, (Map<String, ? extends Object>) processoEntidadeSaida.get(i), true);
+			this.processoEntidadeSaida.add((ProcessoEntidadeSaidaRel) objeto);
+		}
+	}
 	
 	
 	

@@ -42,13 +42,25 @@
     <div class="dgc-card-header">
         <span>Método Server</span>
     </div>
-    <div class="dgc-card-detalhe" *ngFor="let item of principal.metodoServers">
-      <span>{{item.nome}}&nbsp;&nbsp;</span>
-      <span>({{item.tipoMetodo}})</span>
-      <div class="dgc-direita">
-        <button class="btn-primary btn-sm btn" (click)="editaMetodo(item)">Altera</button>
+    <div *ngFor="let item of principal.metodoServers">
+      <div class="dgc-card-detalhe" >
+        <span>{{item.nome}}&nbsp;&nbsp;</span>
+        <span>({{item.tipoMetodo}})</span>
+        <div class="dgc-direita">
+          <button class="btn-primary btn-sm btn" (click)="editaParametroMetodoServer(item)">Insere Parâmetro</button>
+          <button class="btn-primary btn-sm btn" (click)="editaMetodo(item)">Altera</button>
+        </div>
+      </div>
+      <div *ngFor="let parametro of item.parametroMetodoServers">
+        <div class="dgc-card-detalhe" >
+          <span>{{parametro.nome}}&nbsp;&nbsp;</span><span>:{{parametro.tipo}} ({{parametro.posicao}})</span>
+          <div class="dgc-direita">
+            <button class="btn-primary btn-sm btn" (click)="editaParametro(parametro)">Altera Parâmetro</button>
+          </div>
+        </div>
       </div>
     </div>
+
     <div class="dgc-card-comandos">
       <button class="btn-primary btn-sm btn" (click)="editaMetodo()">Novo</button>
     </div> 

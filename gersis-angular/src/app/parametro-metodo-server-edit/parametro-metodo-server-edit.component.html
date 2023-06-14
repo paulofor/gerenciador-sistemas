@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>{{origem.nome}} - Parâmetro entrada</h2>
+
+<form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="100" #nome [(ngModel)]="item.nome" name="nome" placeholder="Nome" autocomplete="off" />
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="2" #posicao [(ngModel)]="item.posicao" name="posicao" placeholder="Posição" autocomplete="off" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" >
+      <mat-select placeholder="Tipo"  #tipo [(ngModel)]="item.tipo" name="tipo">
+        <mat-option value="number">number</mat-option>
+        <mat-option value="string">string</mat-option>
+        <mat-option value="date">date</mat-option>
+        <mat-option value="object">object</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button>Salvar</button>
+    <button mat-raised-button mat-dialog-close>Fechar</button>
+  </mat-dialog-actions>
+
+</form>
