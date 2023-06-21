@@ -16,7 +16,7 @@ public abstract class DaoAplicacao  extends DaoBase{
 	
 	private RestAdapter adapter = new RestAdapter(DaoBaseComum.urlLoopback); 
 	protected RepositorioSistema repSistema = adapter.createRepository(RepositorioSistema.class);
-	protected String NOME_WORKSPACE = "workspace-eclipse-gerador";
+	protected String NOME_WORKSPACE = "fontes-estruturado/principal";
 	
 	
 	@Override

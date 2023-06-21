@@ -19,10 +19,20 @@ public class ProcessoJava extends Model{
 	
 	private List<ProcessoEntidadeEntradaRel> processoEntidadeEntrada;
 	private List<ProcessoEntidadeSaidaRel> processoEntidadeSaida;
+	private List<DadoProcesso> dadoProcessos;
 	
 	
-	
-	
+	public List<DadoProcesso> getDadoProcessos() {
+		return dadoProcessos;
+	}
+	public void setDadoProcessos(List<DadoProcesso> dadoProcessos) {
+		this.dadoProcessos = new ArrayList<DadoProcesso>();
+		for (int i = 0; i < dadoProcessos.size(); i++) {
+			Object objeto = new DadoProcesso();
+			BeanUtil.setProperties(objeto, (Map<String, ? extends Object>) dadoProcessos.get(i), true);
+			this.dadoProcessos.add((DadoProcesso) objeto);
+		}
+	}
 	
 	public List<ProcessoEntidadeEntradaRel> getProcessoEntidadeEntrada() {
 		return processoEntidadeEntrada;

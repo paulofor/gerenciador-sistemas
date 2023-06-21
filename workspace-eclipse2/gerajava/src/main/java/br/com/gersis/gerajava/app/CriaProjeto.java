@@ -59,7 +59,7 @@ public class CriaProjeto extends DaoAplicacao {
         if (!directory.exists()) {
         	directory.mkdirs(); // Cria o diretório se ele não existir
         }
-        copiarDiretorioSeNaoVazio("arquivos",this.pathWorkspace);
+        //copiarDiretorioSeNaoVazio("arquivos",this.pathWorkspace);
 	}
 	
 	

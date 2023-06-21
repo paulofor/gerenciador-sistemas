@@ -1,23 +1,22 @@
-package br.com.gersis.gerajava;
+package br.com.gersis.gerajava.geradores;
 
 import java.io.IOException;
 
 import br.com.gersis.loopback.modelo.PassoProcessoJava;
 import br.com.gersis.loopback.modelo.ProcessoJava;
 
-public class GeradorPassoProcesso extends GeradorArquivoJava {
-	
-	private PassoProcessoJava passo = null;
-	private String nomeArquivo = null;
-	private ProcessoJava processo = null;
+public class ObjectGerador extends GeradorPassoProcesso {
 
-	public GeradorPassoProcesso(String nome, PassoProcessoJava passo, ProcessoJava processo) throws IOException {
-		super(nome);
-		this.nomeArquivo = nome;
-		this.passo = passo;
-		this.processo = processo;
-	}
+
 	
+	
+
+	public ObjectGerador(String nome, PassoProcessoJava passo, PassoProcessoJava passoProximo, ProcessoJava processo)
+			throws IOException {
+		super(nome, passo, passoProximo, processo);
+
+	}
+
 	public void gerar() throws IOException {
 		this.criaArquivo();
 		this.linha("");
@@ -31,10 +30,12 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 		this.linha("	@Override");
 		this.linha("	protected void executaImpl() {");
 		this.linha("		final DatasetAplicacao ds = (DatasetAplicacao) this.getComum();");
+		this.linha("		" + passoProximo.getNomeClasse() + " exec = new " + passoProximo.getNomeClasse() + "();");
+		this.linha("		exec.setComum(ds);");
+		this.linha("		exec.executa();");
 		this.linha("	}"); 
 		this.linha("}");
 		this.linha();
 		this.fecha();
 	}
-
 }

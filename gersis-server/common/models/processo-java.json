@@ -62,6 +62,31 @@
   },
   "acls": [],
   "methods": {
+    "ListaMetodoServerDisponivel": {
+      "accepts": [
+        {
+          "arg": "idProcesso",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "lista",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/listaMetodoServerDisponivel",
+          "verb": "get"
+        }
+      ]
+    },
     "ListaEntidadeDisponivel": {
       "accepts": [
         {

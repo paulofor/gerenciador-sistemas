@@ -13,6 +13,18 @@ public class ParametroMetodoServer extends Model{
 	private String tipo;
 	private int posicao;
 	
+	public String getTipoJava() {
+		if (tipo.indexOf("number-int")!=-1) return "int";
+		if (tipo.indexOf("number-double")!=-1) return "double";
+		if (tipo.indexOf("string")!=-1) return "String";
+		if (tipo.indexOf("date")!=-1) return "String";
+		return tipo;
+	}
+	
+	public String getParametroFuncaoJava(Entidade entidade) {
+		if (tipo.indexOf("object")!=-1) return entidade.getNome() + " " + this.nome;
+		else return this.getTipoJava() + " " + this.nome;
+	}
 	
 	public String getNome() {
 		return nome;

@@ -15,12 +15,25 @@ public class Entidade extends Model{
 	
 	private List<RelacionamentoEntidade> relacionamentos1;
 	private List<RelacionamentoEntidade> relacionamentosN;
+	private List<MetodoServer> metodoServers;
+	
+	
+	public List<MetodoServer> getMetodoServers() {
+		return metodoServers;
+	}
+	public void setMetodoServers(List<MetodoServer> metodoServers) {
+		this.metodoServers = new ArrayList<MetodoServer>();
+		for (int i = 0; i < metodoServers.size(); i++) {
+			Object objeto = new MetodoServer();
+			BeanUtil.setProperties(objeto, (Map<String, ? extends Object>) metodoServers.get(i), true);
+			this.metodoServers.add((MetodoServer) objeto);
+		}
+	}
 	
 	
 	public List<RelacionamentoEntidade> getRelacionamentosN() {
 		return relacionamentosN;
 	}
-
 	public void setRelacionamentosN(List<RelacionamentoEntidade> relacionamentosN) {
 		this.relacionamentosN = new ArrayList<RelacionamentoEntidade>();
 		for (int i = 0; i < relacionamentosN.size(); i++) {

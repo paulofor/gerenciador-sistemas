@@ -173,10 +173,10 @@ export class ProcessoEntidadeEntradaRelApi extends BaseLoopBackApi {
    * This usually means the response is a `ProcessoEntidadeEntradaRel` object.)
    * </em>
    */
-  public AtualizaPorProcesso(idProcesso: any = {}, lista: any = {}, customHeaders?: Function): Observable<any> {
+  public AtualizaPorProcessoEntrada(idProcesso: any = {}, lista: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoEntidadeEntradaRels/atualizaPorProcesso";
+    "/ProcessoEntidadeEntradaRels/atualizaPorProcessoEntrada";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};

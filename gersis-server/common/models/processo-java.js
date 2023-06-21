@@ -1,5 +1,7 @@
 'use strict';
 
+var app = require('../../server/server');
+
 module.exports = function(Processojava) {
 
 
@@ -19,5 +21,13 @@ module.exports = function(Processojava) {
         ds.connector.query(sql,callback);
     }
 
+    Processojava.ListaMetodoServerDisponivel = function(idProcesso, callback) {
 
+        Processojava.ListaEntidadeDisponivel(idProcesso, (err,listaEntidade) => {
+            const where = listaEntidade.map(entidade => ({ id: entidade.id }));
+            const filtro = {'include' : 'metodoServers', 'where' : {'or' : where } , 'order' : 'nome'}
+            console.log(filtro);
+            app.models.Entidade.find(filtro, callback);
+        })
+    }
 };

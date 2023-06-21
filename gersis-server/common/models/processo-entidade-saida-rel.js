@@ -3,7 +3,7 @@
 module.exports = function(Processoentidadesaidarel) {
 
 
-    Processoentidadesaidarel.AtualizaPorProcesso = function (idProcesso, lista, callback) {
+    Processoentidadesaidarel.AtualizaPorProcessoSaida = function (idProcesso, lista, callback) {
         //var sqlQuantidade = "update GrupoAcao " +
         //" set quantidade = (select count(*) from RelGrupoAcao where GrupoAcao.id = RelGrupoAcao.grupoAcaoId) ";
         //console.log(lista);

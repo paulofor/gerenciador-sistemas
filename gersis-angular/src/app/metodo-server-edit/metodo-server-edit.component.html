@@ -7,13 +7,20 @@
       <input matInput maxlength="50" #nome [(ngModel)]="item.nome" name="nome" placeholder="Nome" autocomplete="off" />
     </mat-form-field>
 
-    <mat-form-field class="example-half-width">
+    <mat-form-field class="example-full-width">
       <mat-select placeholder="Tipo" #tipoMetodo [(ngModel)]="item.tipoMetodo" name="tipoMetodo">
         <mat-option value="GET">GET</mat-option>
         <mat-option value="POST">POST</mat-option>
       </mat-select>
     </mat-form-field>
 
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Tipo Resposta" #tipoResposta [(ngModel)]="item.tipoResposta" name="tipoResposta">
+        <mat-option value="Void">Void</mat-option>
+        <mat-option value="Object">Object</mat-option>
+        <mat-option value="List">List</mat-option>
+      </mat-select>
+    </mat-form-field>
 
   </mat-dialog-content>
 

@@ -30,7 +30,7 @@
   },
   "acls": [],
   "methods": {
-    "AtualizaPorProcesso": {
+    "AtualizaPorProcessoEntrada": {
       "accepts": [
         {
           "arg": "idProcesso",
@@ -56,7 +56,7 @@
       "description": "",
       "http": [
         {
-          "path": "/atualizaPorProcesso",
+          "path": "/atualizaPorProcessoEntrada",
           "verb": "post"
         }
       ]

@@ -6,7 +6,7 @@ public class GeraLoopbackObj {
 
 	public void executa() {
 		DatasetGersis ds = new DatasetGersis();
-		ds.setIdSistema(1);
+		ds.setIdSistema(2);
 		Sistema_ObtemParaGerarJava exec = new Sistema_ObtemParaGerarJava();
 		exec.setComum(ds);
 		exec.executa();

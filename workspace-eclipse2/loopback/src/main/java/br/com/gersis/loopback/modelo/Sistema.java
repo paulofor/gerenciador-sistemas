@@ -17,8 +17,16 @@ public class Sistema extends Model{
 	private List<ProcessoJava> processoJavas;
 	private List<Entidade> entidades;
 	
+	private String urlBackApi;
 	
 	
+	
+	public String getUrlBackApi() {
+		return urlBackApi;
+	}
+	public void setUrlBackApi(String urlBackApi) {
+		this.urlBackApi = urlBackApi;
+	}
 	public List<Entidade> getEntidades() {
 		return entidades;
 	}

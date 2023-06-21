@@ -6,9 +6,10 @@ import java.io.IOException;
 import br.com.gersis.daobase.DaoBase;
 import br.com.gersis.gerajava.GeradorArquivo;
 import br.com.gersis.gerajava.GeradorArquivoJava;
-import br.com.gersis.gerajava.GeradorPassoProcesso;
 import br.com.gersis.gerajava.geradores.DaoAplicacaoGerador;
 import br.com.gersis.gerajava.geradores.DatasetAplicacaoGerador;
+import br.com.gersis.gerajava.geradores.GeradorPassoProcesso;
+import br.com.gersis.gerajava.geradores.ObjectGerador;
 import br.com.gersis.gerajava.loopback.DaoAplicacao;
 import br.com.gersis.gerajava.loopback.DatasetGersis;
 import br.com.gersis.loopback.modelo.PassoProcessoJava;
@@ -36,9 +37,20 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 			this.criaArquivoMain();
 			this.criaDatasetAplicacao();
 			this.criaDaoAplicacao();
-			for (PassoProcessoJava passo : processo.getPassoProcessoJavas()) {
-        		criaPasso(passo);
-    		}
+			if (processo.getPassoProcessoJavas().size()>1) {
+				for (int i=0;i<processo.getPassoProcessoJavas().size();i++) {
+					if (i==0) {
+						this.criaPasso1(processo.getPassoProcessoJavas().get(i),processo.getPassoProcessoJavas().get(i+1)); 
+					} else {
+						if (i==processo.getPassoProcessoJavas().size()-1) {
+							this.criaPasso(processo.getPassoProcessoJavas().get(i),null);
+						} else {
+							this.criaPasso(processo.getPassoProcessoJavas().get(i),processo.getPassoProcessoJavas().get(i+1));
+						}
+					}
+				}
+			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -60,7 +72,7 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 	}
 	
 	private void criaArquivosProjeto() throws IOException {
-		copiarDiretorio("projeto",this.diretorioProjeto);
+		//copiarDiretorio("projeto",this.diretorioProjeto);
 		copiarDiretorio("daobase-arquivos",ds.getNomePastaWorkspace());
 		String projetoClienteLoopback = ds.getNomePastaWorkspace() + File.separator + "loopback";
 		copiarDiretorio("cliente-loopback-arquivos",projetoClienteLoopback);
@@ -78,10 +90,16 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 	}
 	
 	
-	private void criaPasso(PassoProcessoJava passo) throws IOException {
+	private void criaPasso(PassoProcessoJava passo,PassoProcessoJava proximo) throws IOException {
 		String diretorioPassos = ds.getNomePastaFonteCorrente() + "/passo";
 		String nomeArquivo = diretorioPassos + File.separator + passo.getNomeClasse() + ".java";
-		GeradorPassoProcesso arqPasso = new GeradorPassoProcesso(nomeArquivo,passo, this.processo);
+		GeradorPassoProcesso arqPasso = new GeradorPassoProcesso(nomeArquivo,passo, proximo,this.processo);
+		arqPasso.gerar();
+	}
+	private void criaPasso1(PassoProcessoJava passo, PassoProcessoJava proximo) throws IOException {
+		String diretorioPassos = ds.getNomePastaFonteCorrente() + "/passo";
+		String nomeArquivo = diretorioPassos + File.separator + passo.getNomeClasse() + ".java";
+		ObjectGerador arqPasso = new ObjectGerador(nomeArquivo,passo, proximo, this.processo);
 		arqPasso.gerar();
 	}
 	
@@ -186,10 +204,13 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		arq.linha("");
 		arq.linha("	public static void main(String[] args) {");
 		arq.linha("			System.out.print(\"" + this.processo.getNomeClasseMain() + "\");");
-		arq.linha("			System.out.println(\"(22-05-2023)\");");
+		arq.linha("			System.out.println(\"(00-00-2023)\");");
 		arq.linha("		try {");
 		arq.linha("			carregaProp();");
-		PassoProcessoJava objeto = this.processo.getPassoProcessoJavas().get(1);
+		if (this.processo.getPassoProcessoJavas().size()==0) {
+			throw new GeradorException("Processo " + this.processo.getNomeClasseMain() + " não possui passos");
+		}
+		PassoProcessoJava objeto = this.processo.getPassoProcessoJavas().get(0);
 		arq.linha("			" + objeto.getNomeClasse() + " obj = new " + objeto.getNomeClasse() + "();");
 		arq.linha("			obj.executa();");
 		arq.linha("			System.exit(0);");
@@ -204,7 +225,7 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		arq.linha("		//Properties prop = new Properties();");
 		arq.linha("		//prop.load(input);");
 		arq.linha("		//UrlLoopback = prop.getProperty(\"loopback.url\");");
-		arq.linha("		UrlLoopback = \"http://vps-40d69db1.vps.ovh.ca:23102/api\";");
+		arq.linha("		UrlLoopback = \"" + ds.getSistema().getUrlBackApi() + "\";");
 		arq.linha("		DaoBaseComum.setUrl(UrlLoopback);");
 		arq.linha("	}");
 		arq.linha("");

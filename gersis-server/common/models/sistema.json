@@ -17,6 +17,9 @@
     },
     "pathProjeto" : {
       "type": "string"
+    },
+    "urlBackApi" : {
+      "type" : "string"
     }
   },
   "validations": [],

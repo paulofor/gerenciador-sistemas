@@ -29,10 +29,13 @@ public class AtributoEntidade extends Model{
 		if (tipoBd.indexOf("DATE")!=-1) return "String";
 		if (tipoBd.indexOf("INT")!=-1) return "int";
 		if (tipoBd.indexOf("DECIMAL")!=-1) return "double";
+		if (tipoBd.indexOf("TEXT")!=-1) return "String";
 		return tipoBd;
 	}
-	public String getNomePropriedade() {
-		return this.nome.substring(0,1).toUpperCase() + this.nome.substring(1);
+	public String getNomeVariavel() {
+		return nome.substring(0, 1).toLowerCase() + nome.substring(1);
 	}
-	
+	public String getNomePropriedade() {
+		return nome.substring(0,1).toUpperCase() + nome.substring(1);
+	}
 }

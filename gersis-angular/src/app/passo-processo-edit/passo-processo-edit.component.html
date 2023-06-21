@@ -1,4 +1,4 @@
-<h2 mat-dialog-title *ngIf="origem && item">Passo {{item.ordenacao}} em {{origem.nomeClasseMain}}</h2>
+<h2 mat-dialog-title *ngIf="origem && item">Paso {{item.ordenacao}} em {{origem.nomeClasseMain}}</h2>
 
 <form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
 
@@ -6,6 +6,14 @@
 
     <mat-form-field class="example-full-width">
       <input matInput maxlength="50" #nomeClasse [(ngModel)]="item.nomeClasse" name="nomeClasse" placeholder="Nome da Classe" autocomplete="off" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" *ngIf="listaEntidadeMetodo">
+      <mat-select placeholder="Operação Entidade"  #metodoServerId [(ngModel)]="item.metodoServerId" name="metodoServerId" (selectionChange)="atualizarNomeClasse(metodoServerId)">
+        <mat-option *ngFor="let metodo of listaEntidadeMetodo" [value]="metodo.id">
+          {{ metodo.nome }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
  
     <mat-form-field class="example-half-width">

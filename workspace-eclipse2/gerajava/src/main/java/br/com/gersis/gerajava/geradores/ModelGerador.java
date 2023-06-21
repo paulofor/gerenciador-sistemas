@@ -36,7 +36,7 @@ public class ModelGerador extends GeradorBase {
 		arq.linha("public class " + this.entidade.getNome() + " extends Model {");
 		arq.linha();
 		for (AtributoEntidade atributo : entidade.getAtributoEntidades()) {
-			arq.linha("	private " + atributo.getTipoJava() + " " + atributo.getNome() + ";");
+			arq.linha("	private " + atributo.getTipoJava() + " " + atributo.getNomeVariavel() + ";");
 		}
 		arq.linha("	// Relacionamentos 1");
 		for (RelacionamentoEntidade rel : entidade.getRelacionamentos1()) {
@@ -49,10 +49,10 @@ public class ModelGerador extends GeradorBase {
 		arq.linha();
 		for (AtributoEntidade atributo : entidade.getAtributoEntidades()) {
 			arq.linha("	public void set" + atributo.getNomePropriedade() + "(" + atributo.getTipoJava() + " valor) { ");
-			arq.linha("		this." + atributo.getNome() + " = valor;");
+			arq.linha("		this." + atributo.getNomeVariavel() + " = valor;");
 			arq.linha("	}");
 			arq.linha("	public " + atributo.getTipoJava() + " get" + atributo.getNomePropriedade() + "() { ");
-			arq.linha("		return this." + atributo.getNome() + ";");
+			arq.linha("		return this." + atributo.getNomeVariavel() + ";");
 			arq.linha("	}");
 		}
 		arq.linha();
