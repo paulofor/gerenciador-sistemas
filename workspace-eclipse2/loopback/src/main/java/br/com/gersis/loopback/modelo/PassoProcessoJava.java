@@ -21,6 +21,31 @@ public class PassoProcessoJava extends Model{
 	private List<DadoProcessoSaidaRel> dadoPassoSaida;
 	
 	
+	public String parametrosEntrada() {
+		String saida = "";
+		for (int i=0;i< this.dadoPassoEntrada.size(); i++) {
+			DadoProcesso dado = this.dadoPassoEntrada.get(i).getDadoProcesso();
+			if (i==0) {
+				saida += "ds.get" + dado.getNomePropriedade() + "()";
+			} else {
+				saida += ", ds.get" + dado.getNomePropriedade() + "()";
+			}
+		}
+		return saida;
+	}
+	public String parametrosEntradaComTipo() {
+		String saida = "";
+		for (int i=0;i< this.dadoPassoEntrada.size(); i++) {
+			DadoProcesso dado = this.dadoPassoEntrada.get(i).getDadoProcesso();
+			if (i==0) {
+				saida += " " + dado.getTipoJava() + " " + dado.getNomePropriedade() + " ";
+			} else {
+				saida += ", " + dado.getTipoJava() + " " + dado.getNomePropriedade() + " ";
+			}
+		}
+		return saida;
+	}
+	
 	public List<DadoProcessoEntradaRel> getDadoPassoEntrada() {
 		return dadoPassoEntrada;
 	}

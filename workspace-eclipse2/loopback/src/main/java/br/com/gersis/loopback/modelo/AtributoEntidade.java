@@ -27,6 +27,9 @@ public class AtributoEntidade extends Model{
 		if (tipoBd.indexOf("VARCHAR")!=-1) return "String";
 		if (tipoBd.indexOf("DATETIME")!=-1) return "String";
 		if (tipoBd.indexOf("DATE")!=-1) return "String";
+		if (tipoBd.indexOf("TIME")!=-1) return "String";
+		if (tipoBd.indexOf("LONGTEXT")!=-1) return "String";
+		if (tipoBd.indexOf("MEDIUMTEXT")!=-1) return "String";
 		if (tipoBd.indexOf("INT")!=-1) return "int";
 		if (tipoBd.indexOf("DECIMAL")!=-1) return "double";
 		if (tipoBd.indexOf("TEXT")!=-1) return "String";

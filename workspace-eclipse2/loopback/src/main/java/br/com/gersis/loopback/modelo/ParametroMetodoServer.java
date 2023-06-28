@@ -21,6 +21,11 @@ public class ParametroMetodoServer extends Model{
 		return tipo;
 	}
 	
+	
+	public boolean isObject() {
+		return (tipo.indexOf("object")!=-1);
+	}
+	
 	public String getParametroFuncaoJava(Entidade entidade) {
 		if (tipo.indexOf("object")!=-1) return entidade.getNome() + " " + this.nome;
 		else return this.getTipoJava() + " " + this.nome;

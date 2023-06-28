@@ -9,6 +9,8 @@ import br.com.gersis.gerajava.GeradorArquivoJava;
 import br.com.gersis.gerajava.geradores.DaoAplicacaoGerador;
 import br.com.gersis.gerajava.geradores.DatasetAplicacaoGerador;
 import br.com.gersis.gerajava.geradores.GeradorPassoProcesso;
+import br.com.gersis.gerajava.geradores.GeradorPassoProcessoImpl;
+import br.com.gersis.gerajava.geradores.GeradorPomGenerico;
 import br.com.gersis.gerajava.geradores.ObjectGerador;
 import br.com.gersis.gerajava.loopback.DaoAplicacao;
 import br.com.gersis.gerajava.loopback.DatasetGersis;
@@ -26,6 +28,8 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 	private String diretorioProjeto = null;
 	private String pacotePrincipal = null;
 	
+	private String diretorioPassoImpl = null;
+	
 	@Override
 	protected void executaImpl() {
 		ds = (DatasetGersis) this.getComum();
@@ -40,12 +44,12 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 			if (processo.getPassoProcessoJavas().size()>1) {
 				for (int i=0;i<processo.getPassoProcessoJavas().size();i++) {
 					if (i==0) {
-						this.criaPasso1(processo.getPassoProcessoJavas().get(i),processo.getPassoProcessoJavas().get(i+1)); 
+						this.criaPasso1(processo.getPassoProcessoJavas().get(i),processo.getPassoProcessoJavas().get(i+1),i); 
 					} else {
 						if (i==processo.getPassoProcessoJavas().size()-1) {
-							this.criaPasso(processo.getPassoProcessoJavas().get(i),null);
+							this.criaPasso(processo.getPassoProcessoJavas().get(i),null,i);
 						} else {
-							this.criaPasso(processo.getPassoProcessoJavas().get(i),processo.getPassoProcessoJavas().get(i+1));
+							this.criaPasso(processo.getPassoProcessoJavas().get(i),processo.getPassoProcessoJavas().get(i+1),i);
 						}
 					}
 				}
@@ -77,6 +81,14 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		String projetoClienteLoopback = ds.getNomePastaWorkspace() + File.separator + "loopback";
 		copiarDiretorio("cliente-loopback-arquivos",projetoClienteLoopback);
 		this.criaArquivoProject();
+		
+		String pomLookback = projetoClienteLoopback + File.separator + "pom.xml";
+		GeradorPomGenerico pom = new GeradorPomGenerico(pomLookback, ds.getSistema().getSigla() , "loopback");
+		pom.gerar();
+		
+		String pomDaobase =  ds.getNomePastaWorkspace() + File.separator + "daobase" + File.separator + "pom.xml";
+		pom = new GeradorPomGenerico(pomDaobase, ds.getSistema().getSigla() , "daobase");
+		pom.gerar();
 	}
 	
 	private void criaPacoteFonte() {
@@ -84,22 +96,29 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		diretorioApp = ds.getNomePastaFonteCorrente() + "/app";
 		diretorioLoopback = ds.getNomePastaFonteCorrente() + "/loopback";
 		diretorioPasso = ds.getNomePastaFonteCorrente() + "/passo";
+		diretorioPassoImpl = ds.getNomePastaFonteCorrente() + "/passo/impl";
 		this.verificarECriarDiretorio(this.diretorioApp);
 		this.verificarECriarDiretorio(this.diretorioLoopback);
 		this.verificarECriarDiretorio(this.diretorioPasso);
+		this.verificarECriarDiretorio(this.diretorioPassoImpl);
 	}
 	
 	
-	private void criaPasso(PassoProcessoJava passo,PassoProcessoJava proximo) throws IOException {
+	private void criaPasso(PassoProcessoJava passo,PassoProcessoJava proximo, int posicaoPasso) throws IOException {
 		String diretorioPassos = ds.getNomePastaFonteCorrente() + "/passo";
 		String nomeArquivo = diretorioPassos + File.separator + passo.getNomeClasse() + ".java";
-		GeradorPassoProcesso arqPasso = new GeradorPassoProcesso(nomeArquivo,passo, proximo,this.processo);
+		GeradorPassoProcesso arqPasso = new GeradorPassoProcesso(nomeArquivo,passo, proximo,this.processo, posicaoPasso);
 		arqPasso.gerar();
+		
+		String diretorioPassosImpl = ds.getNomePastaFonteCorrente() + "/passo/impl";
+		String nomeArquivoImpl = diretorioPassosImpl + File.separator + passo.getNomeClasse() + "Impl.java";
+		GeradorPassoProcessoImpl arqPassoImpl = new GeradorPassoProcessoImpl(nomeArquivoImpl,passo, proximo,this.processo, posicaoPasso);
+		arqPassoImpl.gerar();
 	}
-	private void criaPasso1(PassoProcessoJava passo, PassoProcessoJava proximo) throws IOException {
+	private void criaPasso1(PassoProcessoJava passo, PassoProcessoJava proximo, int posicaoPasso) throws IOException {
 		String diretorioPassos = ds.getNomePastaFonteCorrente() + "/passo";
 		String nomeArquivo = diretorioPassos + File.separator + passo.getNomeClasse() + ".java";
-		ObjectGerador arqPasso = new ObjectGerador(nomeArquivo,passo, proximo, this.processo);
+		ObjectGerador arqPasso = new ObjectGerador(nomeArquivo,passo, proximo, this.processo, posicaoPasso);
 		arqPasso.gerar();
 	}
 	
@@ -213,6 +232,7 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		PassoProcessoJava objeto = this.processo.getPassoProcessoJavas().get(0);
 		arq.linha("			" + objeto.getNomeClasse() + " obj = new " + objeto.getNomeClasse() + "();");
 		arq.linha("			obj.executa();");
+		arq.linha("			System.out.println(\"finalizou\");");
 		arq.linha("			System.exit(0);");
 		arq.linha("		} catch (Exception e) {");
 		arq.linha("			e.printStackTrace();");

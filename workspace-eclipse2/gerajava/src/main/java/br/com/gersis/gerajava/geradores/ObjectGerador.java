@@ -11,9 +11,9 @@ public class ObjectGerador extends GeradorPassoProcesso {
 	
 	
 
-	public ObjectGerador(String nome, PassoProcessoJava passo, PassoProcessoJava passoProximo, ProcessoJava processo)
+	public ObjectGerador(String nome, PassoProcessoJava passo, PassoProcessoJava passoProximo, ProcessoJava processo, int posicaoPasso)
 			throws IOException {
-		super(nome, passo, passoProximo, processo);
+		super(nome, passo, passoProximo, processo, posicaoPasso);
 
 	}
 
@@ -33,6 +33,7 @@ public class ObjectGerador extends GeradorPassoProcesso {
 		this.linha("		" + passoProximo.getNomeClasse() + " exec = new " + passoProximo.getNomeClasse() + "();");
 		this.linha("		exec.setComum(ds);");
 		this.linha("		exec.executa();");
+		this.linha("		finalizar();");
 		this.linha("	}"); 
 		this.linha("}");
 		this.linha();

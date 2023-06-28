@@ -19,6 +19,20 @@ public class GeradorArquivoJava extends GeradorArquivo {
 
 
 
+
+	@Override
+	public boolean criaArquivoSeNaoExiste() throws IOException {
+		if (super.criaArquivoSeNaoExiste()) {
+			this.linha("package " + getNomePacote() + ";");
+			this.linha("");
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
+
 	protected String getNomePacote() {
 		String nomePacote = "";
 		String paths[] = nomeArquivo.split("/");

@@ -3,6 +3,9 @@ package br.com.gersis.gerajava.geradores;
 import java.io.IOException;
 
 import br.com.gersis.gerajava.GeradorArquivoJava;
+import br.com.gersis.gerajava.app.GeradorException;
+import br.com.gersis.loopback.modelo.DadoProcesso;
+import br.com.gersis.loopback.modelo.DadoProcessoEntradaRel;
 import br.com.gersis.loopback.modelo.PassoProcessoJava;
 import br.com.gersis.loopback.modelo.ProcessoJava;
 
@@ -11,14 +14,16 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 	protected PassoProcessoJava passo = null;
 	protected String nomeArquivo = null;
 	protected ProcessoJava processo = null;
-	protected PassoProcessoJava passoProximo = null;;
+	protected PassoProcessoJava passoProximo = null;
+	protected int posicaoPasso; 
 
-	public GeradorPassoProcesso(String nome, PassoProcessoJava passo, PassoProcessoJava passoProximo, ProcessoJava processo) throws IOException {
+	public GeradorPassoProcesso(String nome, PassoProcessoJava passo, PassoProcessoJava passoProximo, ProcessoJava processo, int posicaoPasso) throws IOException {
 		super(nome);
 		this.nomeArquivo = nome;
 		this.passo = passo;
 		this.processo = processo;
 		this.passoProximo = passoProximo;
+		this.posicaoPasso = posicaoPasso;
 	}
 	
 	public void gerar() throws IOException {
@@ -26,8 +31,8 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 		this.linha("");
 		this.linha("import gerador." + this.processo.getNomeClasseMain().toLowerCase() + ".loopback.DaoAplicacao;");
 		this.linha("import gerador." + this.processo.getNomeClasseMain().toLowerCase() + ".loopback.DatasetAplicacao;");
-		this.linha("import br.com.gersis.daobase.DaoBase;");
-		this.linha("import br.com.gersis.daobase.IDatasetComum;");
+		this.linha("import gerador." + this.processo.getNomeClasseMain().toLowerCase() + ".passo.impl.*;");
+		this.linha("import br.com.gersis.daobase.*;");
 		this.linha("import br.com.gersis.loopback.modelo.*;");
 		this.linha();
 		this.linha("import java.util.List;");
@@ -37,14 +42,18 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 		this.linha("public class " + this.getNomeClasse() + " extends DaoAplicacao { ");
 		this.linha();
 		this.linha("	@Override");
-		this.linha("	protected void executaImpl() {");
+		this.linha("	protected final void executaImpl() {");
 		this.linha("		final DatasetAplicacao ds = (DatasetAplicacao) this.getComum();");
+		this.linha("		executaCustom(" + this.passo.parametrosEntrada() + ");");
 		if (this.passo.getMetodoServer()!=null) {
 			if (this.passo.getMetodoServer().isList()) {
 				this.linha("		rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( new ListCallback<" + passo.getMetodoServer().getEntidade().getNome() + ">() { ");
 				this.linha("			public void onSuccess(List<" + passo.getMetodoServer().getEntidade().getNome()+ "> lista) {");
-				if (this.passoProximo.getDentroLoop()==1) {
+				if (this.passoProximo!=null && this.passoProximo.getDentroLoop()==1) {
 					this.linha("				for (" + this.passo.getMetodoServer().getEntidade().getNome() + " item : lista) {");
+					if (this.passo.getDadoPassoSaida().size()==0) {
+						throw new GeradorException("Passo " + this.passo.getNomeClasse() + " em " + this.processo.getNomeClasseMain() + " precisa ter dado de saída");
+					}
 					this.linha("					ds.set" + this.passo.getDadoPassoSaida().get(0).getDadoProcesso().getNomePropriedade() + "(item);");
 					this.linha("					executaProximoSemFinalizar();");
 					this.linha("				}");
@@ -59,7 +68,13 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 				this.linha("			}");
 			}
 			if (this.passo.getMetodoServer().isVoid()) {
-				this.linha("		rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( new VoidCallback<" + passo.getMetodoServer().getEntidade().getNome() + ">() { ");
+				String param = "";
+				for (DadoProcessoEntradaRel dado : this.passo.getDadoPassoEntrada()) {
+					DadoProcesso ent = dado.getDadoProcesso();
+					this.linha("		" + ent.getTipoJava() + " " + ent.getNomeVariavel() + " = ds.get" + ent.getNomePropriedade() + "();");
+					param += ent.getNomeVariavel() + " , ";
+				}
+				this.linha("		rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( " + param + " new VoidCallback() { ");
 				this.linha("			public void onSuccess() {");
 				this.linha("				finalizar();");
 				this.linha("			}");
@@ -68,18 +83,31 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 			this.linha("				onErrorBase(t);");
 			this.linha("			}");
 			this.linha("		});");
+		} else {
+			this.linha("		executaProximo();");
 		}
 		this.linha("	}"); 
+		
 		this.linha();
 		this.linha();
 		this.linha("	@Override");
-		this.linha("	protected DaoBase getProximo() {");
+		this.linha("	protected final DaoBase getProximo() {");
 		if (this.passoProximo==null) {
-			this.linha("		return null;");
+			this.linha("		return new DummyDaoBase();");
 		} else {
-			this.linha("		return new " + this.passoProximo.getNomeClasse() + "();");
+			if (posicaoPasso==0) {
+				this.linha("		return new " + this.passoProximo.getNomeClasse() + "();");
+			} else {
+				this.linha("		return new " + this.passoProximo.getNomeClasse() + "Impl();");
+			}
+			
 		}
 		this.linha("	}");
+		this.linha();
+		this.linha();
+		this.linha("	protected void executaCustom(" + this.passo.parametrosEntradaComTipo() + ") {}");
+		this.linha();
+		this.linha();
 		this.linha("}");
 		this.linha();
 		this.fecha();

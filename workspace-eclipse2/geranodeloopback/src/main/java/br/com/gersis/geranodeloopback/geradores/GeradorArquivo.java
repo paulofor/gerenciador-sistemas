@@ -1,4 +1,4 @@
-package br.com.gersis.gerajava;
+package br.com.gersis.geranodeloopback.geradores;
 
 import java.io.File;
 import java.io.FileWriter;

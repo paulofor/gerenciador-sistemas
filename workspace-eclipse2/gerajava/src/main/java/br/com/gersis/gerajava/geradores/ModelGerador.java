@@ -30,10 +30,13 @@ public class ModelGerador extends GeradorBase {
 		arq.linha();
 		arq.linha("import com.strongloop.android.loopback.Model;");
 		arq.linha("import com.strongloop.android.remoting.BeanUtil;");
+		arq.linha("import org.json.JSONObject;");
 		arq.linha();
 		
 		arq.linha();
 		arq.linha("public class " + this.entidade.getNome() + " extends Model {");
+		arq.linha();
+		
 		arq.linha();
 		for (AtributoEntidade atributo : entidade.getAtributoEntidades()) {
 			arq.linha("	private " + atributo.getTipoJava() + " " + atributo.getNomeVariavel() + ";");
@@ -46,6 +49,21 @@ public class ModelGerador extends GeradorBase {
 		for (RelacionamentoEntidade rel : entidade.getRelacionamentosN()) {
 			arq.linha("	private List<" + rel.getEntidadeN().getNome() + "> " + rel.getNomeN()  + ";");
 		}
+		
+		arq.linha();
+		arq.linha("	public JSONObject getJSON() {");
+		arq.linha("		JSONObject obj = new JSONObject();");
+		arq.linha("		try {");
+		arq.linha("			obj.put(\"id\",getId());");
+		for (AtributoEntidade atributo : entidade.getAtributoEntidades()) {
+			arq.linha("			obj.put(\"" + atributo.getNomeVariavel() + "\", " + atributo.getNomeVariavel() + ");");
+		}
+		arq.linha("		} catch (Exception e) {");
+		arq.linha("			e.printStackTrace();");
+		arq.linha("		}");
+		arq.linha("		return obj;");
+		arq.linha("	}");
+		arq.linha();
 		arq.linha();
 		for (AtributoEntidade atributo : entidade.getAtributoEntidades()) {
 			arq.linha("	public void set" + atributo.getNomePropriedade() + "(" + atributo.getTipoJava() + " valor) { ");
@@ -66,12 +84,12 @@ public class ModelGerador extends GeradorBase {
 			arq.linha("	}");
 		}
 		for (RelacionamentoEntidade rel : entidade.getRelacionamentosN()) {
-			arq.linha("	public List<" + rel.getEntidadeN().getNome() + "> getVersaoPreRedes() {");
+			arq.linha("	public List<" + rel.getEntidadeN().getNome() + "> get" + rel.getNomeNPropriedade() +"() {");
 			arq.linha("		return  " + rel.getNomeN()  + ";");
 			arq.linha("	}");
 			arq.linha("	public void set" + rel.getNomeNPropriedade() + "(List<" + rel.getEntidadeN().getNome() + "> valores) {");
 			arq.linha("		this." + rel.getNomeN()  + " = new ArrayList<" + rel.getEntidadeN().getNome() + ">();");
-			arq.linha("		for (int i = 0; i < " + rel.getNomeN()  + ".size(); i++) {");
+			arq.linha("		for (int i = 0; i < valores.size(); i++) {");
 			arq.linha("			Object objeto = new " + rel.getEntidadeN().getNome() + "();");
 			arq.linha("			BeanUtil.setProperties(objeto, (Map<String, ? extends Object>) valores.get(i), true);");
 			arq.linha("			this." + rel.getNomeN()  + ".add((" + rel.getEntidadeN().getNome() + ") objeto);");

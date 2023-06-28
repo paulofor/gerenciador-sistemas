@@ -28,7 +28,13 @@ public class RepositorioSistema extends ModelRepository<Sistema>{
         invokeStaticMethod("obtemParaGerarJava", params,   new JsonObjectParser<Sistema>(this, callback));
 	}
 	
-
+	public void obtemParaGerarNode(final int idSistema, final ObjectCallback<Sistema> callback ) {
+		RestContractItem contrato = new RestContractItem("Sistemas/obtemParaGerarNode","GET");
+		this.getRestAdapter().getContract().addItem(contrato, "Sistema.obtemParaGerarNode");
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("idSistema", idSistema);
+        invokeStaticMethod("obtemParaGerarNode", params,   new JsonObjectParser<Sistema>(this, callback));
+	}
 	
 	
 

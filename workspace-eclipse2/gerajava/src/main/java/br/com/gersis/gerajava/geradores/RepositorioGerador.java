@@ -49,11 +49,16 @@ public class RepositorioGerador extends GeradorBase {
 		arq.linha();
 		for (MetodoServer metodo : this.entidade.getMetodoServers()) {
 			arq.linha("	public synchronized void " + metodo.getNomeHungara()+ "(" + metodo.getParametrosFuncaoJava(this.entidade) +  metodo.getJavaCallbackParametro(entidade)+ " ) {");
-			arq.linha("		RestContractItem contrato = new RestContractItem(\"" + entidade.getNome() + "s/" + metodo.getNomeHungara() + "\",\"" + metodo.getTipoMetodo() + "\");");
+			arq.linha("		RestContractItem contrato = new RestContractItem(\"" + entidade.getNome() + (entidade.temSLoopback()?"s/":"/") + metodo.getNomeHungara() + "\",\"" + metodo.getTipoMetodo() + "\");");
 			arq.linha("		this.getRestAdapter().getContract().addItem(contrato, \"" + entidade.getNome() + "." + metodo.getNomeHungara() + "\");");
 			arq.linha("		Map<String, Object> params = new HashMap<String, Object>();");
+
 			for (ParametroMetodoServer param : metodo.getParametroMetodoServers()) {
-				arq.linha("		params.put(\"" + param.getNome() + "\", " + param.getNome()+ ");");
+				if (param.isObject()) {
+					arq.linha("		params.put(\"" + param.getNome() + "\", " + param.getNome()+ ".getJSON());");
+				} else {
+					arq.linha("		params.put(\"" + param.getNome() + "\", " + param.getNome()+ ");");
+				}
 			}
 			arq.linha("		invokeStaticMethod(\"" + metodo.getNomeHungara() +"\", params,   " + metodo.getJavaCallbackNew(entidade) + ");");
 			arq.linha("	}");

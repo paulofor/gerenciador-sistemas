@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import br.com.gersis.daobase.DaoBase;
+import br.com.gersis.gerajava.geradores.GeradorPrincipalPom;
+import br.com.gersis.gerajava.geradores.GeradorProcessoPom;
 import br.com.gersis.gerajava.geradores.ModelGerador;
 import br.com.gersis.gerajava.geradores.RepositorioGerador;
 import br.com.gersis.gerajava.loopback.DaoAplicacao;
@@ -59,16 +61,24 @@ public class CriaProjeto extends DaoAplicacao {
         if (!directory.exists()) {
         	directory.mkdirs(); // Cria o diretório se ele não existir
         }
+        
+        String nomeArquivo = this.pathWorkspace + File.separator + "pom.xml";
+        GeradorPrincipalPom pomPrincipal = new GeradorPrincipalPom(nomeArquivo, sistema);
+        pomPrincipal.gerar();
         //copiarDiretorioSeNaoVazio("arquivos",this.pathWorkspace);
 	}
 	
 	
-	private void criaProjeto(ProcessoJava processo) {
+	private void criaProjeto(ProcessoJava processo) throws IOException {
 		String nomePasta = this.pathWorkspace ;
 		this.verificarECriarDiretorio(nomePasta);
 		String nomePastaFonteJava = processo.getNomeClasseMain().toLowerCase() + "/src/main/java/gerador/" + processo.getNomeClasseMain().toLowerCase();
 		this.verificaECriaSubdiretorios(nomePasta, nomePastaFonteJava);
 		ds.setNomePastaFonteCorrente(nomePasta + File.separator + nomePastaFonteJava);
+		
+		String arquivoPom = nomePasta + File.separator + processo.getNomeClasseMain().toLowerCase() + File.separator + "pom.xml";
+		GeradorProcessoPom pom =  new GeradorProcessoPom(arquivoPom, processo, sistema);
+		pom.gerar();
 	}
 	
 	private void verificaECriaSubdiretorios(String principal, String caminho) {

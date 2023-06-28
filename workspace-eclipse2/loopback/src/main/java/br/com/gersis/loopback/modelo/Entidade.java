@@ -18,6 +18,11 @@ public class Entidade extends Model{
 	private List<MetodoServer> metodoServers;
 	
 	
+	public boolean temSLoopback() {
+		if (nome.endsWith("ia")) return false;
+		else return true;
+	}
+	
 	public List<MetodoServer> getMetodoServers() {
 		return metodoServers;
 	}

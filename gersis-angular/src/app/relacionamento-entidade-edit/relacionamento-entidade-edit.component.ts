@@ -42,6 +42,7 @@ export class RelacionamentoEntidadeEditComponent extends BaseEditComponent {
         this.item.entidade1Id = this.tela.entidadeId;
         this.item.entidadeNId = this.origem.id;
       } 
+      delete this.item['entidadeN']
   }
 
   criaItem() {

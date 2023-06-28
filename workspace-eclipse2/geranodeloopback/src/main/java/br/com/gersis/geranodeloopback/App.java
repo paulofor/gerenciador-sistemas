@@ -1,4 +1,4 @@
-package br.com.gersis.gerajava;
+package br.com.gersis.geranodeloopback;
 
 /**
  * Hello world!
