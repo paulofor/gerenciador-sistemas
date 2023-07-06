@@ -36,6 +36,15 @@ public class RelacionamentoEntidade extends Model{
 	public String getNome1Propriedade() {
 		return getNome1().substring(0, 1).toUpperCase() + getNome1().substring(1);
 	}
+	public String getNome1Variavel() {
+		return getNome1().substring(0, 1).toLowerCase() + getNome1().substring(1);
+	}
+	public String getNome1Chave() {
+		return getNome1().substring(0, 1).toLowerCase() + getNome1().substring(1) + "Id";
+	}
+	public String getNome1TipoChaveNode() {
+		return "number";
+	}
 	public void setNome1(String nome1) {
 		this.nome1 = nome1;
 	}
@@ -49,7 +58,9 @@ public class RelacionamentoEntidade extends Model{
 	public String getNomeNPropriedade() {
 		return getNomeN().substring(0, 1).toUpperCase() + getNomeN().substring(1);
 	}
-	
+	public String getNomeNVariavel() {
+		return getNomeN().substring(0, 1).toLowerCase() + getNomeN().substring(1);
+	}
 	public Entidade getEntidadeN() {
 		return entidadeN;
 	}

@@ -9,7 +9,7 @@ declare var Object: any;
 export interface DadoProcessoInterface {
   "nome"?: string;
   "tipoSimples"?: string;
-  "tipoEntidadeLista"?: string;
+  "tipoEntidadeLista"?: number;
   "tipoEntidadeId"?: number;
   "processoJavaId"?: number;
   "id"?: number;
@@ -21,7 +21,7 @@ export interface DadoProcessoInterface {
 export class DadoProcesso implements DadoProcessoInterface {
   "nome": string;
   "tipoSimples": string;
-  "tipoEntidadeLista": string;
+  "tipoEntidadeLista": number;
   "tipoEntidadeId": number;
   "processoJavaId": number;
   "id": number;
@@ -71,7 +71,7 @@ export class DadoProcesso implements DadoProcessoInterface {
         },
         "tipoEntidadeLista": {
           name: 'tipoEntidadeLista',
-          type: 'string'
+          type: 'number'
         },
         "tipoEntidadeId": {
           name: 'tipoEntidadeId',

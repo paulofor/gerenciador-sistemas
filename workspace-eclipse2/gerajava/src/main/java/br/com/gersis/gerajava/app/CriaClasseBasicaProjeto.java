@@ -2,6 +2,8 @@ package br.com.gersis.gerajava.app;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import br.com.gersis.daobase.DaoBase;
 import br.com.gersis.gerajava.GeradorArquivo;
@@ -223,7 +225,12 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		arq.linha("");
 		arq.linha("	public static void main(String[] args) {");
 		arq.linha("			System.out.print(\"" + this.processo.getNomeClasseMain() + "\");");
-		arq.linha("			System.out.println(\"(00-00-2023)\");");
+
+		LocalDateTime dataHoraAtual = LocalDateTime.now();
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String dataHoraFormatada = dataHoraAtual.format(formatador);
+
+		arq.linha("			System.out.println(\"(" + dataHoraFormatada +")\");");
 		arq.linha("		try {");
 		arq.linha("			carregaProp();");
 		if (this.processo.getPassoProcessoJavas().size()==0) {

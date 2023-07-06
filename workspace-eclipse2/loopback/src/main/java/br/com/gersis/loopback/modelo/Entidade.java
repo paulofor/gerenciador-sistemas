@@ -18,6 +18,11 @@ public class Entidade extends Model{
 	private List<MetodoServer> metodoServers;
 	
 	
+	public String getNomeHifen() {
+		return nome.replaceAll("([a-z])([A-Z])", "$1-$2").toLowerCase();
+	}
+	
+	
 	public boolean temSLoopback() {
 		if (nome.endsWith("ia")) return false;
 		else return true;

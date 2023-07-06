@@ -17,14 +17,14 @@ module.exports = function(Sistema) {
                         { 'relation' : 'relacionamentos1' , 'scope' : {'include' : 'entidade1'}}, 
                         { 'relation' : 'relacionamentosN' , 'scope' : {'include' : 'entidadeN'}},
                         { 'relation' : 'metodoServers' , 'scope' : {'include' : [
-                            {'relation' : 'parametroMetodoServers' }
+                            {'relation' : 'parametroMetodoServers', 'scope' : {'order' : 'posicao'} }
                         ]}}
                     ]
                 }},
                 { 'relation' : 'processoJavas' , 'scope' : {
                     'include' : [
                         { 'relation' : 'passoProcessoJavas' , 'scope' : {'include' : [
-                            { 'relation' : 'metodoServer' , 'scope' : {'include':'entidade'}},
+                            { 'relation' : 'metodoServer' , 'scope' : {'include':['entidade',{'relation' : 'parametroMetodoServers', 'scope' : {'order' : 'posicao'} }]}},
                             { 'relation' : 'dadoPassoEntrada' , 'scope' : 
                                 {'include':{'relation' : 'dadoProcesso' , 'scope' : {'include' : 'tipoEntidade'}} }},
                             { 'relation' : 'dadoPassoSaida' , 'scope' : 

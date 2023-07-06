@@ -21,6 +21,8 @@ public class PassoProcessoJava extends Model{
 	private List<DadoProcessoSaidaRel> dadoPassoSaida;
 	
 	
+	
+	
 	public String parametrosEntrada() {
 		String saida = "";
 		for (int i=0;i< this.dadoPassoEntrada.size(); i++) {

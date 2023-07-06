@@ -1,9 +1,8 @@
 package br.com.gersis.gerajava.app;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import br.com.gersis.daobase.comum.DaoBaseComum;
 
@@ -12,8 +11,8 @@ public class GeraLoopbackAplicacao {
 	private static String UrlLoopback = "";
 	
 	public static void main(String[] args) {
-		System.out.print("GeraLoopbackAplicacao");
-		System.out.println("(22-05-2023)");
+		System.out.println("GeraLoopbackAplicacao");
+		imprimeDataHora();
 		try {
 			carregaProp();
 			GeraLoopbackObj obj = new GeraLoopbackObj();
@@ -24,13 +23,19 @@ public class GeraLoopbackAplicacao {
 		}
 	}
 	
+	private static void imprimeDataHora() {
+		LocalDateTime dataHoraAtual = LocalDateTime.now();
+		// Crie um formatador de data e hora
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		// Formate a data e hora corrente usando o formatador
+		String dataHoraFormatada = dataHoraAtual.format(formatador);
+		// Exiba a data e hora corrente no console
+		System.out.println(dataHoraFormatada);
+	}
+	
 	private static void carregaProp() throws IOException {
-		//System.out.println("Dir:" + System.getProperty("user.dir"));
-		//InputStream input = new FileInputStream("CriaPythonTreinoRede.config");
-		//Properties prop = new Properties();
-        //prop.load(input);
-        //UrlLoopback = prop.getProperty("loopback.url");
 		UrlLoopback = "http://vps-40d69db1.vps.ovh.ca:23102/api";
+		//UrlLoopback = "http://localhost:23102/api";
         DaoBaseComum.setUrl(UrlLoopback);
 	}
 

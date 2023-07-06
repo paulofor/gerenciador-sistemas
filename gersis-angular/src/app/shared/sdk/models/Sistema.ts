@@ -10,6 +10,7 @@ export interface SistemaInterface {
   "sigla"?: string;
   "nomeBancoDados"?: string;
   "pathProjeto"?: string;
+  "urlBackApi"?: string;
   "id"?: number;
   processoJavas?: ProcessoJava[];
   entidades?: Entidade[];
@@ -20,6 +21,7 @@ export class Sistema implements SistemaInterface {
   "sigla": string;
   "nomeBancoDados": string;
   "pathProjeto": string;
+  "urlBackApi": string;
   "id": number;
   processoJavas: ProcessoJava[];
   entidades: Entidade[];
@@ -70,6 +72,10 @@ export class Sistema implements SistemaInterface {
         },
         "pathProjeto": {
           name: 'pathProjeto',
+          type: 'string'
+        },
+        "urlBackApi": {
+          name: 'urlBackApi',
           type: 'string'
         },
         "id": {

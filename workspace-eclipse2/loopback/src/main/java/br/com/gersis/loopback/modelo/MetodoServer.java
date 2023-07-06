@@ -76,6 +76,13 @@ public class MetodoServer extends Model{
 		}
 		return saida;
 	}
+	public String getParametroEntradaJava() {
+		String saida = "";
+		for (int i=0;i<this.parametroMetodoServers.size();i++) {
+			saida += this.parametroMetodoServers.get(i).getNome() + " ,";		
+		}
+		return saida;
+	}
 	
 	
 	public Entidade getEntidade() {

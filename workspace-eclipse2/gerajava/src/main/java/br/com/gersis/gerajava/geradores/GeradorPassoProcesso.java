@@ -6,6 +6,7 @@ import br.com.gersis.gerajava.GeradorArquivoJava;
 import br.com.gersis.gerajava.app.GeradorException;
 import br.com.gersis.loopback.modelo.DadoProcesso;
 import br.com.gersis.loopback.modelo.DadoProcessoEntradaRel;
+import br.com.gersis.loopback.modelo.ParametroMetodoServer;
 import br.com.gersis.loopback.modelo.PassoProcessoJava;
 import br.com.gersis.loopback.modelo.ProcessoJava;
 
@@ -41,13 +42,29 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 		this.linha("");
 		this.linha("public class " + this.getNomeClasse() + " extends DaoAplicacao { ");
 		this.linha();
+		this.linha();
+		if (this.passo.getMetodoServer()!=null && this.passo.getMetodoServer().getParametroMetodoServers() != null) {
+			for (ParametroMetodoServer param : this.passo.getMetodoServer().getParametroMetodoServers()) {
+				if (param.getTipoJava()!=null) {
+					this.linha("	protected " + param.getTipoJava() + " " + param.getNome() + ";");
+				} else {
+					this.linha("	protected " + this.passo.getMetodoServer().getEntidade().getNome() + " " + param.getNome() + ";");
+				}
+			}
+		}
+		this.linha();
 		this.linha("	@Override");
 		this.linha("	protected final void executaImpl() {");
 		this.linha("		final DatasetAplicacao ds = (DatasetAplicacao) this.getComum();");
 		this.linha("		executaCustom(" + this.passo.parametrosEntrada() + ");");
 		if (this.passo.getMetodoServer()!=null) {
 			if (this.passo.getMetodoServer().isList()) {
-				this.linha("		rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( new ListCallback<" + passo.getMetodoServer().getEntidade().getNome() + ">() { ");
+				String entradaFuncao = "";
+				for (ParametroMetodoServer param : this.passo.getMetodoServer().getParametroMetodoServers()) {
+					entradaFuncao += param.getNome() + ",";
+				}
+				
+				this.linha("		rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( " + entradaFuncao + " new ListCallback<" + passo.getMetodoServer().getEntidade().getNome() + ">() { ");
 				this.linha("			public void onSuccess(List<" + passo.getMetodoServer().getEntidade().getNome()+ "> lista) {");
 				if (this.passoProximo!=null && this.passoProximo.getDentroLoop()==1) {
 					this.linha("				for (" + this.passo.getMetodoServer().getEntidade().getNome() + " item : lista) {");
@@ -62,19 +79,18 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 				this.linha("			}");
 			}
 			if (this.passo.getMetodoServer().isObject()) {
-				this.linha("		rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( new ObjectCallback<" + passo.getMetodoServer().getEntidade().getNome() + ">() { ");
+				this.linha("		rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( " + this.passo.getMetodoServer().getParametroEntradaJava() + " new ObjectCallback<" + passo.getMetodoServer().getEntidade().getNome() + ">() { ");
 				this.linha("			public void onSuccess(" + passo.getMetodoServer().getEntidade().getNome()+ " object) {");
 				this.linha("				finalizar();");
 				this.linha("			}");
 			}
 			if (this.passo.getMetodoServer().isVoid()) {
-				String param = "";
-				for (DadoProcessoEntradaRel dado : this.passo.getDadoPassoEntrada()) {
-					DadoProcesso ent = dado.getDadoProcesso();
-					this.linha("		" + ent.getTipoJava() + " " + ent.getNomeVariavel() + " = ds.get" + ent.getNomePropriedade() + "();");
-					param += ent.getNomeVariavel() + " , ";
+				String entradaFuncao = "";
+				for (ParametroMetodoServer param : this.passo.getMetodoServer().getParametroMetodoServers()) {
+					entradaFuncao += param.getNome() + ",";
 				}
-				this.linha("		rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( " + param + " new VoidCallback() { ");
+				
+				this.linha("		rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( " + entradaFuncao + " new VoidCallback() { ");
 				this.linha("			public void onSuccess() {");
 				this.linha("				finalizar();");
 				this.linha("			}");

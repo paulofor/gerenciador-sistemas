@@ -1,11 +1,11 @@
-<h2 mat-dialog-title *ngIf="origem && item">Paso {{item.ordenacao}} em {{origem.nomeClasseMain}}</h2>
+<h2 mat-dialog-title *ngIf="origem && item">Passo {{item.ordenacao}} em {{origem.nomeClasseMain}}</h2>
 
 <form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
 
   <mat-dialog-content>
 
     <mat-form-field class="example-full-width">
-      <input matInput maxlength="50" #nomeClasse [(ngModel)]="item.nomeClasse" name="nomeClasse" placeholder="Nome da Classe" autocomplete="off" />
+      <input matInput maxlength="200" #nomeClasse [(ngModel)]="item.nomeClasse" name="nomeClasse" placeholder="Nome da Classe" autocomplete="off" />
     </mat-form-field>
 
     <mat-form-field class="example-full-width" *ngIf="listaEntidadeMetodo">

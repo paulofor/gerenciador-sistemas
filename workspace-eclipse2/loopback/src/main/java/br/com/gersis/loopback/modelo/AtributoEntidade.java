@@ -6,6 +6,17 @@ public class AtributoEntidade extends Model{
 
 	private String nome;
 	private String tipoBd;
+	private int chave;
+	
+	
+
+	public int getChave() {
+		return chave;
+	}
+
+	public void setChave(int chave) {
+		this.chave = chave;
+	}
 
 	public String getNome() {
 		return nome;
@@ -35,6 +46,21 @@ public class AtributoEntidade extends Model{
 		if (tipoBd.indexOf("TEXT")!=-1) return "String";
 		return tipoBd;
 	}
+	
+	public String getTipoNode() {
+		if (tipoBd.indexOf("VARCHAR")!=-1) return "string";
+		if (tipoBd.indexOf("DATETIME")!=-1) return "date";
+		if (tipoBd.indexOf("DATE")!=-1) return "date";
+		if (tipoBd.indexOf("TIME")!=-1) return "date";
+		if (tipoBd.indexOf("LONGTEXT")!=-1) return "string";
+		if (tipoBd.indexOf("MEDIUMTEXT")!=-1) return "string";
+		if (tipoBd.indexOf("INT")!=-1) return "number";
+		if (tipoBd.indexOf("DECIMAL")!=-1) return "number";
+		if (tipoBd.indexOf("TEXT")!=-1) return "string";
+		return tipoBd;
+	}
+	
+	
 	public String getNomeVariavel() {
 		return nome.substring(0, 1).toLowerCase() + nome.substring(1);
 	}

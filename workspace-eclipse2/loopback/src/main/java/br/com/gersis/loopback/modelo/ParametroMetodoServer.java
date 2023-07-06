@@ -18,6 +18,7 @@ public class ParametroMetodoServer extends Model{
 		if (tipo.indexOf("number-double")!=-1) return "double";
 		if (tipo.indexOf("string")!=-1) return "String";
 		if (tipo.indexOf("date")!=-1) return "String";
+		if (tipo.indexOf("object")!=-1) return null;
 		return tipo;
 	}
 	

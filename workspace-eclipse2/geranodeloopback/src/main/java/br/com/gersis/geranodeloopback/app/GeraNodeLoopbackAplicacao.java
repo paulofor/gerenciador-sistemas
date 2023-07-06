@@ -3,6 +3,8 @@ package br.com.gersis.geranodeloopback.app;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 import br.com.gersis.daobase.comum.DaoBaseComum;
@@ -12,8 +14,8 @@ public class GeraNodeLoopbackAplicacao {
 	private static String UrlLoopback = "";
 	
 	public static void main(String[] args) {
-		System.out.print("GeraLoopbackAplicacao");
-		System.out.println("(22-05-2023)");
+		System.out.println("GeraLoopbackAplicacao");
+		imprimeDataHora();
 		try {
 			carregaProp();
 			GeraNodeLoopbackObj obj = new GeraNodeLoopbackObj();
@@ -22,6 +24,16 @@ public class GeraNodeLoopbackAplicacao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private static void imprimeDataHora() {
+		LocalDateTime dataHoraAtual = LocalDateTime.now();
+		// Crie um formatador de data e hora
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		// Formate a data e hora corrente usando o formatador
+		String dataHoraFormatada = dataHoraAtual.format(formatador);
+		// Exiba a data e hora corrente no console
+		System.out.println(dataHoraFormatada);
 	}
 	
 	private static void carregaProp() throws IOException {

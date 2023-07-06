@@ -74,12 +74,16 @@
       </div>
       <div class="dgc-card-detalhe" *ngFor="let dado of item.dadoPassoEntrada">
         <span>(in) {{dado.dadoProcesso.nome}}</span>
-        <span *ngIf="dado.dadoProcesso.tipoEntidade"> : <span *ngIf="dado.dadoProcesso.tipoEntidadeLista==1">*</span>{{dado.dadoProcesso.tipoEntidade.nome}}</span>
+        <span *ngIf="dado.dadoProcesso.tipoEntidade"> : <span *ngIf="dado.dadoProcesso.tipoEntidadeLista==1">*</span>
+          <span class="dgc-link" routerLink="/entidadeDetalhe/{{dado.dadoProcesso.tipoEntidade.id}}">{{dado.dadoProcesso.tipoEntidade.nome}}</span>
+        </span>
         <span *ngIf="dado.dadoProcesso.tipoSimples"> : {{dado.dadoProcesso.tipoSimples}}</span>
       </div>
       <div class="dgc-card-detalhe" *ngFor="let dado of item.dadoPassoSaida">
         <span>(out) {{dado.dadoProcesso.nome}}</span>
-        <span *ngIf="dado.dadoProcesso.tipoEntidade"> : <span *ngIf="dado.dadoProcesso.tipoEntidadeLista==1">*</span>{{dado.dadoProcesso.tipoEntidade.nome}}</span>
+        <span *ngIf="dado.dadoProcesso.tipoEntidade"> : <span *ngIf="dado.dadoProcesso.tipoEntidadeLista==1">*</span>
+        <span class="dgc-link" routerLink="/entidadeDetalhe/{{dado.dadoProcesso.tipoEntidade.id}}">{{dado.dadoProcesso.tipoEntidade.nome}}</span>
+        </span>
         <span *ngIf="dado.dadoProcesso.tipoSimples"> : {{dado.dadoProcesso.tipoSimples}}</span>
       </div>
     </div>
