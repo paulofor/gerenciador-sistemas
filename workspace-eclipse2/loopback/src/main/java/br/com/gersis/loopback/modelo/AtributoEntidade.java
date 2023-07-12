@@ -6,15 +6,15 @@ public class AtributoEntidade extends Model{
 
 	private String nome;
 	private String tipoBd;
-	private int chave;
+	private String chave;
 	
 	
 
-	public int getChave() {
+	public String getChave() {
 		return chave;
 	}
 
-	public void setChave(int chave) {
+	public void setChave(String chave) {
 		this.chave = chave;
 	}
 

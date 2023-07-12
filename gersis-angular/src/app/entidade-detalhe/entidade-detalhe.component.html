@@ -8,6 +8,7 @@
         <span>Atributos</span>
     </div>
     <div class="dgc-detalhe" *ngFor="let item of principal.atributoEntidades">
+      <span *ngIf="(item.chave==1)">(k)</span>
       <span class="dgc-link" (click)="editaAtributo(item)">{{item.nome}}</span><span> : {{item.tipoBd}}</span>
     </div>
     <div class="dgc-card-comandos">

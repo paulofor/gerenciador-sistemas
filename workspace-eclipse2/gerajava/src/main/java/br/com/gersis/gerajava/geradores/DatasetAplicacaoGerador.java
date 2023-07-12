@@ -29,6 +29,7 @@ public class DatasetAplicacaoGerador extends GeradorBase{
 		arq.linha();
 		arq.linha("import br.com.gersis.daobase.IDatasetComum;");
 		arq.linha("import br.com.gersis.loopback.modelo.*;");
+		arq.linha("import java.util.List;");
 		arq.linha();
 		arq.linha("public class DatasetAplicacao  implements IDatasetComum {");
 		for (DadoProcesso dado : this.processo.getDadoProcessos()) {

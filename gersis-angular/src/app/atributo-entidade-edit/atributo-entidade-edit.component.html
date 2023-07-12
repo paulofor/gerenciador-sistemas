@@ -10,7 +10,12 @@
       <input matInput maxlength="50" #tipoBd [(ngModel)]="item.tipoBd" name="tipoBd" placeholder="Tipo Banco de Dados" autocomplete="off" />
     </mat-form-field>
 
-
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Chave"  #chave [(ngModel)]="item.chave" name="chave">
+        <mat-option value="0">Não</mat-option>
+        <mat-option value="1">Sim</mat-option>
+      </mat-select>
+    </mat-form-field>
   </mat-dialog-content>
 
   <mat-dialog-actions>

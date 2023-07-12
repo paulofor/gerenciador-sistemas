@@ -49,7 +49,14 @@ public class RelacionamentoEntidade extends Model{
 		this.nome1 = nome1;
 	}
 	public String getNomeN() {
-		if (nomeN==null) return this.getEntidadeN().getNome() + "s";
+		if (nomeN==null) {
+			String nomeEntidade = this.getEntidadeN().getNome();
+			if ("s".equals(nomeEntidade.substring(nomeEntidade.length()-1,nomeEntidade.length()))) {
+				return nomeEntidade;
+			} else {
+				return this.getEntidadeN().getNome() + "s";
+			}
+		}
 		else return nomeN;
 	}
 	public void setNomeN(String nomeN) {

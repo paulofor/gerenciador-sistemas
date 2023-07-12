@@ -7,7 +7,7 @@ declare var Object: any;
 export interface AtributoEntidadeInterface {
   "nome"?: string;
   "tipoBd"?: string;
-  "chave"?: number;
+  "chave"?: string;
   "id"?: number;
   "entidadeId"?: number;
   entidade?: Entidade;
@@ -16,7 +16,7 @@ export interface AtributoEntidadeInterface {
 export class AtributoEntidade implements AtributoEntidadeInterface {
   "nome": string;
   "tipoBd": string;
-  "chave": number;
+  "chave": string;
   "id": number;
   "entidadeId": number;
   entidade: Entidade;
@@ -63,7 +63,7 @@ export class AtributoEntidade implements AtributoEntidadeInterface {
         },
         "chave": {
           name: 'chave',
-          type: 'number'
+          type: 'string'
         },
         "id": {
           name: 'id',
