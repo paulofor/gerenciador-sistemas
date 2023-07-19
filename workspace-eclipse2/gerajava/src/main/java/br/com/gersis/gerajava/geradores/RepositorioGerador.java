@@ -23,6 +23,9 @@ public class RepositorioGerador extends GeradorBase {
 		arq.linha();
 		arq.linha("import java.util.HashMap;");
 		arq.linha("import java.util.Map;");
+		arq.linha("import java.util.List;");
+		arq.linha("import org.json.JSONArray;");
+		arq.linha();
 		arq.linha("import com.strongloop.android.loopback.ModelRepository;");
 		arq.linha("import com.strongloop.android.loopback.callbacks.JsonArrayParser;");
 		arq.linha("import com.strongloop.android.loopback.callbacks.JsonObjectParser;");
@@ -57,7 +60,11 @@ public class RepositorioGerador extends GeradorBase {
 				if (param.isObject()) {
 					arq.linha("		params.put(\"" + param.getNome() + "\", " + param.getNome()+ ".getJSON());");
 				} else {
-					arq.linha("		params.put(\"" + param.getNome() + "\", " + param.getNome()+ ");");
+					if (param.isList()) {
+						arq.linha("		params.put(\"" + param.getNome() + "\",obtemLista(" + param.getNome()+ "));");
+					} else {
+						arq.linha("		params.put(\"" + param.getNome() + "\", " + param.getNome()+ ");");
+					}
 				}
 			}
 			arq.linha("		invokeStaticMethod(\"" + metodo.getNomeHungara() +"\", params,   " + metodo.getJavaCallbackNew(entidade) + ");");
@@ -65,6 +72,13 @@ public class RepositorioGerador extends GeradorBase {
 			arq.linha();
 		}
 		arq.linha();
+		arq.linha("	private JSONArray obtemLista(List<" + entidade.getNome() + "> listaEntrada) {");
+		arq.linha("		JSONArray lista = new JSONArray();");
+		arq.linha("		for (" + entidade.getNome() + " item : listaEntrada) {");
+		arq.linha("			lista.put(item.getJSON());");
+		arq.linha("		}");
+		arq.linha("		return lista;");
+		arq.linha("	}");
 		arq.linha("}");
 		arq.fecha();
 		

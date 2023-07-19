@@ -30,8 +30,6 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 	public void gerar() throws IOException {
 		this.criaArquivo();
 		this.linha();
-		this.linha("//  ***  Passo " + this.posicaoPasso + " ***");
-		this.linha();
 		this.linha("import gerador." + this.processo.getNomeClasseMain().toLowerCase() + ".loopback.DaoAplicacao;");
 		this.linha("import gerador." + this.processo.getNomeClasseMain().toLowerCase() + ".loopback.DatasetAplicacao;");
 		this.linha("import gerador." + this.processo.getNomeClasseMain().toLowerCase() + ".passo.impl.*;");
@@ -43,6 +41,8 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 		this.linha("");
 		this.linha("");
 		this.linha("public class " + this.getNomeClasse() + " extends DaoAplicacao { ");
+		this.linha();
+		this.linha("	private int NUM_PASSO = " + this.posicaoPasso + ";");
 		this.linha();
 		this.linha();
 		if (this.passo.getMetodoServer()!=null && this.passo.getMetodoServer().getParametroMetodoServers() != null) {
@@ -76,6 +76,7 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 					this.linha("					ds.set" + this.passo.getDadoPassoSaida().get(0).getDadoProcesso().getNomePropriedade() + "(item);");
 					this.linha("					executaProximoSemFinalizar();");
 					this.linha("				}");
+					this.linha("				finalizar();");
 				} else {
 					if (this.passo.getDadoPassoSaida().size()==0) {
 						throw new GeradorException("Passo " + this.passo.getNomeClasse() + " em " + this.processo.getNomeClasseMain() + " precisa ter dado de saída");
@@ -129,6 +130,11 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 		this.linha();
 		this.linha();
 		this.linha("	protected void executaCustom(" + this.passo.parametrosEntradaComTipo() + ") {}");
+		this.linha();
+		this.linha();
+		this.linha("	public int getNumPasso() {");
+		this.linha("		return NUM_PASSO;");
+		this.linha("	}");
 		this.linha();
 		this.linha();
 		this.linha("}");

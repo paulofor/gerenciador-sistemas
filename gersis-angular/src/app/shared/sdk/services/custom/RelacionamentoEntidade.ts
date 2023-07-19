@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 import { RelacionamentoEntidade } from '../../models/RelacionamentoEntidade';
 import { SocketConnection } from '../../sockets/socket.connections';
 import { Entidade } from '../../models/Entidade';
+import { AtributoEntidade } from '../../models/AtributoEntidade';
 
 
 /**
@@ -80,6 +81,36 @@ export class RelacionamentoEntidadeApi extends BaseLoopBackApi {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/RelacionamentoEntidades/:id/entidadeN";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Busca relação atributoChaveEstrangeira de belongsTo.
+   *
+   * @param {any} id RelacionamentoEntidade id
+   *
+   * @param {boolean} refresh 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `RelacionamentoEntidade` object.)
+   * </em>
+   */
+  public getAtributoChaveEstrangeira(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/RelacionamentoEntidades/:id/atributoChaveEstrangeira";
     let _routeParams: any = {
       id: id
     };

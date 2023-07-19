@@ -41,13 +41,15 @@ public abstract class DaoBase {
 		while (!this.concluido) {
 			try {
 				Thread.sleep(getTempo());
-				//System.out.println(this.contadorObj + "-" + this.toString() + " não terminou");
+				//System.out.println(this.getNumPasso() + "-" + this.toString() + " não terminou");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 	protected abstract void executaImpl();
+	protected abstract int getNumPasso();
+	
 	public boolean getConcluido() {
 		return this.concluido;
 	}

@@ -22,14 +22,14 @@
     </div>
     <div class="dgc-card-detalhe" *ngFor="let item of principal.relacionamentos1">
       <span class="dgc-link" routerLink="/entidadeDetalhe/{{item.entidade1.id}}">1 {{item.entidade1.nome}}</span>
-      <span>&nbsp;&nbsp;({{item.nome1}})</span>
+      <span>&nbsp;&nbsp;({{item.nome1}})</span> <span *ngIf="item.atributoChaveEstrangeira" >&nbsp;&nbsp; FK:{{item.atributoChaveEstrangeira.nome}}</span>
       <div class="dgc-direita">
         <button class="btn-primary btn-sm btn" (click)="editaRelacionamento(item)">Altera</button>
       </div>
     </div>
     <div class="dgc-card-detalhe" *ngFor="let item of principal.relacionamentosN">
       <span class="dgc-link" routerLink="/entidadeDetalhe/{{item.entidadeN.id}}">* {{item.entidadeN.nome}}</span>
-      <span>&nbsp;&nbsp;({{item.nomeN}})</span>
+      <span>&nbsp;&nbsp;({{item.nomeN}})</span> <span *ngIf="item.atributoChaveEstrangeira">&nbsp;&nbsp; FK:{{item.atributoChaveEstrangeira.nome}}</span>
       <div class="dgc-direita">
         <button class="btn-primary btn-sm btn" (click)="editaRelacionamento(item)">Altera</button>
       </div>

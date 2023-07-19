@@ -36,6 +36,17 @@ public class MetodoServer extends Model{
 		return this.getJavaCallbackPasso(this.entidade);
 	}
 	
+	
+	public String getRetornoTipoNode() {
+		if (this.tipoResposta==null) {
+			throw new RuntimeException(nome + " está sem tipo definido");
+		}
+		if (this.tipoResposta.indexOf("Void")!=-1) return "object";
+		if (this.tipoResposta.indexOf("List")!=-1) return "array";
+		if (this.tipoResposta.indexOf("Object")!=-1) return "object";
+		return null;
+	}
+	
 	public String getJavaCallbackPasso(Entidade entidade) {
 		if (this.tipoResposta==null) {
 			throw new RuntimeException(entidade.getNome() + "." + nome + " está sem tipo definido");

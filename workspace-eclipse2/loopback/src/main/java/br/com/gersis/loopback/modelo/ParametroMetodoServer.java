@@ -21,15 +21,26 @@ public class ParametroMetodoServer extends Model{
 		if (tipo.indexOf("object")!=-1) return null;
 		return tipo;
 	}
-	
+	public String getTipoNode() {
+		if (tipo.indexOf("number-int")!=-1) return "number";
+		if (tipo.indexOf("number-double")!=-1) return "number";
+		if (tipo.indexOf("string")!=-1) return "string";
+		if (tipo.indexOf("date")!=-1) return "string";
+		if (tipo.indexOf("object")!=-1) return "object";
+		return tipo;
+	}
 	
 	public boolean isObject() {
 		return (tipo.indexOf("object")!=-1);
 	}
+	public boolean isList() {
+		return (tipo.indexOf("array")!=-1);
+	}
 	
 	public String getParametroFuncaoJava(Entidade entidade) {
 		if (tipo.indexOf("object")!=-1) return entidade.getNome() + " " + this.nome;
-		else return this.getTipoJava() + " " + this.nome;
+		if (tipo.indexOf("array")!=-1) return "List<" + entidade.getNome() + "> " + this.nome;
+		return this.getTipoJava() + " " + this.nome;
 	}
 	
 	public String getNome() {

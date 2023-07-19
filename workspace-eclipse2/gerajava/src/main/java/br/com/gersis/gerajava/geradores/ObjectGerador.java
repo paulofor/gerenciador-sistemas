@@ -35,6 +35,9 @@ public class ObjectGerador extends GeradorPassoProcesso {
 		this.linha("		exec.executa();");
 		this.linha("		finalizar();");
 		this.linha("	}"); 
+		this.linha("	public int getNumPasso() {");
+		this.linha("		return 1;");
+		this.linha("	}");
 		this.linha("}");
 		this.linha();
 		this.fecha();

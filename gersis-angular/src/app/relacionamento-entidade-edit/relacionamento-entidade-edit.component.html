@@ -22,9 +22,17 @@
     </mat-form-field>
 
     <mat-form-field class="example-half-width">
-      <mat-select placeholder="Entidade" #entidadeId [(ngModel)]="tela.entidadeId" name="entidadeId">
+      <mat-select placeholder="Entidade" #entidadeId [(ngModel)]="tela.entidadeId" name="entidadeId" (selectionChange)="onEntidadeSelecionada($event.value)">
         <mat-option *ngFor="let entidade of listaEntidade" [value]="entidade.id">
           {{ entidade.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-half-width">
+      <mat-select placeholder="Chave Estrangeira" #atributoChaveEstrangeiraId [(ngModel)]="tela.atributoChaveEstrangeiraId" name="atributoChaveEstrangeiraId">
+        <mat-option *ngFor="let atributo of listaAtributo" [value]="atributo.id">
+          {{ atributo.nome }}
         </mat-option>
       </mat-select>
     </mat-form-field>

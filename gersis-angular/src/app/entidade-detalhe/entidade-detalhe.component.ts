@@ -24,8 +24,8 @@ export class EntidadeDetalheComponent extends BaseItemIdComponent {
       'include': ['atributoEntidades', 
         { 'relation': 'metodoServers', 
           'scope' : {'order' : 'nome' , 'include' : {'relation' : 'parametroMetodoServers' , 'scope' : {'order' : 'posicao'} } } },
-        { 'relation': 'relacionamentos1', 'scope': { 'include': 'entidade1' } },
-        { 'relation': 'relacionamentosN', 'scope': { 'include': 'entidadeN' } }
+        { 'relation': 'relacionamentos1', 'scope': { 'include': ['entidade1','atributoChaveEstrangeira'] } },
+        { 'relation': 'relacionamentosN', 'scope': { 'include': ['entidadeN','atributoChaveEstrangeira'] } }
       ]
     }
   }

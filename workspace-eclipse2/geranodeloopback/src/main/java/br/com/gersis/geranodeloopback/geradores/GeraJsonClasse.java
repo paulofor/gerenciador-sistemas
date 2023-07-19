@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import br.com.gersis.loopback.modelo.AtributoEntidade;
 import br.com.gersis.loopback.modelo.Entidade;
+import br.com.gersis.loopback.modelo.MetodoServer;
+import br.com.gersis.loopback.modelo.ParametroMetodoServer;
 import br.com.gersis.loopback.modelo.RelacionamentoEntidade;
 
 public class GeraJsonClasse extends GeradorArquivo{
@@ -85,7 +87,47 @@ public class GeraJsonClasse extends GeradorArquivo{
 		}
 		this.linha("	},");
 		this.linha("	\"acls\": [],");
-		this.linha("	\"methods\": {}");
+		this.linha("	\"methods\": {");
+		for (int i=0; i<this.entidade.getMetodoServers().size(); i++) {
+			MetodoServer metodo = this.entidade.getMetodoServers().get(i);
+			this.linha("		\"" + metodo.getNome() + "\": {");
+			this.linha("			\"accepts\": [");
+			for (int j=0; j<metodo.getParametroMetodoServers().size(); j++) {
+				ParametroMetodoServer param = metodo.getParametroMetodoServers().get(j);
+				this.linha("				{");
+				this.linha("					\"arg\": \"" + param.getNome() + "\",");
+				this.linha("					\"type\": \"" + param.getTipoNode() + "\",");
+				this.linha("   					\"required\": false,");
+				this.linha("    				\"description\": \"\"");
+				if (j==(metodo.getParametroMetodoServers().size()-1)) {
+					this.linha("				}");
+				} else {
+					this.linha("				},");
+				}
+			}
+			this.linha("			],");
+			this.linha("			\"returns\": [");
+			this.linha(" 				{");
+			this.linha("     				\"arg\": \"resultado\",");
+			this.linha("     				\"type\": \"" + metodo.getRetornoTipoNode() + "\",");
+			this.linha("   					\"root\": true,");
+			this.linha("    				\"description\": \"\"");
+			this.linha("   				}");
+			this.linha("			],");
+			this.linha("			\"description\": \"\",");
+			this.linha("			\"http\": [");
+			this.linha("         		{");
+			this.linha("          			\"path\": \"/" + metodo.getNomeHungara() + "\",");
+			this.linha("   					\"verb\": \"" + metodo.getTipoMetodo().toLowerCase() + "\"");
+			this.linha(" 				}");
+			this.linha(" 			]");
+			if (i==(this.entidade.getMetodoServers().size()-1)) {
+				this.linha("		}");
+			} else {
+				this.linha("		},");
+			}
+		}
+		this.linha("	}");
 		this.linha("}");
 		this.fecha();
 	}

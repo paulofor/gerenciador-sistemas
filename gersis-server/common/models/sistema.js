@@ -23,7 +23,7 @@ module.exports = function(Sistema) {
                 }},
                 { 'relation' : 'processoJavas' , 'scope' : {
                     'include' : [
-                        { 'relation' : 'passoProcessoJavas' , 'scope' : {'include' : [
+                        { 'relation' : 'passoProcessoJavas' , 'scope' : {'order': 'ordenacao', 'include' : [
                             { 'relation' : 'metodoServer' , 'scope' : {'include':['entidade',{'relation' : 'parametroMetodoServers', 'scope' : {'order' : 'posicao'} }]}},
                             { 'relation' : 'dadoPassoEntrada' , 'scope' : 
                                 {'include':{'relation' : 'dadoProcesso' , 'scope' : {'include' : 'tipoEntidade'}} }},

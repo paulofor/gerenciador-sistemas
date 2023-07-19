@@ -1,27 +1,32 @@
 /* tslint:disable */
 import {
-  Entidade
+  Entidade,
+  AtributoEntidade
 } from '../index';
 
 declare var Object: any;
 export interface RelacionamentoEntidadeInterface {
   "nome1"?: string;
   "nomeN"?: string;
+  "atributoChaveEstrangeiraId"?: number;
   "id"?: number;
   "entidade1Id"?: number;
   "entidadeNId"?: number;
   entidade1?: Entidade;
   entidadeN?: Entidade;
+  atributoChaveEstrangeira?: AtributoEntidade;
 }
 
 export class RelacionamentoEntidade implements RelacionamentoEntidadeInterface {
   "nome1": string;
   "nomeN": string;
+  "atributoChaveEstrangeiraId": number;
   "id": number;
   "entidade1Id": number;
   "entidadeNId": number;
   entidade1: Entidade;
   entidadeN: Entidade;
+  atributoChaveEstrangeira: AtributoEntidade;
   constructor(data?: RelacionamentoEntidadeInterface) {
     Object.assign(this, data);
   }
@@ -63,6 +68,10 @@ export class RelacionamentoEntidade implements RelacionamentoEntidadeInterface {
           name: 'nomeN',
           type: 'string'
         },
+        "atributoChaveEstrangeiraId": {
+          name: 'atributoChaveEstrangeiraId',
+          type: 'number'
+        },
         "id": {
           name: 'id',
           type: 'number'
@@ -91,6 +100,14 @@ export class RelacionamentoEntidade implements RelacionamentoEntidadeInterface {
           model: 'Entidade',
           relationType: 'belongsTo',
                   keyFrom: 'entidadeNId',
+          keyTo: 'id'
+        },
+        atributoChaveEstrangeira: {
+          name: 'atributoChaveEstrangeira',
+          type: 'AtributoEntidade',
+          model: 'AtributoEntidade',
+          relationType: 'belongsTo',
+                  keyFrom: 'atributoChaveEstrangeiraId',
           keyTo: 'id'
         },
       }

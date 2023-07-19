@@ -40,9 +40,9 @@ public class PassoProcessoJava extends Model{
 		for (int i=0;i< this.dadoPassoEntrada.size(); i++) {
 			DadoProcesso dado = this.dadoPassoEntrada.get(i).getDadoProcesso();
 			if (i==0) {
-				saida += " " + dado.getTipoJava() + " " + dado.getNomePropriedade() + " ";
+				saida += " " + dado.getTipoJava() + " " + dado.getNomeVariavel() + " ";
 			} else {
-				saida += ", " + dado.getTipoJava() + " " + dado.getNomePropriedade() + " ";
+				saida += ", " + dado.getTipoJava() + " " + dado.getNomeVariavel() + " ";
 			}
 		}
 		return saida;

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../base-component/base-edit-component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Entidade, EntidadeApi, RelacionamentoEntidade, RelacionamentoEntidadeApi } from '../shared/sdk';
+import { AtributoEntidade, AtributoEntidadeApi, Entidade, EntidadeApi, RelacionamentoEntidade, RelacionamentoEntidadeApi } from '../shared/sdk';
 
 @Component({
   selector: 'app-relacionamento-entidade-edit',
@@ -11,11 +11,12 @@ import { Entidade, EntidadeApi, RelacionamentoEntidade, RelacionamentoEntidadeAp
 export class RelacionamentoEntidadeEditComponent extends BaseEditComponent {
 
   listaEntidade: Entidade[];
-  tela = {'cardinal' : null, 'entidadeId': null }
+  tela = {'cardinal' : null, 'entidadeId': null, 'atributoChaveEstrangeiraId' : null }
+  listaAtributo: AtributoEntidade[];
 
   constructor(protected dialogRef: MatDialogRef<any>
     , @Inject(MAT_DIALOG_DATA) protected data: any, protected servico: RelacionamentoEntidadeApi,
-    private srvEntidade:EntidadeApi
+    private srvEntidade:EntidadeApi, private srvAtributo:AtributoEntidadeApi
   ) {
     super(dialogRef,data,servico);
   }
@@ -31,6 +32,19 @@ export class RelacionamentoEntidadeEditComponent extends BaseEditComponent {
     } 
   }
 
+  onEntidadeSelecionada(entidadeId: number) {
+    console.log('Entidade selecionado:' , entidadeId);
+    if (this.tela.cardinal=='N') {
+      // Filtrar a lista de atributos com base no entidadeId selecionado
+      this.srvAtributo.find({'where' : {'entidadeId' : entidadeId}})
+        .subscribe((result:AtributoEntidade[]) => {
+        this.listaAtributo = result;
+      })
+    // Limpar a seleção do atributo chave estrangeira
+    }
+    this.tela.atributoChaveEstrangeiraId = null;
+  }
+  
 
   preSubmit(): void {
       console.log('Tela:' , this.tela);
@@ -42,6 +56,7 @@ export class RelacionamentoEntidadeEditComponent extends BaseEditComponent {
         this.item.entidade1Id = this.tela.entidadeId;
         this.item.entidadeNId = this.origem.id;
       } 
+      this.item.atributoChaveEstrangeiraId = this.tela.atributoChaveEstrangeiraId;
       delete this.item['entidadeN']
   }
 

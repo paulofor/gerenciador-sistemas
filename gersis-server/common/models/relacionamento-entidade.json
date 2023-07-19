@@ -11,6 +11,9 @@
     },
     "nomeN": {
       "type": "string"
+    },
+    "atributoChaveEstrangeiraId" : {
+      "type" : "number"
     }
   },
   "validations": [],
@@ -24,6 +27,11 @@
       "type": "belongsTo",
       "model": "Entidade",
       "foreignKey": ""
+    },
+    "atributoChaveEstrangeira": {
+      "type": "belongsTo",
+      "model": "AtributoEntidade",
+      "foreignKey": "atributoChaveEstrangeiraId"
     }
   },
   "acls": [],
