@@ -215,8 +215,10 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		arq.linha("import java.io.IOException;");
 		arq.linha("import java.io.InputStream;");
 		arq.linha("import java.util.Properties;");
+		arq.linha("import java.io.FileWriter;");
+		arq.linha("import java.io.PrintWriter;");
+		arq.linha();
 		arq.linha("import " + this.converteNomePacote(diretorioPasso) + ".*;");
-		arq.linha("");
 		arq.linha("import br.com.gersis.daobase.comum.DaoBaseComum;");
 		arq.linha("");
 		arq.linha("public class " + processo.getNomeClasseMain() + " {");
@@ -224,13 +226,13 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		arq.linha("	private static String UrlLoopback = \"\";");
 		arq.linha("");
 		arq.linha("	public static void main(String[] args) {");
-		arq.linha("			System.out.print(\"" + this.processo.getNomeClasseMain() + "\");");
+		arq.linha("		System.out.print(\"" + this.processo.getNomeClasseMain() + "\");");
 
 		LocalDateTime dataHoraAtual = LocalDateTime.now();
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         String dataHoraFormatada = dataHoraAtual.format(formatador);
 
-		arq.linha("			System.out.println(\"(" + dataHoraFormatada +")\");");
+		arq.linha("		System.out.println(\"(" + dataHoraFormatada +")\");");
 		arq.linha("		try {");
 		arq.linha("			carregaProp();");
 		if (this.processo.getPassoProcessoJavas().size()==0) {
@@ -242,10 +244,22 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		arq.linha("			System.out.println(\"finalizou\");");
 		arq.linha("			System.exit(0);");
 		arq.linha("		} catch (Exception e) {");
-		arq.linha("			e.printStackTrace();");
+		arq.linha("			gravarErro(e);");
 		arq.linha("		}");
 		arq.linha("	}");
 		arq.linha("");
+		arq.linha();
+		arq.linha("	private static void gravarErro(Exception e) {");
+		arq.linha("		try {");
+		arq.linha("			FileWriter fileWriter = new FileWriter(\"../" + this.processo.getNomeClasseMain() + ".err\", true);");
+		arq.linha("			PrintWriter printWriter = new PrintWriter(fileWriter);");
+		arq.linha("			e.printStackTrace(printWriter);");
+		arq.linha("			printWriter.close();");
+		arq.linha("		} catch (IOException ex) {");
+		arq.linha("			ex.printStackTrace();");
+		arq.linha("		}");
+		arq.linha("	}");
+		arq.linha();
 		arq.linha("	private static void carregaProp() throws IOException {");
 		arq.linha("		//System.out.println(\"Dir:\" + System.getProperty(\"user.dir\"));");
 		arq.linha("		//InputStream input = new FileInputStream(\"CriaPythonTreinoRede.config\");");

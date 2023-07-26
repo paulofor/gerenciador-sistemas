@@ -58,7 +58,7 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 		this.linha("	@Override");
 		this.linha("	protected final void executaImpl() {");
 		this.linha("		final DatasetAplicacao ds = (DatasetAplicacao) this.getComum();");
-		this.linha("		executaCustom(" + this.passo.parametrosEntrada() + ");");
+		this.linha("		if (executaCustom(" + this.passo.parametrosEntrada() + ")) {");
 		if (this.passo.getMetodoServer()!=null) {
 			if (this.passo.getMetodoServer().isList()) {
 				String entradaFuncao = "";
@@ -66,31 +66,34 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 					entradaFuncao += param.getNome() + ",";
 				}
 				
-				this.linha("		rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( " + entradaFuncao + " new ListCallback<" + passo.getMetodoServer().getEntidade().getNome() + ">() { ");
-				this.linha("			public void onSuccess(List<" + passo.getMetodoServer().getEntidade().getNome()+ "> lista) {");
+				this.linha("			rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( " + entradaFuncao + " new ListCallback<" + passo.getMetodoServer().getEntidade().getNome() + ">() { ");
+				this.linha("				public void onSuccess(List<" + passo.getMetodoServer().getEntidade().getNome()+ "> lista) {");
 				if (this.passoProximo!=null && this.passoProximo.getDentroLoop()==1) {
-					this.linha("				for (" + this.passo.getMetodoServer().getEntidade().getNome() + " item : lista) {");
+					this.linha("					for (" + this.passo.getMetodoServer().getEntidade().getNome() + " item : lista) {");
 					if (this.passo.getDadoPassoSaida().size()==0) {
 						throw new GeradorException("Passo " + this.passo.getNomeClasse() + " em " + this.processo.getNomeClasseMain() + " precisa ter dado de saída");
 					}
-					this.linha("					ds.set" + this.passo.getDadoPassoSaida().get(0).getDadoProcesso().getNomePropriedade() + "(item);");
-					this.linha("					executaProximoSemFinalizar();");
-					this.linha("				}");
-					this.linha("				finalizar();");
+					this.linha("						ds.set" + this.passo.getDadoPassoSaida().get(0).getDadoProcesso().getNomePropriedade() + "(item);");
+					this.linha("						executaProximoSemFinalizar();");
+					this.linha("					}");
+					this.linha("					preFinalizar();");	
+					this.linha("					finalizar();");
 				} else {
 					if (this.passo.getDadoPassoSaida().size()==0) {
 						throw new GeradorException("Passo " + this.passo.getNomeClasse() + " em " + this.processo.getNomeClasseMain() + " precisa ter dado de saída");
 					}
-					this.linha("					ds.set" + this.passo.getDadoPassoSaida().get(0).getDadoProcesso().getNomePropriedade() + "(lista);");
-					this.linha("					executaProximo();");
+					this.linha("						ds.set" + this.passo.getDadoPassoSaida().get(0).getDadoProcesso().getNomePropriedade() + "(lista);");
+					this.linha("						executaProximo();");
 				}
-				this.linha("			}");
+				this.linha("				}");
 			}
 			if (this.passo.getMetodoServer().isObject()) {
-				this.linha("		rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( " + this.passo.getMetodoServer().getParametroEntradaJava() + " new ObjectCallback<" + passo.getMetodoServer().getEntidade().getNome() + ">() { ");
-				this.linha("			public void onSuccess(" + passo.getMetodoServer().getEntidade().getNome()+ " object) {");
-				this.linha("				finalizar();");
-				this.linha("			}");
+				this.linha("			rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( " + this.passo.getMetodoServer().getParametroEntradaJava() + " new ObjectCallback<" + passo.getMetodoServer().getEntidade().getNome() + ">() { ");
+				this.linha("				public void onSuccess(" + passo.getMetodoServer().getEntidade().getNome()+ " object) {");
+				this.linha("					ds.set" +  this.passo.getDadoPassoSaida().get(0).getDadoProcesso().getNomePropriedade() + "(object);");
+				this.linha("					//preFinalizar();");
+				this.linha("					executaProximo();");
+				this.linha("				}");
 			}
 			if (this.passo.getMetodoServer().isVoid()) {
 				String entradaFuncao = "";
@@ -98,18 +101,22 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 					entradaFuncao += param.getNome() + ",";
 				}
 				
-				this.linha("		rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( " + entradaFuncao + " new VoidCallback() { ");
-				this.linha("			public void onSuccess() {");
-				this.linha("				finalizar();");
-				this.linha("			}");
+				this.linha("			rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( " + entradaFuncao + " new VoidCallback() { ");
+				this.linha("				public void onSuccess() {");
+				this.linha("					finalizar();");
+				this.linha("				}");
 			}
-			this.linha("			public void onError(Throwable t) {");
-			this.linha("				onErrorBase(t);");
-			this.linha("			}");
-			this.linha("		});");
+			this.linha("				public void onError(Throwable t) {");
+			this.linha("					onErrorBase(t);");
+			this.linha("				}");
+			this.linha("			});");
 		} else {
-			this.linha("		executaProximo();");
+			this.linha("			executaProximo();");
 		}
+		this.linha("		} else {");
+		this.linha("			executaProximo();");
+		this.linha("		}");
+		
 		this.linha("	}"); 
 		
 		this.linha();
@@ -129,8 +136,9 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 		this.linha("	}");
 		this.linha();
 		this.linha();
-		this.linha("	protected void executaCustom(" + this.passo.parametrosEntradaComTipo() + ") {}");
+		this.linha("	protected boolean executaCustom(" + this.passo.parametrosEntradaComTipo() + ") { return true; }");
 		this.linha();
+		this.linha("	protected void preFinalizar() { return; }");
 		this.linha();
 		this.linha("	public int getNumPasso() {");
 		this.linha("		return NUM_PASSO;");

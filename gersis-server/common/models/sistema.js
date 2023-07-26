@@ -14,8 +14,8 @@ module.exports = function(Sistema) {
                 { 'relation' : 'entidades' , 'scope' : {
                     'include' : [
                         'atributoEntidades' , 
-                        { 'relation' : 'relacionamentos1' , 'scope' : {'include' : 'entidade1'}}, 
-                        { 'relation' : 'relacionamentosN' , 'scope' : {'include' : 'entidadeN'}},
+                        { 'relation' : 'relacionamentos1' , 'scope' : {'include' : ['entidade1','atributoChaveEstrangeira']}}, 
+                        { 'relation' : 'relacionamentosN' , 'scope' : {'include' : ['entidadeN','atributoChaveEstrangeira']}},
                         { 'relation' : 'metodoServers' , 'scope' : {'include' : [
                             {'relation' : 'parametroMetodoServers', 'scope' : {'order' : 'posicao'} }
                         ]}}

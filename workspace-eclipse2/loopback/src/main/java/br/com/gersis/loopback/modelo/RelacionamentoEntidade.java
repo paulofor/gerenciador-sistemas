@@ -14,9 +14,17 @@ public class RelacionamentoEntidade extends Model{
 	private Entidade entidadeN;
 	private int entidadeNId;
 	private int entidade1Id;
+	private AtributoEntidade atributoChaveEstrangeira;
 	
 	
 	
+	public AtributoEntidade getAtributoChaveEstrangeira() {
+		return atributoChaveEstrangeira;
+	}
+	public void setAtributoChaveEstrangeira(HashMap atributoChaveEstrangeira) {
+		this.atributoChaveEstrangeira = new AtributoEntidade();
+		BeanUtil.setProperties(this.atributoChaveEstrangeira, (Map<String, ? extends Object>) atributoChaveEstrangeira, true);
+	}
 	public int getEntidadeNId() {
 		return entidadeNId;
 	}

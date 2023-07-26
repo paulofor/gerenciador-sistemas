@@ -36,6 +36,7 @@ export class ProcessoJavaEditComponent extends BaseEditSistemaComponent {
   }
 
   preSubmit() {
+    delete this.item['linuxInternet']
     //if (!this.item.dataCriacao) {
     //  this.item.dataCriacao = new Date();
     //}
