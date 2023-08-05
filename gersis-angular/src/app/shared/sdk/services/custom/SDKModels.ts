@@ -16,6 +16,7 @@ import { DadoProcesso } from '../../models/DadoProcesso';
 import { DadoPassoProcessoEntradaRel } from '../../models/DadoPassoProcessoEntradaRel';
 import { DadoPassoProcessoSaidaRel } from '../../models/DadoPassoProcessoSaidaRel';
 import { ProcessoMetodoRel } from '../../models/ProcessoMetodoRel';
+import { TelaFront } from '../../models/TelaFront';
 
 export interface Models { [name: string]: any }
 
@@ -39,6 +40,7 @@ export class SDKModels {
     DadoPassoProcessoEntradaRel: DadoPassoProcessoEntradaRel,
     DadoPassoProcessoSaidaRel: DadoPassoProcessoSaidaRel,
     ProcessoMetodoRel: ProcessoMetodoRel,
+    TelaFront: TelaFront,
     
   };
 

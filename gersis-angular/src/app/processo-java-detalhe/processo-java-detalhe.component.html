@@ -22,7 +22,7 @@
         <span>Saídas</span>
       </div>
       <div class="dgc-card-detalhe" *ngFor="let rel of principal.processoEntidadeSaida">
-        <span>{{rel.entidade.nome}}</span>
+        <span class="dgc-link" routerLink="/entidadeDetalhe/{{rel.entidade.id}}">{{rel.entidade.nome}}</span>
       </div>
       <div class="dgc-card-comandos">
         <button class="btn-primary btn-sm btn" (click)="editaEntidadeSaida(principal)">Novo</button>
@@ -34,7 +34,7 @@
         <span>Entradas</span>
       </div>
       <div class="dgc-card-detalhe" *ngFor="let rel of principal.processoEntidadeEntrada">
-        <span>{{rel.entidade.nome}}</span>
+        <span class="dgc-link" routerLink="/entidadeDetalhe/{{rel.entidade.id}}">{{rel.entidade.nome}}</span>
       </div>
       <div class="dgc-card-comandos">
         <button class="btn-primary btn-sm btn" (click)="editaEntidadeEntrada(principal)">Novo</button>
@@ -47,7 +47,7 @@
       </div>
       <div class="dgc-card-detalhe" *ngFor="let dado of principal.dadoProcessos">
         <span>{{dado.nome}}</span>
-        <span *ngIf="dado.tipoEntidade">: <span *ngIf="dado.tipoEntidadeLista==1">*</span>{{dado.tipoEntidade.nome}}</span>
+        <span *ngIf="dado.tipoEntidade" class="dgc-link" routerLink="/entidadeDetalhe/{{dado.tipoEntidade.id}}">: <span *ngIf="dado.tipoEntidadeLista==1">*</span>{{dado.tipoEntidade.nome}}</span>
         <span *ngIf="dado.tipoSimples"> : {{dado.tipoSimples}}</span>
         <div class="dgc-direita">
           <button class="btn-primary btn-sm btn" (click)="editaDadoProcesso(principal,dado)">Altera</button>
@@ -67,7 +67,8 @@
     </div>
     <div *ngFor="let item of principal.passoProcessoJavas">
       <div class="dgc-card-header" >
-        <span *ngIf="item.dentroLoop==1">*</span><span>{{item.ordenacao}}. {{item.nomeClasse}}  </span><span *ngIf="item.dentroLoop==1"> (loop)</span>
+        <span *ngIf="item.dentroLoop==1">*</span><span>{{item.ordenacao}}<span *ngIf="item.finalizacao==1">F</span>. {{item.nomeClasse}}  </span>
+        <span *ngIf="item.dentroLoop==1"> (loop)</span>
         <div class="dgc-direita">
           <button class="btn-primary btn-sm btn" (click)="subirItem(item)">Subir</button>
           <button class="btn-primary btn-sm btn" (click)="novaEntrada(item)">Entrada</button>

@@ -49,6 +49,11 @@
       "type": "hasMany",
       "model": "ProcessoEntidadeSaidaRel",
       "foreignKey": ""
+    },
+    "telaFronts": {
+      "type": "hasMany",
+      "model": "TelaFront",
+      "foreignKey": ""
     }
   },
   "acls": [],

@@ -56,8 +56,7 @@ import { EscolheEntidadeSaidaParaProcessoComponent } from './escolhe-entidade-sa
 import { DadoProcessoEditComponent } from './dado-processo-edit/dado-processo-edit.component';
 import { ParametroMetodoServerEditComponent } from './parametro-metodo-server-edit/parametro-metodo-server-edit.component';
 import { SaidaMetodoServerEditComponent } from './saida-metodo-server-edit/saida-metodo-server-edit.component';
-
-
+import { TelaFrontEditComponent } from './tela-front-edit/tela-front-edit.component';
 
 //import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
@@ -89,7 +88,8 @@ registerLocaleData(localePt, 'pt-BR');
     EscolheEntidadeSaidaParaProcessoComponent,
     DadoProcessoEditComponent,
     ParametroMetodoServerEditComponent,
-    SaidaMetodoServerEditComponent
+    SaidaMetodoServerEditComponent,
+    TelaFrontEditComponent
   ],
   imports: [
     BrowserModule,
@@ -150,7 +150,8 @@ registerLocaleData(localePt, 'pt-BR');
     EscolheEntidadeEntradaParaProcessoComponent,
     EscolheEntidadeSaidaParaProcessoComponent,
     DadoProcessoEditComponent,
-    ParametroMetodoServerEditComponent
+    ParametroMetodoServerEditComponent,
+    TelaFrontEditComponent
   ],
   bootstrap: [AppComponent]
 })

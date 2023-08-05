@@ -15,11 +15,11 @@
     "nomeBancoDados": {
       "type": "string"
     },
-    "pathProjeto" : {
+    "pathProjeto": {
       "type": "string"
     },
-    "urlBackApi" : {
-      "type" : "string"
+    "urlBackApi": {
+      "type": "string"
     }
   },
   "validations": [],

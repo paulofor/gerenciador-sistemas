@@ -12,8 +12,8 @@
     "tipoBd": {
       "type": "string"
     },
-    "chave" : {
-      "type" : "string"
+    "chave": {
+      "type": "string"
     }
   },
   "validations": [],

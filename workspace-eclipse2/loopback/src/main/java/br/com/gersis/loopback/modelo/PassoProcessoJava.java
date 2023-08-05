@@ -19,10 +19,19 @@ public class PassoProcessoJava extends Model{
 	private MetodoServer metodoServer;
 	private List<DadoProcessoEntradaRel> dadoPassoEntrada;
 	private List<DadoProcessoSaidaRel> dadoPassoSaida;
+	private int finalizacao;
 	
 	
+	public boolean isFinalizacao() {
+		return (this.finalizacao==1);
+	}
 	
-	
+	public int getFinalizacao() {
+		return finalizacao;
+	}
+	public void setFinalizacao(int finalizacao) {
+		this.finalizacao = finalizacao;
+	}
 	public String parametrosEntrada() {
 		String saida = "";
 		for (int i=0;i< this.dadoPassoEntrada.size(); i++) {
@@ -116,6 +125,7 @@ public class PassoProcessoJava extends Model{
 	public void setTipoPasso(String tipoPasso) {
 		this.tipoPasso = tipoPasso;
 	}
+
 	
 	
 	

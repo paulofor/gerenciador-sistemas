@@ -45,7 +45,6 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CookieBrowser } from './storage/cookie.browser';
 import { StorageBrowser } from './storage/storage.browser';
 import { SocketBrowser } from './sockets/socket.browser';
-
 import { SocketConnection } from './sockets/socket.connections';
 import { RealTime } from './services/core/real.time';
 import { UserApi } from './services/custom/User';
@@ -64,6 +63,7 @@ import { DadoProcessoApi } from './services/custom/DadoProcesso';
 import { DadoPassoProcessoEntradaRelApi } from './services/custom/DadoPassoProcessoEntradaRel';
 import { DadoPassoProcessoSaidaRelApi } from './services/custom/DadoPassoProcessoSaidaRel';
 import { ProcessoMetodoRelApi } from './services/custom/ProcessoMetodoRel';
+import { TelaFrontApi } from './services/custom/TelaFront';
 /**
 * @module SDKBrowserModule
 * @description
@@ -110,6 +110,7 @@ export class SDKBrowserModule {
         DadoPassoProcessoEntradaRelApi,
         DadoPassoProcessoSaidaRelApi,
         ProcessoMetodoRelApi,
+        TelaFrontApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser }
       ]

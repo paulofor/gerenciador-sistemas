@@ -15,5 +15,6 @@ export * from './DadoProcesso';
 export * from './DadoPassoProcessoEntradaRel';
 export * from './DadoPassoProcessoSaidaRel';
 export * from './ProcessoMetodoRel';
+export * from './TelaFront';
 export * from './BaseModels';
 export * from './FireLoopRef';

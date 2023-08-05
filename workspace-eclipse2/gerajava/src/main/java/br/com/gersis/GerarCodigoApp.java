@@ -12,7 +12,7 @@ public class GerarCodigoApp {
 	
 	private static int getUserInput() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Selecione uma opção:");
+		System.out.println("JAVA - Selecione uma opção:");
 		System.out.println("1 - Sisacao");
 		System.out.println("2 - Marketing Digital");
 		int opcao = scanner.nextInt();

@@ -23,6 +23,9 @@
     },
     "tipoPasso": {
       "type": "string"
+    },
+    "finalizacao": {
+      "type": "number"
     }
   },
   "validations": [],

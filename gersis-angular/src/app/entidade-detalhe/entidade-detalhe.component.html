@@ -71,6 +71,28 @@
     <div class="dgc-card-header">
         <span>Processos Gravação</span>
     </div>
+    <div *ngFor="let processoRel of principal.processoJavaComoSaida">
+      <div class="dgc-card-detalhe">
+        <span class="dgc-link" routerLink="/processoJavaDetalhe/{{processoRel.processoJava.id}}">{{processoRel.processoJava.nomeClasseMain}}</span>
+      </div>
+    </div>
   </div>
 
+
+  <div class="dgc-card">
+    <div class="dgc-card-header">
+        <span>Telas Angular</span>
+    </div>
+    <div *ngFor="let tela of principal.telaFronts">
+      <div class="dgc-card-detalhe">
+        <span>{{tela.nome}}</span>
+        <div class="dgc-direita">
+          <button class="btn-primary btn-sm btn" (click)="editaTela(tela)">Altera Tela</button>
+        </div>
+      </div>
+    </div>
+    <div class="dgc-card-comandos">
+      <button class="btn-primary btn-sm btn" (click)="editaTela()">Novo</button>
+    </div> 
+  </div>
 </div>

@@ -7,6 +7,7 @@ import { AtributoEntidadeEditComponent } from '../atributo-entidade-edit/atribut
 import { RelacionamentoEntidadeEditComponent } from '../relacionamento-entidade-edit/relacionamento-entidade-edit.component';
 import { MetodoServerEditComponent } from '../metodo-server-edit/metodo-server-edit.component';
 import { ParametroMetodoServerEditComponent } from '../parametro-metodo-server-edit/parametro-metodo-server-edit.component';
+import { TelaFrontEditComponent } from '../tela-front-edit/tela-front-edit.component';
 
 @Component({
   selector: 'app-entidade-detalhe',
@@ -21,11 +22,13 @@ export class EntidadeDetalheComponent extends BaseItemIdComponent {
 
   getFiltro() {
     return {
-      'include': ['atributoEntidades', 
+      'include': ['atributoEntidades',
         { 'relation': 'metodoServers', 
           'scope' : {'order' : 'nome' , 'include' : {'relation' : 'parametroMetodoServers' , 'scope' : {'order' : 'posicao'} } } },
         { 'relation': 'relacionamentos1', 'scope': { 'include': ['entidade1','atributoChaveEstrangeira'] } },
-        { 'relation': 'relacionamentosN', 'scope': { 'include': ['entidadeN','atributoChaveEstrangeira'] } }
+        { 'relation': 'relacionamentosN', 'scope': { 'include': ['entidadeN','atributoChaveEstrangeira'] } },
+        { 'relation': 'processoJavaComoSaida', 'scope': { 'include': 'processoJava' } },
+        { 'relation': 'telaFronts'}
       ]
     }
   }
@@ -48,6 +51,19 @@ export class EntidadeDetalheComponent extends BaseItemIdComponent {
       this.carregaTela();
     });
     this.dialog.open(MetodoServerEditComponent, {
+      width: '800px',
+      data: {
+        item: edicao,
+        origem: this.principal
+      }
+    });
+  }
+
+  editaTela(edicao?) {
+    this.dialog.afterAllClosed.subscribe(result => {
+      this.carregaTela();
+    });
+    this.dialog.open(TelaFrontEditComponent, {
       width: '800px',
       data: {
         item: edicao,

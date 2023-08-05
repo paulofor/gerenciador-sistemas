@@ -123,7 +123,7 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 		this.linha();
 		this.linha("	@Override");
 		this.linha("	protected final DaoBase getProximo() {");
-		if (this.passoProximo==null) {
+		if (this.passoProximo==null || this.passoProximo.isFinalizacao()) {
 			this.linha("		return new DummyDaoBase();");
 		} else {
 			if (posicaoPasso==0) {

@@ -14,6 +14,7 @@ export interface PassoProcessoJavaInterface {
   "ordenacao"?: number;
   "dentroLoop"?: number;
   "tipoPasso"?: string;
+  "finalizacao"?: number;
   "id"?: number;
   "processoJavaId"?: number;
   "metodoServerId"?: number;
@@ -30,6 +31,7 @@ export class PassoProcessoJava implements PassoProcessoJavaInterface {
   "ordenacao": number;
   "dentroLoop": number;
   "tipoPasso": string;
+  "finalizacao": number;
   "id": number;
   "processoJavaId": number;
   "metodoServerId": number;
@@ -93,6 +95,10 @@ export class PassoProcessoJava implements PassoProcessoJavaInterface {
         "tipoPasso": {
           name: 'tipoPasso',
           type: 'string'
+        },
+        "finalizacao": {
+          name: 'finalizacao',
+          type: 'number'
         },
         "id": {
           name: 'id',

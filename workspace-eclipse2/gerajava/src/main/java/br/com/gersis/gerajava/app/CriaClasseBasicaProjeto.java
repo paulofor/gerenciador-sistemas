@@ -251,7 +251,7 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		arq.linha();
 		arq.linha("	private static void gravarErro(Exception e) {");
 		arq.linha("		try {");
-		arq.linha("			FileWriter fileWriter = new FileWriter(\"../" + this.processo.getNomeClasseMain() + ".err\", true);");
+		arq.linha("			FileWriter fileWriter = new FileWriter(\"" + this.processo.getNomeClasseMain() + ".err\", true);");
 		arq.linha("			PrintWriter printWriter = new PrintWriter(fileWriter);");
 		arq.linha("			e.printStackTrace(printWriter);");
 		arq.linha("			printWriter.close();");

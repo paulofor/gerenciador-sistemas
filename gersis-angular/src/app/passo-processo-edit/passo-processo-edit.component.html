@@ -23,6 +23,13 @@
       </mat-select>
     </mat-form-field>
 
+    <mat-form-field class="example-half-width">
+      <mat-select placeholder="Finalização" #finalizacao [(ngModel)]="item.finalizacao" name="finalizacao">
+        <mat-option value="1">Sim</mat-option>
+        <mat-option value="0">Não</mat-option>
+      </mat-select>
+    </mat-form-field>
+
   </mat-dialog-content>
 
   <mat-dialog-actions>

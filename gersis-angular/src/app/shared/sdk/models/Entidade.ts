@@ -5,7 +5,8 @@ import {
   MetodoServer,
   RelacionamentoEntidade,
   ProcessoEntidadeEntradaRel,
-  ProcessoEntidadeSaidaRel
+  ProcessoEntidadeSaidaRel,
+  TelaFront
 } from '../index';
 
 declare var Object: any;
@@ -21,6 +22,7 @@ export interface EntidadeInterface {
   relacionamentosN?: RelacionamentoEntidade[];
   processoJavaComoEntrada?: ProcessoEntidadeEntradaRel[];
   processoJavaComoSaida?: ProcessoEntidadeSaidaRel[];
+  telaFronts?: TelaFront[];
 }
 
 export class Entidade implements EntidadeInterface {
@@ -35,6 +37,7 @@ export class Entidade implements EntidadeInterface {
   relacionamentosN: RelacionamentoEntidade[];
   processoJavaComoEntrada: ProcessoEntidadeEntradaRel[];
   processoJavaComoSaida: ProcessoEntidadeSaidaRel[];
+  telaFronts: TelaFront[];
   constructor(data?: EntidadeInterface) {
     Object.assign(this, data);
   }
@@ -138,6 +141,14 @@ export class Entidade implements EntidadeInterface {
           name: 'processoJavaComoSaida',
           type: 'ProcessoEntidadeSaidaRel[]',
           model: 'ProcessoEntidadeSaidaRel',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'entidadeId'
+        },
+        telaFronts: {
+          name: 'telaFronts',
+          type: 'TelaFront[]',
+          model: 'TelaFront',
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'entidadeId'

@@ -16,7 +16,7 @@ public class Entidade extends Model{
 	private List<RelacionamentoEntidade> relacionamentos1;
 	private List<RelacionamentoEntidade> relacionamentosN;
 	private List<MetodoServer> metodoServers;
-	
+	private List<TelaFront> telaFonts;
 	
 	public String getNomeHifen() {
 		return nome.replaceAll("([a-z])([A-Z])", "$1-$2").toLowerCase();
@@ -37,6 +37,18 @@ public class Entidade extends Model{
 			Object objeto = new MetodoServer();
 			BeanUtil.setProperties(objeto, (Map<String, ? extends Object>) metodoServers.get(i), true);
 			this.metodoServers.add((MetodoServer) objeto);
+		}
+	}
+	
+	public List<TelaFront> getTelaFronts() {
+		return telaFonts;
+	}
+	public void setTelaFronts(List<TelaFront> telaFonts) {
+		this.telaFonts = new ArrayList<TelaFront>();
+		for (int i = 0; i < telaFonts.size(); i++) {
+			Object objeto = new TelaFront();
+			BeanUtil.setProperties(objeto, (Map<String, ? extends Object>) telaFonts.get(i), true);
+			this.telaFonts.add((TelaFront) objeto);
 		}
 	}
 	

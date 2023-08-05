@@ -94,5 +94,9 @@
   "ProcessoMetodoRel": {
     "dataSource": "mysqlds",
     "public": true
+  },
+  "TelaFront": {
+    "dataSource": "mysqlds",
+    "public": true
   }
 }

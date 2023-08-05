@@ -33,8 +33,20 @@ public class ObjectGerador extends GeradorPassoProcesso {
 		this.linha("		" + passoProximo.getNomeClasse() + " exec = new " + passoProximo.getNomeClasse() + "();");
 		this.linha("		exec.setComum(ds);");
 		this.linha("		exec.executa();");
+		this.linha("		executaFinalizacao(ds);");
 		this.linha("		finalizar();");
 		this.linha("	}"); 
+		this.linha("	private void executaFinalizacao(DatasetAplicacao ds) {");
+		for (PassoProcessoJava passo : this.processo.getPassoProcessoJavas()) {
+			int i = 0;
+			if (passo.isFinalizacao()) {
+				i++;
+				this.linha("		DaoBase finalizacao" + i + " = new " + passo.getNomeClasse() + "();");
+				this.linha("		finalizacao"+ i + ".setComum(ds);");		
+				this.linha("		finalizacao" + i + ".executa();");
+			}
+		}
+		this.linha("	}");
 		this.linha("	public int getNumPasso() {");
 		this.linha("		return 1;");
 		this.linha("	}");

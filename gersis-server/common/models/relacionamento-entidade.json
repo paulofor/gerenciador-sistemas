@@ -12,8 +12,8 @@
     "nomeN": {
       "type": "string"
     },
-    "atributoChaveEstrangeiraId" : {
-      "type" : "number"
+    "atributoChaveEstrangeiraId": {
+      "type": "number"
     }
   },
   "validations": [],
