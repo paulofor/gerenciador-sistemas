@@ -89,9 +89,9 @@ public class CriaProjeto extends DaoAplicacao {
             diretorio = new File(diretorio, subdiretorio);
             if (!diretorio.exists()) {
                 diretorio.mkdir();
-                System.out.println("Subdiretório '" + subdiretorio + "' criado.");
+                //System.out.println("Subdiretório '" + subdiretorio + "' criado.");
             } else {
-                System.out.println("Subdiretório '" + subdiretorio + "' já existe.");
+                //System.out.println("Subdiretório '" + subdiretorio + "' já existe.");
             }
         }
 	}
@@ -101,15 +101,15 @@ public class CriaProjeto extends DaoAplicacao {
         File diretorio = new File(nomeDiretorio);
 
         if (diretorio.exists()) {
-            System.out.println("O diretório já existe.");
+            //System.out.println("O diretório já existe.");
         } else {
-        	System.out.println("Vai criar " + nomeDiretorio);
+        	//System.out.println("Vai criar " + nomeDiretorio);
             boolean criado = diretorio.mkdir();
 
             if (criado) {
-                System.out.println("Diretório criado com sucesso.");
+                //System.out.println("Diretório criado com sucesso.");
             } else {
-                System.out.println("Falha ao criar o diretório.");
+                //System.out.println("Falha ao criar o diretório.");
             }
         }
     }

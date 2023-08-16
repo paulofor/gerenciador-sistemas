@@ -219,6 +219,7 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		arq.linha("import java.io.PrintWriter;");
 		arq.linha();
 		arq.linha("import " + this.converteNomePacote(diretorioPasso) + ".*;");
+		arq.linha("import " + this.converteNomePacote(diretorioPasso) + ".impl.*;");
 		arq.linha("import br.com.gersis.daobase.comum.DaoBaseComum;");
 		arq.linha("");
 		arq.linha("public class " + processo.getNomeClasseMain() + " {");
@@ -273,7 +274,7 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		arq.linha("	private static void preparaComum() {");
 		arq.linha("		DaoBaseComum.setUrl(UrlLoopback);");
 		for (int i=0;i<this.processo.getPassoProcessoJavas().size()-1;i++) {
-			arq.linha("		DaoBaseComum.setProximo(\"" + this.processo.getPassoProcessoJavas().get(i).getNomeClasse() +"\", new " + this.processo.getPassoProcessoJavas().get(i+1).getNomeClasse() +"());");
+			arq.linha("		DaoBaseComum.setProximo(\"" + this.processo.getPassoProcessoJavas().get(i).getNomeClasse() +"\", new " + this.processo.getPassoProcessoJavas().get(i+1).getNomeClasse() +"Impl());");
 		}
 		arq.linha("	}");
 		arq.linha("}");
@@ -289,9 +290,9 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 	private void verificarECriarDiretorio(String nomeDiretorio) {
 	    File diretorio = new File(nomeDiretorio);
         if (diretorio.exists()) {
-            System.out.println("O diretório já existe.");
+            //System.out.println("O diretório já existe.");
         } else {
-        	System.out.println("Vai criar " + nomeDiretorio);
+        	//System.out.println("Vai criar " + nomeDiretorio);
             boolean criado = diretorio.mkdir();
             if (criado) {
                 System.out.println("Diretório criado com sucesso.");

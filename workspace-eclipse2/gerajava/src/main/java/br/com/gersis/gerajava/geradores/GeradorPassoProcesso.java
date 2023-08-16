@@ -20,6 +20,7 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 
 	public GeradorPassoProcesso(String nome, PassoProcessoJava passo, PassoProcessoJava passoProximo, ProcessoJava processo, int posicaoPasso) throws IOException {
 		super(nome);
+		System.out.println(processo.getNomeClasseMain() + "." + passo.getNomeClasse() + " ( proximo: " + (passoProximo!=null?passoProximo.getNomeClasse():"-") + ")");
 		this.nomeArquivo = nome;
 		this.passo = passo;
 		this.processo = processo;
@@ -40,7 +41,7 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 		this.linha("import com.strongloop.android.loopback.callbacks.*;");
 		this.linha("");
 		this.linha("");
-		this.linha("public class " + this.getNomeClasse() + " extends DaoAplicacao { ");
+		this.linha("public abstract class " + this.getNomeClasse() + " extends DaoAplicacao { ");
 		this.linha();
 		this.linha("	private int NUM_PASSO = " + this.posicaoPasso + ";");
 		this.linha();
@@ -103,7 +104,7 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 				
 				this.linha("			rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( " + entradaFuncao + " new VoidCallback() { ");
 				this.linha("				public void onSuccess() {");
-				this.linha("					finalizar();");
+				this.linha("					executaProximo();");
 				this.linha("				}");
 			}
 			this.linha("				public void onError(Throwable t) {");

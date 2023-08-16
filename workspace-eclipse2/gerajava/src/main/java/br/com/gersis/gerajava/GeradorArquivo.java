@@ -34,7 +34,7 @@ public class GeradorArquivo {
 	}
 	public void fecha() throws IOException {
 		fw.close();
-		System.out.println("Arquivo " + nomeArquivo + " gerado com sucesso.");
+		//System.out.println("Arquivo " + nomeArquivo + " gerado com sucesso.");
 	}
 	
 	

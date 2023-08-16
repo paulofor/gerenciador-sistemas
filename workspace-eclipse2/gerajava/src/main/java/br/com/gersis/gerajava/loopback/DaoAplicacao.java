@@ -37,10 +37,10 @@ public abstract class DaoAplicacao  extends DaoBase{
 	    File[] arquivos = destinoDir.listFiles();
 
         if (arquivos != null && arquivos.length > 0) {
-            System.out.println("O diretório  " + destinoDir + " não está vazio.");
+            //System.out.println("O diretório  " + destinoDir + " não está vazio.");
         } else {
         	FileUtils.copyDirectory(origemDir, destinoDir);
-		    System.out.println("Diretorio " + destinoDir + "copiado");
+		    //System.out.println("Diretorio " + destinoDir + "copiado");
         }
 
     }
@@ -50,7 +50,7 @@ public abstract class DaoAplicacao  extends DaoBase{
 
 	    // Copiar o diretório usando FileUtils.copyDirectory()
 	    FileUtils.copyDirectory(origemDir, destinoDir);
-	    System.out.println("Diretorio copiado");
+	    //System.out.println("Diretorio copiado");
     }
 	protected String converteNomePacote(String diretorio) {
 		String nomePacote = "";

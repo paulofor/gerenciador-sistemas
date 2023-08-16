@@ -104,7 +104,11 @@ public class GeraJsonClasse extends GeradorArquivo{
 			this.linha("		\"" + rel.getNomeNVariavel() + "\": {");
 			this.linha("			\"type\": \"hasMany\",");
 			this.linha("			\"model\": \"" + rel.getEntidadeN().getNome() + "\",");
-			this.linha("			\"foreignKey\": \"\"");
+			if (rel.getAtributoChaveEstrangeira()==null) {
+				this.linha("			\"foreignKey\": \"\"");
+			} else {
+				this.linha("			\"foreignKey\": \"" + rel.getAtributoChaveEstrangeira().getNomeVariavel() +"\"");
+			}
 			if (i==(this.entidade.getRelacionamentosN().size()-1)) {
 				this.linha("		}");
 			} else {

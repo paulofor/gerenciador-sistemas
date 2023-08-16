@@ -22,6 +22,7 @@ public class ObjectGerador extends GeradorPassoProcesso {
 		this.linha("");
 		this.linha("import gerador." + this.processo.getNomeClasseMain().toLowerCase() + ".loopback.DaoAplicacao;");
 		this.linha("import gerador." + this.processo.getNomeClasseMain().toLowerCase() + ".loopback.DatasetAplicacao;");
+		this.linha("import gerador." + this.processo.getNomeClasseMain().toLowerCase() + ".passo.impl.*;");
 		this.linha("import br.com.gersis.daobase.DaoBase;");
 		this.linha("import br.com.gersis.daobase.IDatasetComum;");
 		this.linha("");
@@ -30,7 +31,7 @@ public class ObjectGerador extends GeradorPassoProcesso {
 		this.linha("	@Override");
 		this.linha("	protected void executaImpl() {");
 		this.linha("		final DatasetAplicacao ds = (DatasetAplicacao) this.getComum();");
-		this.linha("		" + passoProximo.getNomeClasse() + " exec = new " + passoProximo.getNomeClasse() + "();");
+		this.linha("		" + passoProximo.getNomeClasse() + " exec = new " + passoProximo.getNomeClasse() + "Impl();");
 		this.linha("		exec.setComum(ds);");
 		this.linha("		exec.executa();");
 		this.linha("		executaFinalizacao(ds);");
@@ -41,7 +42,7 @@ public class ObjectGerador extends GeradorPassoProcesso {
 			int i = 0;
 			if (passo.isFinalizacao()) {
 				i++;
-				this.linha("		DaoBase finalizacao" + i + " = new " + passo.getNomeClasse() + "();");
+				this.linha("		DaoBase finalizacao" + i + " = new " + passo.getNomeClasse() + "Impl();");
 				this.linha("		finalizacao"+ i + ".setComum(ds);");		
 				this.linha("		finalizacao" + i + ".executa();");
 			}

@@ -374,6 +374,7 @@ public class RestAdapter extends Adapter {
 		    ConnManagerParams.setTimeout(httpParams, 1200000);
 		    HttpConnectionParams.setSoTimeout(httpParams, 1200000);
 		    HttpConnectionParams.setConnectionTimeout(httpParams, 1200000);
+		    System.out.println();
 			System.out.println(baseUrl + path + " (" + method + ")");
 			System.out.println(parameters);
 
@@ -438,6 +439,7 @@ public class RestAdapter extends Adapter {
 					// TODO: Make sure that encoding works
 					request.setBody(s);
 					System.out.println("Body: " + s);
+					System.out.println();
 					// body = new StringEntity(s, charset);
 				}
 			}

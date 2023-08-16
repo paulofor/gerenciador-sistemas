@@ -80,12 +80,12 @@ public class CriaArquivos extends DaoAplicacao{
            diretorio = new File(diretorio, subdiretorio);
            if (!diretorio.exists()) {
                if (diretorio.mkdir()) {
-            	   System.out.println("Subdiretório '" + subdiretorio + "' criado.");
+            	   //System.out.println("Subdiretório '" + subdiretorio + "' criado.");
                } else {
-            	   System.out.println("Subdiretório '" + subdiretorio + "' não criado.");
+            	   //System.out.println("Subdiretório '" + subdiretorio + "' não criado.");
                }
            } else {
-               System.out.println("Subdiretório '" + subdiretorio + "' já existe.");
+               //System.out.println("Subdiretório '" + subdiretorio + "' já existe.");
            }
        }
 	}
