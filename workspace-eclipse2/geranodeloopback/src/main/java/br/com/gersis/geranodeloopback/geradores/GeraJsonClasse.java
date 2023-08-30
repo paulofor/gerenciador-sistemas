@@ -28,13 +28,20 @@ public class GeraJsonClasse extends GeradorArquivo{
 		}
 		return true;
 	}
-	public int qtdeEstrangeiro(List<RelacionamentoEntidade> listaRel) {
+	public int qtdeEstrangeiro1(Entidade entidade) {
 		int i = 0;
-		for (RelacionamentoEntidade rel : listaRel) {
+		for (RelacionamentoEntidade rel : entidade.getRelacionamentos1()) {
 			if (rel.getAtributoChaveEstrangeira()!=null) {
 				i++;
 			}
 		}
+		/*
+		for (RelacionamentoEntidade rel : entidade.getRelacionamentosN()) {
+			if (rel.getAtributoChaveEstrangeira()!=null) {
+				i++;
+			}
+		}
+		*/
 		return i;
 	}
 	
@@ -59,7 +66,20 @@ public class GeraJsonClasse extends GeradorArquivo{
 			if ("1".equals(atributo.getChave())) {
 				this.linha("			,\"id\": true");
 			}
-			if (i==(this.entidade.getAtributoEntidades().size()-1) && 
+			
+			/*
+			boolean temProximo = false;
+			for (int k=0; k<this.entidade.getRelacionamentos1().size() ; k++) {
+				RelacionamentoEntidade relatributo = this.entidade.getRelacionamentos1().get(k);
+				if (relatributo.getAtributoChaveEstrangeira()==null) {
+					temProximo = true;
+					break;
+				}
+			}
+			*/
+			
+			
+			if (i==(this.entidade.getAtributoEntidades().size()-1) &&  
 					((this.entidade.getRelacionamentos1().size()==0) || (this.todosEstrangeiro(this.entidade.getRelacionamentos1())) )) {
 				this.linha("		}");
 			} else {
@@ -67,12 +87,15 @@ public class GeraJsonClasse extends GeradorArquivo{
 			}
 		}
 		
+		int qtde = this.entidade.getRelacionamentos1().size()-this.qtdeEstrangeiro1(this.entidade);
+		//System.out.println("Qtde: " + qtde + " Qtde Estrangeiro:" + this.qtdeEstrangeiro1(this.entidade) + ", Rel1:" + this.entidade.getRelacionamentos1().size());
 		for (int i=0; i<this.entidade.getRelacionamentos1().size() ; i++) {
 			RelacionamentoEntidade relatributo = this.entidade.getRelacionamentos1().get(i);
+			//System.out.println(qtde + ") " + relatributo.getNome1Chave() );
 			if (relatributo.getAtributoChaveEstrangeira()==null) {
 				this.linha("		\"" + relatributo.getNome1Chave() + "\": {");
 				this.linha("			\"type\": \"" + relatributo.getNome1TipoChaveNode() + "\"");
-				if (i==(this.entidade.getRelacionamentos1().size()-1-this.qtdeEstrangeiro(this.entidade.getRelacionamentos1()))) {
+				if (--qtde==0) {
 					this.linha("		}");
 				} else {
 					this.linha("		},");

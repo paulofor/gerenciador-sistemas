@@ -1,5 +1,7 @@
 package br.com.gersis.geraangular.geradores;
 
+import java.io.IOException;
+
 import br.com.gersis.loopback.modelo.Entidade;
 import br.com.gersis.loopback.modelo.TelaFront;
 
@@ -12,6 +14,20 @@ public abstract class GeradorArquivoTela extends GeradorArquivo {
 	public GeradorArquivoTela(String nome) {
 		super(nome);
 	}
+	
+	public final void gerar() throws IOException {
+		this.criaArquivo();
+		this.geraArquivo();
+		this.fecha();
+	}
+	public final void gerarSeNaoExiste() throws IOException {
+		if (this.criaArquivoSeNaoExiste()) {
+			this.geraArquivo();
+			this.fecha();
+		}
+		
+	}
+	protected abstract void geraArquivo() throws IOException;
 	
 	public final Entidade getEntidade() {
 		return entidade;

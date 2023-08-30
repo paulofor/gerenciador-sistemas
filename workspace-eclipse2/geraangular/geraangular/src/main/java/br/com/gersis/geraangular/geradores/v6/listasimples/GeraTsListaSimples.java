@@ -1,13 +1,13 @@
-package br.com.gersis.geraangular.geradores.v6.lista;
+package br.com.gersis.geraangular.geradores.v6.listasimples;
 
 import java.io.IOException;
 
 import br.com.gersis.geraangular.geradores.v6.GeraTs;
 
-public class GeraTsLista extends GeraTs{
+public class GeraTsListaSimples extends GeraTs{
 
 	
-	public GeraTsLista(String nome) {
+	public GeraTsListaSimples(String nome) {
 		super(nome);
 	}
 
@@ -17,7 +17,6 @@ public class GeraTsLista extends GeraTs{
 		this.linha("import { MatDialog } from \"@angular/material/dialog\";");
 		this.linha("import { ActivatedRoute } from \"@angular/router\";");
 		this.linha("import { "+ this.getEntidade().getNome() + " , " + this.getEntidade().getNome()+ "Api } from \"../shared/sdk\";");
-		this.linha("import { " + this.getEntidade().getNome()+ "EditComponent } from \"../" + this.getEntidade().getNomeHifen() + "-edit/" + this.getEntidade().getNomeHifen() + "-edit.component\";");
 		this.linha();
 		this.linha("export class " + this.getTela().getNome() + "BaseComponent implements OnInit {");
 		this.linha("	principal: " + this.getEntidade().getNome() + ";");
@@ -41,21 +40,6 @@ public class GeraTsLista extends GeraTs{
 		this.linha("            this.posCarregaLista();");
 		this.linha("        })");
 		this.linha("    }");
-		this.linha();
-		this.linha("	edita(edicao?) {");
-		this.linha("		this.dialog.afterAllClosed.subscribe(result => {");
-		this.linha("			this.carregaTela();");
-		this.linha("		});");
-		this.linha("		this.dialog.open(this.getComponente(), {");
-		this.linha("			width: '800px',");
-		this.linha("			data: {");
-		this.linha("				item: edicao");
-		this.linha("			}");
-		this.linha("		});");
-		this.linha("	}");
-		this.linha("	getComponente() : any {");
-		this.linha("		return " + this.getEntidade().getNome() + "EditComponent");
-		this.linha("	}");
 		this.linha();
 		this.linha();
 		this.linha("	dialogo1(dados) {");

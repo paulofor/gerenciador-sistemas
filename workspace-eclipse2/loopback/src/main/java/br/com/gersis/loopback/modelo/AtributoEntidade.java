@@ -8,6 +8,11 @@ public class AtributoEntidade extends Model{
 	private String tipoBd;
 	private String chave;
 	
+	private Entidade entidade;
+	
+	public void setEntidade(Entidade entidade) {
+		this.entidade = entidade;
+	}
 	
 
 	public String getChave() {
@@ -48,6 +53,9 @@ public class AtributoEntidade extends Model{
 	}
 	
 	public String getTipoNode() {
+		if (tipoBd == null) {
+			throw new RuntimeException("Atributo " + this.entidade.getNome() + "."  + this.nome + " não está com tipo bd"); 
+		}
 		if (tipoBd.indexOf("VARCHAR")!=-1) return "string";
 		if (tipoBd.indexOf("DATETIME")!=-1) return "date";
 		if (tipoBd.indexOf("DATE")!=-1) return "date";

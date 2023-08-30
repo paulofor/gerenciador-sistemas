@@ -47,12 +47,12 @@ public class CriaArquivos extends DaoAplicacao{
 					GeraTs gerador5 = FabricaGerador.criaTsImpl(tela, diretorio);
 					gerador5.setEntidade(entidade);
 					gerador5.setTela(tela);
-					gerador5.gerar();
+					gerador5.gerarSeNaoExiste();
 					
 					GeraHtml gerador2 = FabricaGerador.criaHtml(tela, diretorio);
 					gerador2.setEntidade(entidade);
 					gerador2.setTela(tela);
-					gerador2.gerar();
+					gerador2.gerarSeNaoExiste();
 					
 					GeraSpecTs gerador3 = FabricaGerador.criaSpecTs(tela, diretorio);
 					gerador3.setEntidade(entidade);
@@ -62,7 +62,7 @@ public class CriaArquivos extends DaoAplicacao{
 					GeraCss gerador4 = FabricaGerador.criaCss(tela, diretorio);
 					gerador4.setEntidade(entidade);
 					gerador4.setTela(tela);
-					gerador4.gerar();
+					gerador4.gerarSeNaoExiste();
 				}
 				
 			}

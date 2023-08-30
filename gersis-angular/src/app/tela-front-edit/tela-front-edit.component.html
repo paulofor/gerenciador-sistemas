@@ -8,6 +8,7 @@
       <mat-select placeholder="Tipo"  #tipo [(ngModel)]="item.tipo" name="tipo" (selectionChange)="onChange($event)">
         <mat-option value="Lista">Lista</mat-option>
         <mat-option value="Edicao">Edição</mat-option>
+        <mat-option value="ListaSimples">Lista Simples (sem edição)</mat-option>
         <mat-option value="Detalhe">Detalhe</mat-option>
         <mat-option value="EditRel">Edição Relacionamento</mat-option>
       </mat-select>

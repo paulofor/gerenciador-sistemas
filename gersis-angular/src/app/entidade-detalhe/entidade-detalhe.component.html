@@ -85,7 +85,7 @@
     </div>
     <div *ngFor="let tela of principal.telaFronts">
       <div class="dgc-card-detalhe">
-        <span>{{tela.nome}}</span>
+        <span>{{tela.nome}} : {{tela.tipo}}</span>
         <div class="dgc-direita">
           <button class="btn-primary btn-sm btn" (click)="editaTela(tela)">Altera Tela</button>
         </div>

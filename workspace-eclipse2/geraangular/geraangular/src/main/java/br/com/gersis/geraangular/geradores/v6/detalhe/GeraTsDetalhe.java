@@ -12,8 +12,7 @@ public class GeraTsDetalhe extends GeraTs{
 	}
 
 	@Override
-	public void gerar() throws IOException {
-		this.criaArquivo();
+	public void geraArquivo() throws IOException {
 		this.linha("import { OnInit } from \"@angular/core\";");
 		this.linha("import { MatDialog } from \"@angular/material/dialog\";");
 		this.linha("import { ActivatedRoute } from \"@angular/router\";");
@@ -41,7 +40,6 @@ public class GeraTsDetalhe extends GeraTs{
 		this.linha("		return {}");
 		this.linha("	}");
 		this.linha("}");
-		this.fecha();
 	}
 
 	

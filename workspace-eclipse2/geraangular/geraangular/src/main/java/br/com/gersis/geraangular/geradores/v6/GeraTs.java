@@ -13,8 +13,14 @@ public class GeraTs extends GeradorArquivoTela {
 	}
 
 
-	public void gerar() throws IOException {
-		this.criaArquivo();
+
+	protected void logicaTela() throws IOException {
+		this.linha("	constructor() { }");
+	}
+
+
+	@Override
+	protected void geraArquivo() throws IOException {
 		this.linha("import { Component, OnInit } from '@angular/core';");
 		this.linha();
 		this.linha("@Component({");
@@ -25,11 +31,6 @@ public class GeraTs extends GeradorArquivoTela {
 		this.linha("export class " + this.getTela().getComponent() +" extends " + this.getTela().getNome() + "BaseComponent {");
 		this.logicaTela();
 		this.linha("}");
-		this.fecha();
-	}
-	
-	protected void logicaTela() throws IOException {
-		this.linha("	constructor() { }");
 	}
 
 }

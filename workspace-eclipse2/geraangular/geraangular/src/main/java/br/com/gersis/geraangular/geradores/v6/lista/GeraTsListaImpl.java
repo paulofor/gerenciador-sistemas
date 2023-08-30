@@ -10,8 +10,7 @@ public class GeraTsListaImpl  extends GeraTs{
 		super(nome);
 	}
 
-	public void gerar() throws IOException {
-		this.criaArquivo();
+	public void geraArquivo() throws IOException {
 		this.linha("import { Component, OnInit } from '@angular/core';");
 		this.linha("import { MatDialog } from '@angular/material';");
 		this.linha("import { ActivatedRoute } from '@angular/router';");
@@ -30,6 +29,5 @@ public class GeraTsListaImpl  extends GeraTs{
 		this.linha("	}");
 		this.linha();
 		this.linha("}");
-		this.fecha();
 	}
 }

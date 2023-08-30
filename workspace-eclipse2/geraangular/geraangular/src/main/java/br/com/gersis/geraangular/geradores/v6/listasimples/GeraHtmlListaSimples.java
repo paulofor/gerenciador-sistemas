@@ -1,12 +1,12 @@
-package br.com.gersis.geraangular.geradores.v6.lista;
+package br.com.gersis.geraangular.geradores.v6.listasimples;
 
 import java.io.IOException;
 
 import br.com.gersis.geraangular.geradores.v6.GeraHtml;
 
-public class GeraHtmlLista extends GeraHtml {
+public class GeraHtmlListaSimples extends GeraHtml {
 
-	public GeraHtmlLista(String nome) {
+	public GeraHtmlListaSimples(String nome) {
 		super(nome);
 	}
 

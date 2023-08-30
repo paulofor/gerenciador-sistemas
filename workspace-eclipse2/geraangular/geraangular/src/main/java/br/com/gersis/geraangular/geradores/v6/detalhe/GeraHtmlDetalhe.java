@@ -11,13 +11,11 @@ public class GeraHtmlDetalhe extends GeraHtml {
 	}
 
 	@Override
-	public void gerar() throws IOException {
-		this.criaArquivo();
+	public void geraArquivo() throws IOException {
 		this.linha("<div class=\"dgc-painel\" *ngIf=\"principal\">");
 		this.linha("	<div class=\"dgc-painel-header\">");
 		this.linha("	</div>");
 		this.linha("</div>");
-		this.fecha();
 	}
 	
 	

@@ -12,9 +12,9 @@ public class GeraSpecTs extends GeradorArquivoTela {
 		super(nome);
 	}
 
-	
-	public void gerar() throws IOException {
-		this.criaArquivo();
+
+	@Override
+	protected void geraArquivo() throws IOException {
 		this.linha("import { async, ComponentFixture, TestBed } from '@angular/core/testing';");
 		this.linha();
 		this.linha("import { " + this.getTela().getComponent() +" } from './" + this.getTela().getNomeHifen() +".component';");
@@ -40,7 +40,7 @@ public class GeraSpecTs extends GeradorArquivoTela {
 		this.linha("		expect(component).toBeTruthy();");
 		this.linha("	});");
 		this.linha("});");
-		this.fecha();
+		
 	}
 
 }

@@ -13,10 +13,10 @@ public class GeraHtml extends GeradorArquivoTela {
 		super(nome);
 	}
 
-	
-	public void gerar() throws IOException {
-		this.criaArquivo();
-		this.fecha();
+	@Override
+	protected void geraArquivo() throws IOException {
+		
 	}
-
+	
+	
 }

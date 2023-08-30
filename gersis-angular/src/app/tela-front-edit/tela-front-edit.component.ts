@@ -28,6 +28,9 @@ export class TelaFrontEditComponent extends BaseEditComponent {
     if (event.value=='Lista') {
       this.item.nome = this.origem.nome + "List";
     }
+    if (event.value=='ListaSimples') {
+      this.item.nome = this.origem.nome + "ListSimples";
+    }
     if (event.value=='Edicao') {
       this.item.nome = this.origem.nome + "Edit";
     }

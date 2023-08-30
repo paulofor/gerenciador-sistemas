@@ -88,6 +88,7 @@ public class Entidade extends Model{
 		for (int i = 0; i < atributoEntidades.size(); i++) {
 			Object objeto = new AtributoEntidade();
 			BeanUtil.setProperties(objeto, (Map<String, ? extends Object>) atributoEntidades.get(i), true);
+			((AtributoEntidade)objeto).setEntidade(this);
 			this.atributoEntidades.add((AtributoEntidade) objeto);
 		}
 	}

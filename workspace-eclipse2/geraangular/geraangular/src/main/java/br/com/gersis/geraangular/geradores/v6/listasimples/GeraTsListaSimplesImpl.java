@@ -1,12 +1,12 @@
-package br.com.gersis.geraangular.geradores.v6.detalhe;
+package br.com.gersis.geraangular.geradores.v6.listasimples;
 
 import java.io.IOException;
 
 import br.com.gersis.geraangular.geradores.v6.GeraTs;
 
-public class GeraTsDetalheImpl  extends GeraTs{
+public class GeraTsListaSimplesImpl  extends GeraTs{
 
-	public GeraTsDetalheImpl(String nome) {
+	public GeraTsListaSimplesImpl(String nome) {
 		super(nome);
 	}
 

@@ -367,8 +367,7 @@ public class RestAdapter extends Adapter {
 				}
 			}
 
-			BoundRequestBuilder request = prepareRequest(method, baseUrl + path);
-			request.setRequestTimeout(1200000);
+			BoundRequestBuilder request = prepareRequest(method, baseUrl + path).setRequestTimeout(300000);
 
 			HttpParams httpParams = new BasicHttpParams();
 		    ConnManagerParams.setTimeout(httpParams, 1200000);

@@ -10,9 +10,11 @@ public class GeraCss extends GeradorArquivoTela {
 		super(nome);
 	}
 
-
-	public void gerar() throws IOException {
-		this.criaArquivo();
-		this.fecha();
+	@Override
+	protected void geraArquivo() {
+		
 	}
+
+
+
 }

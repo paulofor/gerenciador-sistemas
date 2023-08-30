@@ -1,19 +1,18 @@
-package br.com.gersis.geraangular.geradores.v6.detalhe;
+package br.com.gersis.geraangular.geradores.v6.edit;
 
 import java.io.IOException;
 
 import br.com.gersis.geraangular.geradores.v6.GeraTs;
 
-public class GeraTsDetalheImpl  extends GeraTs{
+public class GeraTsEditImpl  extends GeraTs{
 
-	public GeraTsDetalheImpl(String nome) {
+	public GeraTsEditImpl(String nome) {
 		super(nome);
 	}
 
 	public void geraArquivo() throws IOException {
-		this.linha("import { Component, OnInit } from '@angular/core';");
-		this.linha("import { MatDialog } from '@angular/material';");
-		this.linha("import { ActivatedRoute } from '@angular/router';");
+		this.linha("import { Component, Inject } from '@angular/core';");
+		this.linha("import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';");
 		this.linha("import { " + this.getEntidade().getNome() + "Api } from '../shared/sdk';");
 		this.linha("import { " + this.getTela().getNome()+ "BaseComponent } from './" + this.getTela().getNomeHifen()+ "-base.component';");
 		this.linha();
@@ -24,8 +23,10 @@ public class GeraTsDetalheImpl  extends GeraTs{
 		this.linha("})");
 		this.linha("export class " + this.getTela().getComponent() +" extends " + this.getTela().getNome() + "BaseComponent {");
 		this.linha();
-		this.linha("	constructor(protected srv: " + this.getEntidade().getNome() +"Api, protected router: ActivatedRoute, protected dialog: MatDialog) { ");
-		this.linha("		super(srv,router,dialog);");
+		this.linha("	 constructor(protected dialogRef: MatDialogRef<any>");
+		this.linha("	    , @Inject(MAT_DIALOG_DATA) protected data: any, protected servico: " + this.getEntidade().getNome() +"Api");
+		this.linha("		  ) {");
+		this.linha("	   super(dialogRef,data,servico);");
 		this.linha("	}");
 		this.linha();
 		this.linha("}");
