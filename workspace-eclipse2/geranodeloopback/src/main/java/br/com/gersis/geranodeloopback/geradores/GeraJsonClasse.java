@@ -91,14 +91,16 @@ public class GeraJsonClasse extends GeradorArquivo{
 		//System.out.println("Qtde: " + qtde + " Qtde Estrangeiro:" + this.qtdeEstrangeiro1(this.entidade) + ", Rel1:" + this.entidade.getRelacionamentos1().size());
 		for (int i=0; i<this.entidade.getRelacionamentos1().size() ; i++) {
 			RelacionamentoEntidade relatributo = this.entidade.getRelacionamentos1().get(i);
+			if (!existeAtributo(relatributo,this.entidade.getAtributoEntidades())) {
 			//System.out.println(qtde + ") " + relatributo.getNome1Chave() );
-			if (relatributo.getAtributoChaveEstrangeira()==null) {
-				this.linha("		\"" + relatributo.getNome1Chave() + "\": {");
-				this.linha("			\"type\": \"" + relatributo.getNome1TipoChaveNode() + "\"");
-				if (--qtde==0) {
-					this.linha("		}");
-				} else {
-					this.linha("		},");
+				if (relatributo.getAtributoChaveEstrangeira()==null) {
+					this.linha("		\"" + relatributo.getNome1Chave() + "\": {");
+					this.linha("			\"type\": \"" + relatributo.getNome1TipoChaveNode() + "\"");
+					if (--qtde==0) {
+						this.linha("		}");
+					} else {
+						this.linha("		},");
+					}
 				}
 			}
 		}
@@ -186,6 +188,14 @@ public class GeraJsonClasse extends GeradorArquivo{
 		this.linha("	}");
 		this.linha("}");
 		this.fecha();
+	}
+	private boolean existeAtributo(RelacionamentoEntidade relatributo, List<AtributoEntidade> list ) {
+		for (AtributoEntidade atributo : list) {
+			if (atributo.getNome().compareTo(relatributo.getNome1Chave())==0) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	
