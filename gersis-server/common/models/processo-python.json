@@ -1,0 +1,38 @@
+{
+  "name": "ProcessoPython",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nomeArquivo": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "sistema": {
+      "type": "belongsTo",
+      "model": "Sistema",
+      "foreignKey": ""
+    },
+    "pythonMetodoServers": {
+      "type": "hasMany",
+      "model": "PythonMetodoServer",
+      "foreignKey": ""
+    },
+    "pythonEntidadeEntrada": {
+      "type": "hasMany",
+      "model": "PythonEntidadeEntradaRel",
+      "foreignKey": ""
+    },
+    "pythonEntidadeSaida": {
+      "type": "hasMany",
+      "model": "PythonEntidadeSaidaRel",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

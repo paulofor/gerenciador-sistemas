@@ -1,0 +1,18 @@
+<div class="dgc-painel" *ngIf="sistema">
+  <div class="dgc-painel-header">
+      <span>{{sistema.nome}} - </span>
+      <span>Processos Python</span>
+      <button class="btn btn-primary btn-sm dgc-botao-comando dgc-direita" (click)="edita()">Nova</button>
+  </div>
+  <div *ngIf="listaBase" class="dgc-painel-principal">
+      <div class="dgc-card" *ngFor="let item of listaBase">
+          <div class="dgc-card-header">
+              <span class="dgc-link" routerLink="/processoPythonDetalhe/{{item.id}}">{{item.nomeArquivo}}</span>
+          </div>
+          <div class="dgc-card-comandos">
+            <button class="btn-primary btn-sm btn" (click)="edita(item)">Editar</button>
+          </div> 
+      </div>
+     
+  </div>
+</div>

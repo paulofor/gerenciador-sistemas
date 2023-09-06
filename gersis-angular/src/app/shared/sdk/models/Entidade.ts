@@ -6,7 +6,9 @@ import {
   RelacionamentoEntidade,
   ProcessoEntidadeEntradaRel,
   ProcessoEntidadeSaidaRel,
-  TelaFront
+  TelaFront,
+  PythonEntidadeEntradaRel,
+  PythonEntidadeSaidaRel
 } from '../index';
 
 declare var Object: any;
@@ -23,6 +25,8 @@ export interface EntidadeInterface {
   processoJavaComoEntrada?: ProcessoEntidadeEntradaRel[];
   processoJavaComoSaida?: ProcessoEntidadeSaidaRel[];
   telaFronts?: TelaFront[];
+  processoPythonComoEntrada?: PythonEntidadeEntradaRel[];
+  processoPythonComoSaida?: PythonEntidadeSaidaRel[];
 }
 
 export class Entidade implements EntidadeInterface {
@@ -38,6 +42,8 @@ export class Entidade implements EntidadeInterface {
   processoJavaComoEntrada: ProcessoEntidadeEntradaRel[];
   processoJavaComoSaida: ProcessoEntidadeSaidaRel[];
   telaFronts: TelaFront[];
+  processoPythonComoEntrada: PythonEntidadeEntradaRel[];
+  processoPythonComoSaida: PythonEntidadeSaidaRel[];
   constructor(data?: EntidadeInterface) {
     Object.assign(this, data);
   }
@@ -149,6 +155,22 @@ export class Entidade implements EntidadeInterface {
           name: 'telaFronts',
           type: 'TelaFront[]',
           model: 'TelaFront',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'entidadeId'
+        },
+        processoPythonComoEntrada: {
+          name: 'processoPythonComoEntrada',
+          type: 'PythonEntidadeEntradaRel[]',
+          model: 'PythonEntidadeEntradaRel',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'entidadeId'
+        },
+        processoPythonComoSaida: {
+          name: 'processoPythonComoSaida',
+          type: 'PythonEntidadeSaidaRel[]',
+          model: 'PythonEntidadeSaidaRel',
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'entidadeId'

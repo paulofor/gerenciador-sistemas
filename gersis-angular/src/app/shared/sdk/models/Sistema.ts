@@ -1,7 +1,8 @@
 /* tslint:disable */
 import {
   ProcessoJava,
-  Entidade
+  Entidade,
+  ProcessoPython
 } from '../index';
 
 declare var Object: any;
@@ -14,6 +15,7 @@ export interface SistemaInterface {
   "id"?: number;
   processoJavas?: ProcessoJava[];
   entidades?: Entidade[];
+  processoPythons?: ProcessoPython[];
 }
 
 export class Sistema implements SistemaInterface {
@@ -25,6 +27,7 @@ export class Sistema implements SistemaInterface {
   "id": number;
   processoJavas: ProcessoJava[];
   entidades: Entidade[];
+  processoPythons: ProcessoPython[];
   constructor(data?: SistemaInterface) {
     Object.assign(this, data);
   }
@@ -96,6 +99,14 @@ export class Sistema implements SistemaInterface {
           name: 'entidades',
           type: 'Entidade[]',
           model: 'Entidade',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'sistemaId'
+        },
+        processoPythons: {
+          name: 'processoPythons',
+          type: 'ProcessoPython[]',
+          model: 'ProcessoPython',
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'sistemaId'

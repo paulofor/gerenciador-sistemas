@@ -7,6 +7,8 @@ import { EntidadeListComponent } from '../entidade-list/entidade-list.component'
 import { ProcessoJavaListComponent } from '../processo-java-list/processo-java-list.component';
 import { EntidadeDetalheComponent } from '../entidade-detalhe/entidade-detalhe.component';
 import { ProcessoJavaDetalheComponent } from '../processo-java-detalhe/processo-java-detalhe.component';
+import { ProcessoPythonListComponent } from '../processo-python-list/processo-python-list.component';
+import { ProcessoPythonDetalheComponent } from '../processo-python-detalhe/processo-python-detalhe.component';
 
 
 
@@ -19,9 +21,11 @@ export const routes : Routes = [
 
     { path: 'entidade/:idSistema' , component: EntidadeListComponent },
     { path: 'processoJava/:idSistema', component: ProcessoJavaListComponent },
+    { path: 'processoPython/:idSistema', component: ProcessoPythonListComponent },
 
     { path: 'entidadeDetalhe/:id' , component : EntidadeDetalheComponent },
     { path: 'processoJavaDetalhe/:id' , component : ProcessoJavaDetalheComponent },
+    { path: 'processoPythonDetalhe/:id' , component : ProcessoPythonDetalheComponent },
 
     { path: '',  component: HomeComponent  }
     //{ path: '',          redirectTo: 'home', pathMatch: 'full' }

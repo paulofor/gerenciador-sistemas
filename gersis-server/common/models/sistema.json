@@ -33,6 +33,11 @@
       "type": "hasMany",
       "model": "ProcessoJava",
       "foreignKey": ""
+    },
+    "processoPythons": {
+      "type": "hasMany",
+      "model": "ProcessoPython",
+      "foreignKey": ""
     }
   },
   "acls": [],

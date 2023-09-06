@@ -45,6 +45,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CookieBrowser } from './storage/cookie.browser';
 import { StorageBrowser } from './storage/storage.browser';
 import { SocketBrowser } from './sockets/socket.browser';
+
 import { SocketConnection } from './sockets/socket.connections';
 import { RealTime } from './services/core/real.time';
 import { UserApi } from './services/custom/User';
@@ -64,6 +65,10 @@ import { DadoPassoProcessoEntradaRelApi } from './services/custom/DadoPassoProce
 import { DadoPassoProcessoSaidaRelApi } from './services/custom/DadoPassoProcessoSaidaRel';
 import { ProcessoMetodoRelApi } from './services/custom/ProcessoMetodoRel';
 import { TelaFrontApi } from './services/custom/TelaFront';
+import { ProcessoPythonApi } from './services/custom/ProcessoPython';
+import { PythonMetodoServerApi } from './services/custom/PythonMetodoServer';
+import { PythonEntidadeEntradaRelApi } from './services/custom/PythonEntidadeEntradaRel';
+import { PythonEntidadeSaidaRelApi } from './services/custom/PythonEntidadeSaidaRel';
 /**
 * @module SDKBrowserModule
 * @description
@@ -111,6 +116,10 @@ export class SDKBrowserModule {
         DadoPassoProcessoSaidaRelApi,
         ProcessoMetodoRelApi,
         TelaFrontApi,
+        ProcessoPythonApi,
+        PythonMetodoServerApi,
+        PythonEntidadeEntradaRelApi,
+        PythonEntidadeSaidaRelApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser }
       ]

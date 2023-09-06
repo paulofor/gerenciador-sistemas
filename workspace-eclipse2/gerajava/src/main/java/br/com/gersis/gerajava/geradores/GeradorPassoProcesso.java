@@ -48,8 +48,8 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 		this.linha();
 		if (this.passo.getMetodoServer()!=null && this.passo.getMetodoServer().getParametroMetodoServers() != null) {
 			for (ParametroMetodoServer param : this.passo.getMetodoServer().getParametroMetodoServers()) {
-				if (param.getTipoJava()!=null) {
-					this.linha("	protected " + param.getTipoJava() + " " + param.getNome() + ";");
+				if (param.getTipoJava(this.passo.getMetodoServer().getEntidade())!=null) {
+					this.linha("	protected " + param.getTipoJava(this.passo.getMetodoServer().getEntidade()) + " " + param.getNome() + ";");
 				} else {
 					this.linha("	protected " + this.passo.getMetodoServer().getEntidade().getNome() + " " + param.getNome() + ";");
 				}
@@ -91,7 +91,9 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 			if (this.passo.getMetodoServer().isObject()) {
 				this.linha("			rep" + this.passo.getMetodoServer().getEntidade().getNome() + "." + passo.getMetodoServer().getNomeHungara() + "( " + this.passo.getMetodoServer().getParametroEntradaJava() + " new ObjectCallback<" + passo.getMetodoServer().getEntidade().getNome() + ">() { ");
 				this.linha("				public void onSuccess(" + passo.getMetodoServer().getEntidade().getNome()+ " object) {");
-				this.linha("					ds.set" +  this.passo.getDadoPassoSaida().get(0).getDadoProcesso().getNomePropriedade() + "(object);");
+				if (this.passo.getDadoPassoSaida().size()!=0) {
+					this.linha("					ds.set" +  this.passo.getDadoPassoSaida().get(0).getDadoProcesso().getNomePropriedade() + "(object);");
+				}
 				this.linha("					//preFinalizar();");
 				this.linha("					executaProximo();");
 				this.linha("				}");

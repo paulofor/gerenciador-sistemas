@@ -1,0 +1,28 @@
+{
+  "name": "PythonMetodoServer",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "metodoServerId": {
+      "type": "number",
+      "id": true
+    },
+    "processoPythonId": {
+      "type": "number",
+      "id": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "metodoServer": {
+      "type": "belongsTo",
+      "model": "MetodoServer",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

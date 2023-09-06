@@ -9,18 +9,19 @@ import { LoopBackFilter,  } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Sistema } from '../../models/Sistema';
-import { SocketConnection } from '../../sockets/socket.connections';
-import { ProcessoJava } from '../../models/ProcessoJava';
-import { Entidade } from '../../models/Entidade';
 import { ProcessoPython } from '../../models/ProcessoPython';
+import { SocketConnection } from '../../sockets/socket.connections';
+import { Sistema } from '../../models/Sistema';
+import { PythonMetodoServer } from '../../models/PythonMetodoServer';
+import { PythonEntidadeEntradaRel } from '../../models/PythonEntidadeEntradaRel';
+import { PythonEntidadeSaidaRel } from '../../models/PythonEntidadeSaidaRel';
 
 
 /**
- * Api services for the `Sistema` model.
+ * Api services for the `ProcessoPython` model.
  */
 @Injectable()
-export class SistemaApi extends BaseLoopBackApi {
+export class ProcessoPythonApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -33,11 +34,11 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Localize um item relacionado por ID para processoJavas.
+   * Busca relação sistema de belongsTo.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para processoJavas
+   * @param {boolean} refresh 
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -45,13 +46,43 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public findByIdProcessoJavas(id: any, fk: any, customHeaders?: Function): Observable<any> {
+  public getSistema(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoJavas/:fk";
+    "/ProcessoPythons/:id/sistema";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Localize um item relacionado por ID para pythonMetodoServers.
+   *
+   * @param {any} id ProcessoPython id
+   *
+   * @param {any} fk Chave estrangeira para pythonMetodoServers
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `ProcessoPython` object.)
+   * </em>
+   */
+  public findByIdPythonMetodoServers(id: any, fk: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/ProcessoPythons/:id/pythonMetodoServers/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -63,11 +94,11 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Excluir um item relacionado por ID para processoJavas.
+   * Excluir um item relacionado por ID para pythonMetodoServers.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para processoJavas
+   * @param {any} fk Chave estrangeira para pythonMetodoServers
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -75,10 +106,10 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public destroyByIdProcessoJavas(id: any, fk: any, customHeaders?: Function): Observable<any> {
+  public destroyByIdPythonMetodoServers(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoJavas/:fk";
+    "/ProcessoPythons/:id/pythonMetodoServers/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -90,11 +121,11 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Atualizar um item relacionado por ID para processoJavas.
+   * Atualizar um item relacionado por ID para pythonMetodoServers.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para processoJavas
+   * @param {any} fk Chave estrangeira para pythonMetodoServers
    *
    * @param {object} data Request data.
    *
@@ -106,13 +137,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public updateByIdProcessoJavas(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public updateByIdPythonMetodoServers(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoJavas/:fk";
+    "/ProcessoPythons/:id/pythonMetodoServers/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -126,11 +157,11 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Localize um item relacionado por ID para entidades.
+   * Localize um item relacionado por ID para pythonEntidadeEntrada.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para entidades
+   * @param {any} fk Chave estrangeira para pythonEntidadeEntrada
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -138,13 +169,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public findByIdEntidades(id: any, fk: any, customHeaders?: Function): Observable<any> {
+  public findByIdPythonEntidadeEntrada(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/entidades/:fk";
+    "/ProcessoPythons/:id/pythonEntidadeEntrada/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -156,11 +187,11 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Excluir um item relacionado por ID para entidades.
+   * Excluir um item relacionado por ID para pythonEntidadeEntrada.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para entidades
+   * @param {any} fk Chave estrangeira para pythonEntidadeEntrada
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -168,10 +199,10 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public destroyByIdEntidades(id: any, fk: any, customHeaders?: Function): Observable<any> {
+  public destroyByIdPythonEntidadeEntrada(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/entidades/:fk";
+    "/ProcessoPythons/:id/pythonEntidadeEntrada/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -183,11 +214,11 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Atualizar um item relacionado por ID para entidades.
+   * Atualizar um item relacionado por ID para pythonEntidadeEntrada.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para entidades
+   * @param {any} fk Chave estrangeira para pythonEntidadeEntrada
    *
    * @param {object} data Request data.
    *
@@ -199,13 +230,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public updateByIdEntidades(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public updateByIdPythonEntidadeEntrada(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/entidades/:fk";
+    "/ProcessoPythons/:id/pythonEntidadeEntrada/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -219,11 +250,11 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Localize um item relacionado por ID para processoPythons.
+   * Localize um item relacionado por ID para pythonEntidadeSaida.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para processoPythons
+   * @param {any} fk Chave estrangeira para pythonEntidadeSaida
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -231,13 +262,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public findByIdProcessoPythons(id: any, fk: any, customHeaders?: Function): Observable<any> {
+  public findByIdPythonEntidadeSaida(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoPythons/:fk";
+    "/ProcessoPythons/:id/pythonEntidadeSaida/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -249,11 +280,11 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Excluir um item relacionado por ID para processoPythons.
+   * Excluir um item relacionado por ID para pythonEntidadeSaida.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para processoPythons
+   * @param {any} fk Chave estrangeira para pythonEntidadeSaida
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -261,10 +292,10 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public destroyByIdProcessoPythons(id: any, fk: any, customHeaders?: Function): Observable<any> {
+  public destroyByIdPythonEntidadeSaida(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoPythons/:fk";
+    "/ProcessoPythons/:id/pythonEntidadeSaida/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -276,11 +307,11 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Atualizar um item relacionado por ID para processoPythons.
+   * Atualizar um item relacionado por ID para pythonEntidadeSaida.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para processoPythons
+   * @param {any} fk Chave estrangeira para pythonEntidadeSaida
    *
    * @param {object} data Request data.
    *
@@ -292,13 +323,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public updateByIdProcessoPythons(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public updateByIdPythonEntidadeSaida(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoPythons/:fk";
+    "/ProcessoPythons/:id/pythonEntidadeSaida/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -312,9 +343,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * processoJavas consultas de Sistema.
+   * pythonMetodoServers consultas de ProcessoPython.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @param {object} filter 
    *
@@ -324,13 +355,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public getProcessoJavas(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
+  public getPythonMetodoServers(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoJavas";
+    "/ProcessoPythons/:id/pythonMetodoServers";
     let _routeParams: any = {
       id: id
     };
@@ -342,9 +373,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Cria uma nova instância no processoJavas deste modelo.
+   * Cria uma nova instância no pythonMetodoServers deste modelo.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @param {object} data Request data.
    *
@@ -356,13 +387,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public createProcessoJavas(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public createPythonMetodoServers(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoJavas";
+    "/ProcessoPythons/:id/pythonMetodoServers";
     let _routeParams: any = {
       id: id
     };
@@ -375,9 +406,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Exclui todos os processoJavas deste modelo.
+   * Exclui todos os pythonMetodoServers deste modelo.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -385,10 +416,10 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public deleteProcessoJavas(id: any, customHeaders?: Function): Observable<any> {
+  public deletePythonMetodoServers(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoJavas";
+    "/ProcessoPythons/:id/pythonMetodoServers";
     let _routeParams: any = {
       id: id
     };
@@ -399,9 +430,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * processoJavas contagens de Sistema.
+   * pythonMetodoServers contagens de ProcessoPython.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @param {object} where Criteria to match model instances
    *
@@ -413,10 +444,10 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    *  - `count` – `{number}` - 
    */
-  public countProcessoJavas(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
+  public countPythonMetodoServers(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoJavas/count";
+    "/ProcessoPythons/:id/pythonMetodoServers/count";
     let _routeParams: any = {
       id: id
     };
@@ -428,9 +459,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * entidades consultas de Sistema.
+   * pythonEntidadeEntrada consultas de ProcessoPython.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @param {object} filter 
    *
@@ -440,13 +471,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public getEntidades(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
+  public getPythonEntidadeEntrada(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/entidades";
+    "/ProcessoPythons/:id/pythonEntidadeEntrada";
     let _routeParams: any = {
       id: id
     };
@@ -458,9 +489,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Cria uma nova instância no entidades deste modelo.
+   * Cria uma nova instância no pythonEntidadeEntrada deste modelo.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @param {object} data Request data.
    *
@@ -472,13 +503,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public createEntidades(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public createPythonEntidadeEntrada(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/entidades";
+    "/ProcessoPythons/:id/pythonEntidadeEntrada";
     let _routeParams: any = {
       id: id
     };
@@ -491,9 +522,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Exclui todos os entidades deste modelo.
+   * Exclui todos os pythonEntidadeEntrada deste modelo.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -501,10 +532,10 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public deleteEntidades(id: any, customHeaders?: Function): Observable<any> {
+  public deletePythonEntidadeEntrada(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/entidades";
+    "/ProcessoPythons/:id/pythonEntidadeEntrada";
     let _routeParams: any = {
       id: id
     };
@@ -515,9 +546,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * entidades contagens de Sistema.
+   * pythonEntidadeEntrada contagens de ProcessoPython.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @param {object} where Criteria to match model instances
    *
@@ -529,10 +560,10 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    *  - `count` – `{number}` - 
    */
-  public countEntidades(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
+  public countPythonEntidadeEntrada(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/entidades/count";
+    "/ProcessoPythons/:id/pythonEntidadeEntrada/count";
     let _routeParams: any = {
       id: id
     };
@@ -544,9 +575,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * processoPythons consultas de Sistema.
+   * pythonEntidadeSaida consultas de ProcessoPython.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @param {object} filter 
    *
@@ -556,13 +587,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public getProcessoPythons(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
+  public getPythonEntidadeSaida(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoPythons";
+    "/ProcessoPythons/:id/pythonEntidadeSaida";
     let _routeParams: any = {
       id: id
     };
@@ -574,9 +605,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Cria uma nova instância no processoPythons deste modelo.
+   * Cria uma nova instância no pythonEntidadeSaida deste modelo.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @param {object} data Request data.
    *
@@ -588,13 +619,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public createProcessoPythons(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public createPythonEntidadeSaida(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoPythons";
+    "/ProcessoPythons/:id/pythonEntidadeSaida";
     let _routeParams: any = {
       id: id
     };
@@ -607,9 +638,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Exclui todos os processoPythons deste modelo.
+   * Exclui todos os pythonEntidadeSaida deste modelo.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -617,10 +648,10 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public deleteProcessoPythons(id: any, customHeaders?: Function): Observable<any> {
+  public deletePythonEntidadeSaida(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoPythons";
+    "/ProcessoPythons/:id/pythonEntidadeSaida";
     let _routeParams: any = {
       id: id
     };
@@ -631,9 +662,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * processoPythons contagens de Sistema.
+   * pythonEntidadeSaida contagens de ProcessoPython.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @param {object} where Criteria to match model instances
    *
@@ -645,10 +676,10 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    *  - `count` – `{number}` - 
    */
-  public countProcessoPythons(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
+  public countPythonEntidadeSaida(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoPythons/count";
+    "/ProcessoPythons/:id/pythonEntidadeSaida/count";
     let _routeParams: any = {
       id: id
     };
@@ -672,13 +703,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas";
+    "/ProcessoPythons";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -691,7 +722,7 @@ export class SistemaApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @param {object} data Request data.
    *
@@ -703,13 +734,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id";
+    "/ProcessoPythons/:id";
     let _routeParams: any = {
       id: id
     };
@@ -722,65 +753,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * <em>
-         * (The remote method definition does not provide any description.)
-         * </em>
+   * Cria uma nova instância no pythonMetodoServers deste modelo.
    *
-   * @param {number} idSistema 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
-   * </em>
-   */
-  public ObtemParaGerarJava(idSistema: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/obtemParaGerarJava";
-    let _routeParams: any = {};
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof idSistema !== 'undefined' && idSistema !== null) _urlParams.idSistema = idSistema;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * <em>
-         * (The remote method definition does not provide any description.)
-         * </em>
-   *
-   * @param {number} idSistema 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
-   * </em>
-   */
-  public ObtemParaGerarNode(idSistema: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/obtemParaGerarNode";
-    let _routeParams: any = {};
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof idSistema !== 'undefined' && idSistema !== null) _urlParams.idSistema = idSistema;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * Cria uma nova instância no processoJavas deste modelo.
-   *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @param {object} data Request data.
    *
@@ -792,13 +767,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public createManyProcessoJavas(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+  public createManyPythonMetodoServers(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoJavas";
+    "/ProcessoPythons/:id/pythonMetodoServers";
     let _routeParams: any = {
       id: id
     };
@@ -811,9 +786,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Cria uma nova instância no entidades deste modelo.
+   * Cria uma nova instância no pythonEntidadeEntrada deste modelo.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @param {object} data Request data.
    *
@@ -825,13 +800,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public createManyEntidades(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+  public createManyPythonEntidadeEntrada(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/entidades";
+    "/ProcessoPythons/:id/pythonEntidadeEntrada";
     let _routeParams: any = {
       id: id
     };
@@ -844,9 +819,9 @@ export class SistemaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Cria uma nova instância no processoPythons deste modelo.
+   * Cria uma nova instância no pythonEntidadeSaida deste modelo.
    *
-   * @param {any} id Sistema id
+   * @param {any} id ProcessoPython id
    *
    * @param {object} data Request data.
    *
@@ -858,13 +833,13 @@ export class SistemaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Sistema` object.)
+   * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public createManyProcessoPythons(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+  public createManyPythonEntidadeSaida(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Sistemas/:id/processoPythons";
+    "/ProcessoPythons/:id/pythonEntidadeSaida";
     let _routeParams: any = {
       id: id
     };
@@ -878,9 +853,9 @@ export class SistemaApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Sistema`.
+   * i.e. `ProcessoPython`.
    */
   public getModelName() {
-    return "Sistema";
+    return "ProcessoPython";
   }
 }

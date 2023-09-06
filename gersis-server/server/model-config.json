@@ -98,5 +98,21 @@
   "TelaFront": {
     "dataSource": "mysqlds",
     "public": true
+  },
+  "ProcessoPython": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "PythonMetodoServer": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "PythonEntidadeEntradaRel": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "PythonEntidadeSaidaRel": {
+    "dataSource": "mysqlds",
+    "public": true
   }
 }

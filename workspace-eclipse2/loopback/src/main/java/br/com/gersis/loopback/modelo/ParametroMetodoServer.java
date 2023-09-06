@@ -13,12 +13,14 @@ public class ParametroMetodoServer extends Model{
 	private String tipo;
 	private int posicao;
 	
-	public String getTipoJava() {
+	public String getTipoJava(Entidade entidade) {
 		if (tipo.indexOf("number-int")!=-1) return "int";
 		if (tipo.indexOf("number-double")!=-1) return "double";
 		if (tipo.indexOf("string")!=-1) return "String";
 		if (tipo.indexOf("date")!=-1) return "String";
-		if (tipo.indexOf("object")!=-1) return null;
+		//if (tipo.indexOf("object")!=-1) return null;
+		if (tipo.indexOf("object")!=-1) return entidade.getNome();
+		if (tipo.indexOf("array")!=-1) return "List<" + entidade.getNome() + ">";
 		return tipo;
 	}
 	public String getTipoNode() {
@@ -38,9 +40,7 @@ public class ParametroMetodoServer extends Model{
 	}
 	
 	public String getParametroFuncaoJava(Entidade entidade) {
-		if (tipo.indexOf("object")!=-1) return entidade.getNome() + " " + this.nome;
-		if (tipo.indexOf("array")!=-1) return "List<" + entidade.getNome() + "> " + this.nome;
-		return this.getTipoJava() + " " + this.nome;
+		return this.getTipoJava(entidade) + " " + this.nome;
 	}
 	
 	public String getNome() {

@@ -57,6 +57,11 @@ import { DadoProcessoEditComponent } from './dado-processo-edit/dado-processo-ed
 import { ParametroMetodoServerEditComponent } from './parametro-metodo-server-edit/parametro-metodo-server-edit.component';
 import { SaidaMetodoServerEditComponent } from './saida-metodo-server-edit/saida-metodo-server-edit.component';
 import { TelaFrontEditComponent } from './tela-front-edit/tela-front-edit.component';
+import { ProcessoPythonListComponent } from './processo-python-list/processo-python-list.component';
+import { ProcessoPythonEditComponent } from './processo-python-edit/processo-python-edit.component';
+import { ProcessoPythonDetalheComponent } from './processo-python-detalhe/processo-python-detalhe.component';
+import { EscolheEntidadeSaidaParaPythonComponent } from './escolhe-entidade-saida-para-python/escolhe-entidade-saida-para-python.component';
+import { EscolheEntidadeEntradaParaPythonComponent } from './escolhe-entidade-entrada-para-python/escolhe-entidade-entrada-para-python.component';
 
 //import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
@@ -89,7 +94,12 @@ registerLocaleData(localePt, 'pt-BR');
     DadoProcessoEditComponent,
     ParametroMetodoServerEditComponent,
     SaidaMetodoServerEditComponent,
-    TelaFrontEditComponent
+    TelaFrontEditComponent,
+    ProcessoPythonListComponent,
+    ProcessoPythonEditComponent,
+    ProcessoPythonDetalheComponent,
+    EscolheEntidadeSaidaParaPythonComponent,
+    EscolheEntidadeEntradaParaPythonComponent
   ],
   imports: [
     BrowserModule,
@@ -151,7 +161,10 @@ registerLocaleData(localePt, 'pt-BR');
     EscolheEntidadeSaidaParaProcessoComponent,
     DadoProcessoEditComponent,
     ParametroMetodoServerEditComponent,
-    TelaFrontEditComponent
+    TelaFrontEditComponent,
+    ProcessoPythonEditComponent,
+    EscolheEntidadeSaidaParaPythonComponent,
+    EscolheEntidadeEntradaParaPythonComponent
   ],
   bootstrap: [AppComponent]
 })

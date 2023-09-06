@@ -50,6 +50,16 @@
       "model": "ProcessoEntidadeSaidaRel",
       "foreignKey": ""
     },
+    "processoPythonComoEntrada": {
+      "type": "hasMany",
+      "model": "PythonEntidadeEntradaRel",
+      "foreignKey": ""
+    },
+    "processoPythonComoSaida": {
+      "type": "hasMany",
+      "model": "PythonEntidadeSaidaRel",
+      "foreignKey": ""
+    },
     "telaFronts": {
       "type": "hasMany",
       "model": "TelaFront",

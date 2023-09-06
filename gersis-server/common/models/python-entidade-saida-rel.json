@@ -1,0 +1,65 @@
+{
+  "name": "PythonEntidadeSaidaRel",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "entidadeId": {
+      "type": "number",
+      "id": true
+    },
+    "processoPythonId": {
+      "type": "number",
+      "id": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "entidade": {
+      "type": "belongsTo",
+      "model": "Entidade",
+      "foreignKey": ""
+    },
+    "processoPython": {
+      "type": "belongsTo",
+      "model": "ProcessoPython",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {
+    "AtualizaPorProcessoSaidaPython": {
+      "accepts": [
+        {
+          "arg": "idProcesso",
+          "type": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "arg": "lista",
+          "type": "array",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "result",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/atualizaPorProcessoSaidaPython",
+          "verb": "post"
+        }
+      ]
+    }
+  }
+}
