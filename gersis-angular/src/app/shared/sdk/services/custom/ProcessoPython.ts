@@ -12,9 +12,9 @@ import { map } from 'rxjs/operators';
 import { ProcessoPython } from '../../models/ProcessoPython';
 import { SocketConnection } from '../../sockets/socket.connections';
 import { Sistema } from '../../models/Sistema';
-import { PythonMetodoServer } from '../../models/PythonMetodoServer';
-import { PythonEntidadeEntradaRel } from '../../models/PythonEntidadeEntradaRel';
-import { PythonEntidadeSaidaRel } from '../../models/PythonEntidadeSaidaRel';
+import { ProcessoJava } from '../../models/ProcessoJava';
+import { PythonMetodoEntrada } from '../../models/PythonMetodoEntrada';
+import { PythonMetodoSaida } from '../../models/PythonMetodoSaida';
 
 
 /**
@@ -64,11 +64,11 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * Localize um item relacionado por ID para pythonMetodoServers.
+   * Busca relação processoJava de belongsTo.
    *
    * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para pythonMetodoServers
+   * @param {boolean} refresh 
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -79,10 +79,40 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public findByIdPythonMetodoServers(id: any, fk: any, customHeaders?: Function): Observable<any> {
+  public getProcessoJava(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonMetodoServers/:fk";
+    "/ProcessoPythons/:id/processoJava";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Localize um item relacionado por ID para pythonMetodoEntrada.
+   *
+   * @param {any} id ProcessoPython id
+   *
+   * @param {any} fk Chave estrangeira para pythonMetodoEntrada
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `ProcessoPython` object.)
+   * </em>
+   */
+  public findByIdPythonMetodoEntrada(id: any, fk: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/ProcessoPythons/:id/pythonMetodoEntrada/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -94,11 +124,11 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * Excluir um item relacionado por ID para pythonMetodoServers.
+   * Excluir um item relacionado por ID para pythonMetodoEntrada.
    *
    * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para pythonMetodoServers
+   * @param {any} fk Chave estrangeira para pythonMetodoEntrada
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -106,10 +136,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public destroyByIdPythonMetodoServers(id: any, fk: any, customHeaders?: Function): Observable<any> {
+  public destroyByIdPythonMetodoEntrada(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonMetodoServers/:fk";
+    "/ProcessoPythons/:id/pythonMetodoEntrada/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -121,11 +151,11 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * Atualizar um item relacionado por ID para pythonMetodoServers.
+   * Atualizar um item relacionado por ID para pythonMetodoEntrada.
    *
    * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para pythonMetodoServers
+   * @param {any} fk Chave estrangeira para pythonMetodoEntrada
    *
    * @param {object} data Request data.
    *
@@ -140,10 +170,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public updateByIdPythonMetodoServers(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public updateByIdPythonMetodoEntrada(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonMetodoServers/:fk";
+    "/ProcessoPythons/:id/pythonMetodoEntrada/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -157,11 +187,11 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * Localize um item relacionado por ID para pythonEntidadeEntrada.
+   * Localize um item relacionado por ID para pythonMetodoSaida.
    *
    * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para pythonEntidadeEntrada
+   * @param {any} fk Chave estrangeira para pythonMetodoSaida
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -172,10 +202,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public findByIdPythonEntidadeEntrada(id: any, fk: any, customHeaders?: Function): Observable<any> {
+  public findByIdPythonMetodoSaida(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeEntrada/:fk";
+    "/ProcessoPythons/:id/pythonMetodoSaida/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -187,11 +217,11 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * Excluir um item relacionado por ID para pythonEntidadeEntrada.
+   * Excluir um item relacionado por ID para pythonMetodoSaida.
    *
    * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para pythonEntidadeEntrada
+   * @param {any} fk Chave estrangeira para pythonMetodoSaida
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -199,10 +229,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public destroyByIdPythonEntidadeEntrada(id: any, fk: any, customHeaders?: Function): Observable<any> {
+  public destroyByIdPythonMetodoSaida(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeEntrada/:fk";
+    "/ProcessoPythons/:id/pythonMetodoSaida/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -214,11 +244,11 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * Atualizar um item relacionado por ID para pythonEntidadeEntrada.
+   * Atualizar um item relacionado por ID para pythonMetodoSaida.
    *
    * @param {any} id ProcessoPython id
    *
-   * @param {any} fk Chave estrangeira para pythonEntidadeEntrada
+   * @param {any} fk Chave estrangeira para pythonMetodoSaida
    *
    * @param {object} data Request data.
    *
@@ -233,10 +263,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public updateByIdPythonEntidadeEntrada(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public updateByIdPythonMetodoSaida(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeEntrada/:fk";
+    "/ProcessoPythons/:id/pythonMetodoSaida/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -250,100 +280,7 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * Localize um item relacionado por ID para pythonEntidadeSaida.
-   *
-   * @param {any} id ProcessoPython id
-   *
-   * @param {any} fk Chave estrangeira para pythonEntidadeSaida
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `ProcessoPython` object.)
-   * </em>
-   */
-  public findByIdPythonEntidadeSaida(id: any, fk: any, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeSaida/:fk";
-    let _routeParams: any = {
-      id: id,
-      fk: fk
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * Excluir um item relacionado por ID para pythonEntidadeSaida.
-   *
-   * @param {any} id ProcessoPython id
-   *
-   * @param {any} fk Chave estrangeira para pythonEntidadeSaida
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * This method returns no data.
-   */
-  public destroyByIdPythonEntidadeSaida(id: any, fk: any, customHeaders?: Function): Observable<any> {
-    let _method: string = "DELETE";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeSaida/:fk";
-    let _routeParams: any = {
-      id: id,
-      fk: fk
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * Atualizar um item relacionado por ID para pythonEntidadeSaida.
-   *
-   * @param {any} id ProcessoPython id
-   *
-   * @param {any} fk Chave estrangeira para pythonEntidadeSaida
-   *
-   * @param {object} data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `ProcessoPython` object.)
-   * </em>
-   */
-  public updateByIdPythonEntidadeSaida(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "PUT";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeSaida/:fk";
-    let _routeParams: any = {
-      id: id,
-      fk: fk
-    };
-    let _postBody: any = {
-      data: data
-    };
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * pythonMetodoServers consultas de ProcessoPython.
+   * pythonMetodoEntrada consultas de ProcessoPython.
    *
    * @param {any} id ProcessoPython id
    *
@@ -358,10 +295,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public getPythonMetodoServers(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
+  public getPythonMetodoEntrada(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonMetodoServers";
+    "/ProcessoPythons/:id/pythonMetodoEntrada";
     let _routeParams: any = {
       id: id
     };
@@ -373,7 +310,7 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * Cria uma nova instância no pythonMetodoServers deste modelo.
+   * Cria uma nova instância no pythonMetodoEntrada deste modelo.
    *
    * @param {any} id ProcessoPython id
    *
@@ -390,10 +327,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public createPythonMetodoServers(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public createPythonMetodoEntrada(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonMetodoServers";
+    "/ProcessoPythons/:id/pythonMetodoEntrada";
     let _routeParams: any = {
       id: id
     };
@@ -406,7 +343,7 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * Exclui todos os pythonMetodoServers deste modelo.
+   * Exclui todos os pythonMetodoEntrada deste modelo.
    *
    * @param {any} id ProcessoPython id
    *
@@ -416,10 +353,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public deletePythonMetodoServers(id: any, customHeaders?: Function): Observable<any> {
+  public deletePythonMetodoEntrada(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonMetodoServers";
+    "/ProcessoPythons/:id/pythonMetodoEntrada";
     let _routeParams: any = {
       id: id
     };
@@ -430,7 +367,7 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * pythonMetodoServers contagens de ProcessoPython.
+   * pythonMetodoEntrada contagens de ProcessoPython.
    *
    * @param {any} id ProcessoPython id
    *
@@ -444,10 +381,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    *
    *  - `count` – `{number}` - 
    */
-  public countPythonMetodoServers(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
+  public countPythonMetodoEntrada(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonMetodoServers/count";
+    "/ProcessoPythons/:id/pythonMetodoEntrada/count";
     let _routeParams: any = {
       id: id
     };
@@ -459,7 +396,7 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * pythonEntidadeEntrada consultas de ProcessoPython.
+   * pythonMetodoSaida consultas de ProcessoPython.
    *
    * @param {any} id ProcessoPython id
    *
@@ -474,10 +411,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public getPythonEntidadeEntrada(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
+  public getPythonMetodoSaida(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeEntrada";
+    "/ProcessoPythons/:id/pythonMetodoSaida";
     let _routeParams: any = {
       id: id
     };
@@ -489,7 +426,7 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * Cria uma nova instância no pythonEntidadeEntrada deste modelo.
+   * Cria uma nova instância no pythonMetodoSaida deste modelo.
    *
    * @param {any} id ProcessoPython id
    *
@@ -506,10 +443,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public createPythonEntidadeEntrada(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public createPythonMetodoSaida(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeEntrada";
+    "/ProcessoPythons/:id/pythonMetodoSaida";
     let _routeParams: any = {
       id: id
     };
@@ -522,7 +459,7 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * Exclui todos os pythonEntidadeEntrada deste modelo.
+   * Exclui todos os pythonMetodoSaida deste modelo.
    *
    * @param {any} id ProcessoPython id
    *
@@ -532,10 +469,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public deletePythonEntidadeEntrada(id: any, customHeaders?: Function): Observable<any> {
+  public deletePythonMetodoSaida(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeEntrada";
+    "/ProcessoPythons/:id/pythonMetodoSaida";
     let _routeParams: any = {
       id: id
     };
@@ -546,7 +483,7 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * pythonEntidadeEntrada contagens de ProcessoPython.
+   * pythonMetodoSaida contagens de ProcessoPython.
    *
    * @param {any} id ProcessoPython id
    *
@@ -560,126 +497,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    *
    *  - `count` – `{number}` - 
    */
-  public countPythonEntidadeEntrada(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
+  public countPythonMetodoSaida(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeEntrada/count";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof where !== 'undefined' && where !== null) _urlParams.where = where;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * pythonEntidadeSaida consultas de ProcessoPython.
-   *
-   * @param {any} id ProcessoPython id
-   *
-   * @param {object} filter 
-   *
-   * @returns {object[]} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `ProcessoPython` object.)
-   * </em>
-   */
-  public getPythonEntidadeSaida(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeSaida";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof filter !== 'undefined' && filter !== null) _urlParams.filter = filter;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * Cria uma nova instância no pythonEntidadeSaida deste modelo.
-   *
-   * @param {any} id ProcessoPython id
-   *
-   * @param {object} data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `ProcessoPython` object.)
-   * </em>
-   */
-  public createPythonEntidadeSaida(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "POST";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeSaida";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {
-      data: data
-    };
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * Exclui todos os pythonEntidadeSaida deste modelo.
-   *
-   * @param {any} id ProcessoPython id
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * This method returns no data.
-   */
-  public deletePythonEntidadeSaida(id: any, customHeaders?: Function): Observable<any> {
-    let _method: string = "DELETE";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeSaida";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * pythonEntidadeSaida contagens de ProcessoPython.
-   *
-   * @param {any} id ProcessoPython id
-   *
-   * @param {object} where Criteria to match model instances
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * Data properties:
-   *
-   *  - `count` – `{number}` - 
-   */
-  public countPythonEntidadeSaida(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeSaida/count";
+    "/ProcessoPythons/:id/pythonMetodoSaida/count";
     let _routeParams: any = {
       id: id
     };
@@ -753,7 +574,7 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * Cria uma nova instância no pythonMetodoServers deste modelo.
+   * Cria uma nova instância no pythonMetodoEntrada deste modelo.
    *
    * @param {any} id ProcessoPython id
    *
@@ -770,10 +591,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public createManyPythonMetodoServers(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+  public createManyPythonMetodoEntrada(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonMetodoServers";
+    "/ProcessoPythons/:id/pythonMetodoEntrada";
     let _routeParams: any = {
       id: id
     };
@@ -786,7 +607,7 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
   }
 
   /**
-   * Cria uma nova instância no pythonEntidadeEntrada deste modelo.
+   * Cria uma nova instância no pythonMetodoSaida deste modelo.
    *
    * @param {any} id ProcessoPython id
    *
@@ -803,43 +624,10 @@ export class ProcessoPythonApi extends BaseLoopBackApi {
    * This usually means the response is a `ProcessoPython` object.)
    * </em>
    */
-  public createManyPythonEntidadeEntrada(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+  public createManyPythonMetodoSaida(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeEntrada";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {
-      data: data
-    };
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * Cria uma nova instância no pythonEntidadeSaida deste modelo.
-   *
-   * @param {any} id ProcessoPython id
-   *
-   * @param {object} data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns {object[]} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `ProcessoPython` object.)
-   * </em>
-   */
-  public createManyPythonEntidadeSaida(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
-    let _method: string = "POST";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/ProcessoPythons/:id/pythonEntidadeSaida";
+    "/ProcessoPythons/:id/pythonMetodoSaida";
     let _routeParams: any = {
       id: id
     };

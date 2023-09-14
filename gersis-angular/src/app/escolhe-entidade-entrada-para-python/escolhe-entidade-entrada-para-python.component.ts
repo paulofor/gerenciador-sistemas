@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { BaseSelecionaEditComponent } from '../base-component/base-seleciona-component';
-import { EntidadeApi, PythonEntidadeEntradaRelApi, PythonEntidadeEntradaRel } from '../shared/sdk';
+import { MetodoServerApi, PythonMetodoEntradaApi, PythonMetodoEntrada } from '../shared/sdk';
+
+
 
 @Component({
   selector: 'app-escolhe-entidade-entrada-para-python',
@@ -16,7 +18,7 @@ export class EscolheEntidadeEntradaParaPythonComponent extends BaseSelecionaEdit
 
 
   constructor(protected dialogRef: MatDialogRef<any>
-    , @Inject(MAT_DIALOG_DATA) protected data: any, protected srvItem: EntidadeApi, protected srvRel: PythonEntidadeEntradaRelApi
+    , @Inject(MAT_DIALOG_DATA) protected data: any, protected srvItem: MetodoServerApi, protected srvRel: PythonMetodoEntradaApi
   ) {
     super(dialogRef, data, srvItem, srvRel );
   }  
@@ -26,31 +28,31 @@ export class EscolheEntidadeEntradaParaPythonComponent extends BaseSelecionaEdit
     return "processoPythonComoEntrada";
   }
   criaRelacionamento() {
-    return new PythonEntidadeEntradaRel();
+    return new PythonMetodoEntrada();
   }
   getNomeChaveItem(): string {
     return "id";
   }
   getNomeChaveItemNoRelacionamento(): string {
-    return "entidadeId";
+    return "metodoServerId";
   }
   getNomeChaveOrigemNoRelacionamento(): string {
     return "processoPythonId";
   }
   getNomeFuncaoAtualizacaoRelacionamento(): string {
-    return "AtualizaPorProcessoPythonEntrada";
+    return "AtualizaPorProcessoEntrada";
   }
 
   getFiltro() {
     return {
       'where' : {'sistemaId' : this.origem.sistemaId},
       'order' : 'nome',
-      'include' : {
+      'include' : ['entidade', {
         'relation' : 'processoPythonComoEntrada',
         'scope' : {
-          'where' : {'entidadeId' : this.origem.id }
+          'where' : {'processoPythonId' : this.origem.id }
         } 
-      }
+      }]
     }
   }
 

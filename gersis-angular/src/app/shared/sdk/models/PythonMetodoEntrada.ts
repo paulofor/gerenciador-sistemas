@@ -1,40 +1,40 @@
 /* tslint:disable */
 import {
-  Entidade,
+  MetodoServer,
   ProcessoPython
 } from '../index';
 
 declare var Object: any;
-export interface PythonEntidadeEntradaRelInterface {
-  "entidadeId"?: number;
+export interface PythonMetodoEntradaInterface {
+  "metodoServerId"?: number;
   "processoPythonId"?: number;
-  entidade?: Entidade;
+  metodoServer?: MetodoServer;
   processoPython?: ProcessoPython;
 }
 
-export class PythonEntidadeEntradaRel implements PythonEntidadeEntradaRelInterface {
-  "entidadeId": number;
+export class PythonMetodoEntrada implements PythonMetodoEntradaInterface {
+  "metodoServerId": number;
   "processoPythonId": number;
-  entidade: Entidade;
+  metodoServer: MetodoServer;
   processoPython: ProcessoPython;
-  constructor(data?: PythonEntidadeEntradaRelInterface) {
+  constructor(data?: PythonMetodoEntradaInterface) {
     Object.assign(this, data);
   }
   /**
    * The name of the model represented by this $resource,
-   * i.e. `PythonEntidadeEntradaRel`.
+   * i.e. `PythonMetodoEntrada`.
    */
   public static getModelName() {
-    return "PythonEntidadeEntradaRel";
+    return "PythonMetodoEntrada";
   }
   /**
   * @method factory
   * @author Jonathan Casarrubias
   * @license MIT
-  * This method creates an instance of PythonEntidadeEntradaRel for dynamic purposes.
+  * This method creates an instance of PythonMetodoEntrada for dynamic purposes.
   **/
-  public static factory(data: PythonEntidadeEntradaRelInterface): PythonEntidadeEntradaRel{
-    return new PythonEntidadeEntradaRel(data);
+  public static factory(data: PythonMetodoEntradaInterface): PythonMetodoEntrada{
+    return new PythonMetodoEntrada(data);
   }
   /**
   * @method getModelDefinition
@@ -45,13 +45,13 @@ export class PythonEntidadeEntradaRel implements PythonEntidadeEntradaRelInterfa
   **/
   public static getModelDefinition() {
     return {
-      name: 'PythonEntidadeEntradaRel',
-      plural: 'PythonEntidadeEntradaRels',
-      path: 'PythonEntidadeEntradaRels',
-      idName: 'entidadeId',
+      name: 'PythonMetodoEntrada',
+      plural: 'PythonMetodoEntradas',
+      path: 'PythonMetodoEntradas',
+      idName: 'metodoServerId',
       properties: {
-        "entidadeId": {
-          name: 'entidadeId',
+        "metodoServerId": {
+          name: 'metodoServerId',
           type: 'number'
         },
         "processoPythonId": {
@@ -60,12 +60,12 @@ export class PythonEntidadeEntradaRel implements PythonEntidadeEntradaRelInterfa
         },
       },
       relations: {
-        entidade: {
-          name: 'entidade',
-          type: 'Entidade',
-          model: 'Entidade',
+        metodoServer: {
+          name: 'metodoServer',
+          type: 'MetodoServer',
+          model: 'MetodoServer',
           relationType: 'belongsTo',
-                  keyFrom: 'entidadeId',
+                  keyFrom: 'metodoServerId',
           keyTo: 'id'
         },
         processoPython: {

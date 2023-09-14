@@ -9,6 +9,7 @@ import { EntidadeDetalheComponent } from '../entidade-detalhe/entidade-detalhe.c
 import { ProcessoJavaDetalheComponent } from '../processo-java-detalhe/processo-java-detalhe.component';
 import { ProcessoPythonListComponent } from '../processo-python-list/processo-python-list.component';
 import { ProcessoPythonDetalheComponent } from '../processo-python-detalhe/processo-python-detalhe.component';
+import { AtividadeSistemaListComponent } from '../atividade-sistema-list/atividade-sistema-list.component';
 
 
 
@@ -22,10 +23,12 @@ export const routes : Routes = [
     { path: 'entidade/:idSistema' , component: EntidadeListComponent },
     { path: 'processoJava/:idSistema', component: ProcessoJavaListComponent },
     { path: 'processoPython/:idSistema', component: ProcessoPythonListComponent },
+    { path: 'atividadeSistema/:idSistema' , component : AtividadeSistemaListComponent },
 
     { path: 'entidadeDetalhe/:id' , component : EntidadeDetalheComponent },
     { path: 'processoJavaDetalhe/:id' , component : ProcessoJavaDetalheComponent },
     { path: 'processoPythonDetalhe/:id' , component : ProcessoPythonDetalheComponent },
+ 
 
     { path: '',  component: HomeComponent  }
     //{ path: '',          redirectTo: 'home', pathMatch: 'full' }

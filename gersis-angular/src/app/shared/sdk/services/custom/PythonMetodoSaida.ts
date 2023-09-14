@@ -9,17 +9,17 @@ import { LoopBackFilter,  } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { PythonEntidadeSaidaRel } from '../../models/PythonEntidadeSaidaRel';
+import { PythonMetodoSaida } from '../../models/PythonMetodoSaida';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { Entidade } from '../../models/Entidade';
+import { MetodoServer } from '../../models/MetodoServer';
 import { ProcessoPython } from '../../models/ProcessoPython';
 
 
 /**
- * Api services for the `PythonEntidadeSaidaRel` model.
+ * Api services for the `PythonMetodoSaida` model.
  */
 @Injectable()
-export class PythonEntidadeSaidaRelApi extends BaseLoopBackApi {
+export class PythonMetodoSaidaApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -32,9 +32,9 @@ export class PythonEntidadeSaidaRelApi extends BaseLoopBackApi {
   }
 
   /**
-   * Busca relação entidade de belongsTo.
+   * Busca relação metodoServer de belongsTo.
    *
-   * @param {any} id PythonEntidadeSaidaRel id
+   * @param {any} id PythonMetodoSaida id
    *
    * @param {boolean} refresh 
    *
@@ -44,13 +44,13 @@ export class PythonEntidadeSaidaRelApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PythonEntidadeSaidaRel` object.)
+   * This usually means the response is a `PythonMetodoSaida` object.)
    * </em>
    */
-  public getEntidade(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getMetodoServer(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PythonEntidadeSaidaRels/:id/entidade";
+    "/PythonMetodoSaidas/:id/metodoServer";
     let _routeParams: any = {
       id: id
     };
@@ -64,7 +64,7 @@ export class PythonEntidadeSaidaRelApi extends BaseLoopBackApi {
   /**
    * Busca relação processoPython de belongsTo.
    *
-   * @param {any} id PythonEntidadeSaidaRel id
+   * @param {any} id PythonMetodoSaida id
    *
    * @param {boolean} refresh 
    *
@@ -74,13 +74,13 @@ export class PythonEntidadeSaidaRelApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PythonEntidadeSaidaRel` object.)
+   * This usually means the response is a `PythonMetodoSaida` object.)
    * </em>
    */
   public getProcessoPython(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PythonEntidadeSaidaRels/:id/processoPython";
+    "/PythonMetodoSaidas/:id/processoPython";
     let _routeParams: any = {
       id: id
     };
@@ -104,13 +104,13 @@ export class PythonEntidadeSaidaRelApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PythonEntidadeSaidaRel` object.)
+   * This usually means the response is a `PythonMetodoSaida` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PythonEntidadeSaidaRels";
+    "/PythonMetodoSaidas";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -123,7 +123,7 @@ export class PythonEntidadeSaidaRelApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id PythonEntidadeSaidaRel id
+   * @param {any} id PythonMetodoSaida id
    *
    * @param {object} data Request data.
    *
@@ -135,13 +135,13 @@ export class PythonEntidadeSaidaRelApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PythonEntidadeSaidaRel` object.)
+   * This usually means the response is a `PythonMetodoSaida` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PythonEntidadeSaidaRels/:id";
+    "/PythonMetodoSaidas/:id";
     let _routeParams: any = {
       id: id
     };
@@ -170,13 +170,13 @@ export class PythonEntidadeSaidaRelApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PythonEntidadeSaidaRel` object.)
+   * This usually means the response is a `PythonMetodoSaida` object.)
    * </em>
    */
-  public AtualizaPorProcessoSaidaPython(idProcesso: any = {}, lista: any = {}, customHeaders?: Function): Observable<any> {
+  public AtualizaPorProcessoSaida(idProcesso: any = {}, lista: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PythonEntidadeSaidaRels/atualizaPorProcessoSaidaPython";
+    "/PythonMetodoSaidas/atualizaPorProcessoSaida";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
@@ -188,9 +188,9 @@ export class PythonEntidadeSaidaRelApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `PythonEntidadeSaidaRel`.
+   * i.e. `PythonMetodoSaida`.
    */
   public getModelName() {
-    return "PythonEntidadeSaidaRel";
+    return "PythonMetodoSaida";
   }
 }

@@ -103,15 +103,15 @@
     "dataSource": "mysqlds",
     "public": true
   },
-  "PythonMetodoServer": {
+  "AtividadeSistema": {
     "dataSource": "mysqlds",
     "public": true
   },
-  "PythonEntidadeEntradaRel": {
+  "PythonMetodoEntrada": {
     "dataSource": "mysqlds",
     "public": true
   },
-  "PythonEntidadeSaidaRel": {
+  "PythonMetodoSaida": {
     "dataSource": "mysqlds",
     "public": true
   }

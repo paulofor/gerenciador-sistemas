@@ -6,7 +6,7 @@
 
     <div *ngFor="let item of listaItem; let i = index;">
       <mat-checkbox  [checked]="getCheck(item)"  (change)="onChange($event, i, item)">
-        <span>{{item.nome}}</span>
+        <span>{{item.nome}} - {{item.entidade.nome}}</span>
       </mat-checkbox>
     </div>
 

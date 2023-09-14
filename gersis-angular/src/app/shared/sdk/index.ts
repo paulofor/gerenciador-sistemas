@@ -66,9 +66,9 @@ import { DadoPassoProcessoSaidaRelApi } from './services/custom/DadoPassoProcess
 import { ProcessoMetodoRelApi } from './services/custom/ProcessoMetodoRel';
 import { TelaFrontApi } from './services/custom/TelaFront';
 import { ProcessoPythonApi } from './services/custom/ProcessoPython';
-import { PythonMetodoServerApi } from './services/custom/PythonMetodoServer';
-import { PythonEntidadeEntradaRelApi } from './services/custom/PythonEntidadeEntradaRel';
-import { PythonEntidadeSaidaRelApi } from './services/custom/PythonEntidadeSaidaRel';
+import { AtividadeSistemaApi } from './services/custom/AtividadeSistema';
+import { PythonMetodoEntradaApi } from './services/custom/PythonMetodoEntrada';
+import { PythonMetodoSaidaApi } from './services/custom/PythonMetodoSaida';
 /**
 * @module SDKBrowserModule
 * @description
@@ -117,9 +117,9 @@ export class SDKBrowserModule {
         ProcessoMetodoRelApi,
         TelaFrontApi,
         ProcessoPythonApi,
-        PythonMetodoServerApi,
-        PythonEntidadeEntradaRelApi,
-        PythonEntidadeSaidaRelApi,
+        AtividadeSistemaApi,
+        PythonMetodoEntradaApi,
+        PythonMetodoSaidaApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser }
       ]

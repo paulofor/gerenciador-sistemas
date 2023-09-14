@@ -1,25 +1,29 @@
 {
-  "name": "PythonMetodoServer",
+  "name": "AtividadeSistema",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "metodoServerId": {
-      "type": "number",
-      "id": true
+    "nome": {
+      "type": "string"
     },
-    "processoPythonId": {
-      "type": "number",
-      "id": true
+    "descricao": {
+      "type": "string"
+    },
+    "melhoria": {
+      "type": "string"
+    },
+    "ocorrencia": {
+      "type": "string"
     }
   },
   "validations": [],
   "relations": {
-    "metodoServer": {
+    "sistema": {
       "type": "belongsTo",
-      "model": "MetodoServer",
+      "model": "Sistema",
       "foreignKey": ""
     }
   },

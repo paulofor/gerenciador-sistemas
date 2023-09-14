@@ -3,7 +3,9 @@ import {
   ParametroMetodoServer,
   PassoProcessoJava,
   Entidade,
-  ProcessoMetodoRel
+  ProcessoMetodoRel,
+  PythonMetodoEntrada,
+  PythonMetodoSaida
 } from '../index';
 
 declare var Object: any;
@@ -18,6 +20,8 @@ export interface MetodoServerInterface {
   passoProcessoJavas?: PassoProcessoJava[];
   entidade?: Entidade;
   processoMetodoRels?: ProcessoMetodoRel[];
+  processoPythonComoEntrada?: PythonMetodoEntrada[];
+  processoPythonComoSaida?: PythonMetodoSaida[];
 }
 
 export class MetodoServer implements MetodoServerInterface {
@@ -31,6 +35,8 @@ export class MetodoServer implements MetodoServerInterface {
   passoProcessoJavas: PassoProcessoJava[];
   entidade: Entidade;
   processoMetodoRels: ProcessoMetodoRel[];
+  processoPythonComoEntrada: PythonMetodoEntrada[];
+  processoPythonComoSaida: PythonMetodoSaida[];
   constructor(data?: MetodoServerInterface) {
     Object.assign(this, data);
   }
@@ -118,6 +124,22 @@ export class MetodoServer implements MetodoServerInterface {
           name: 'processoMetodoRels',
           type: 'ProcessoMetodoRel[]',
           model: 'ProcessoMetodoRel',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'metodoServerId'
+        },
+        processoPythonComoEntrada: {
+          name: 'processoPythonComoEntrada',
+          type: 'PythonMetodoEntrada[]',
+          model: 'PythonMetodoEntrada',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'metodoServerId'
+        },
+        processoPythonComoSaida: {
+          name: 'processoPythonComoSaida',
+          type: 'PythonMetodoSaida[]',
+          model: 'PythonMetodoSaida',
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'metodoServerId'

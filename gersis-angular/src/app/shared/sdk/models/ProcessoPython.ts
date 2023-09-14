@@ -1,30 +1,36 @@
 /* tslint:disable */
 import {
   Sistema,
-  PythonMetodoServer,
-  PythonEntidadeEntradaRel,
-  PythonEntidadeSaidaRel
+  ProcessoJava,
+  PythonMetodoEntrada,
+  PythonMetodoSaida
 } from '../index';
 
 declare var Object: any;
 export interface ProcessoPythonInterface {
   "nomeArquivo"?: string;
+  "tipoExecucao"?: string;
+  "cron"?: string;
   "id"?: number;
   "sistemaId"?: number;
+  "processoJavaId"?: number;
   sistema?: Sistema;
-  pythonMetodoServers?: PythonMetodoServer[];
-  pythonEntidadeEntrada?: PythonEntidadeEntradaRel[];
-  pythonEntidadeSaida?: PythonEntidadeSaidaRel[];
+  processoJava?: ProcessoJava;
+  pythonMetodoEntrada?: PythonMetodoEntrada[];
+  pythonMetodoSaida?: PythonMetodoSaida[];
 }
 
 export class ProcessoPython implements ProcessoPythonInterface {
   "nomeArquivo": string;
+  "tipoExecucao": string;
+  "cron": string;
   "id": number;
   "sistemaId": number;
+  "processoJavaId": number;
   sistema: Sistema;
-  pythonMetodoServers: PythonMetodoServer[];
-  pythonEntidadeEntrada: PythonEntidadeEntradaRel[];
-  pythonEntidadeSaida: PythonEntidadeSaidaRel[];
+  processoJava: ProcessoJava;
+  pythonMetodoEntrada: PythonMetodoEntrada[];
+  pythonMetodoSaida: PythonMetodoSaida[];
   constructor(data?: ProcessoPythonInterface) {
     Object.assign(this, data);
   }
@@ -62,12 +68,24 @@ export class ProcessoPython implements ProcessoPythonInterface {
           name: 'nomeArquivo',
           type: 'string'
         },
+        "tipoExecucao": {
+          name: 'tipoExecucao',
+          type: 'string'
+        },
+        "cron": {
+          name: 'cron',
+          type: 'string'
+        },
         "id": {
           name: 'id',
           type: 'number'
         },
         "sistemaId": {
           name: 'sistemaId',
+          type: 'number'
+        },
+        "processoJavaId": {
+          name: 'processoJavaId',
           type: 'number'
         },
       },
@@ -80,26 +98,26 @@ export class ProcessoPython implements ProcessoPythonInterface {
                   keyFrom: 'sistemaId',
           keyTo: 'id'
         },
-        pythonMetodoServers: {
-          name: 'pythonMetodoServers',
-          type: 'PythonMetodoServer[]',
-          model: 'PythonMetodoServer',
+        processoJava: {
+          name: 'processoJava',
+          type: 'ProcessoJava',
+          model: 'ProcessoJava',
+          relationType: 'belongsTo',
+                  keyFrom: 'processoJavaId',
+          keyTo: 'id'
+        },
+        pythonMetodoEntrada: {
+          name: 'pythonMetodoEntrada',
+          type: 'PythonMetodoEntrada[]',
+          model: 'PythonMetodoEntrada',
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'processoPythonId'
         },
-        pythonEntidadeEntrada: {
-          name: 'pythonEntidadeEntrada',
-          type: 'PythonEntidadeEntradaRel[]',
-          model: 'PythonEntidadeEntradaRel',
-          relationType: 'hasMany',
-                  keyFrom: 'id',
-          keyTo: 'processoPythonId'
-        },
-        pythonEntidadeSaida: {
-          name: 'pythonEntidadeSaida',
-          type: 'PythonEntidadeSaidaRel[]',
-          model: 'PythonEntidadeSaidaRel',
+        pythonMetodoSaida: {
+          name: 'pythonMetodoSaida',
+          type: 'PythonMetodoSaida[]',
+          model: 'PythonMetodoSaida',
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'processoPythonId'

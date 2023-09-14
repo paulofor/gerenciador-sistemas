@@ -8,6 +8,12 @@
   "properties": {
     "nomeArquivo": {
       "type": "string"
+    },
+    "tipoExecucao": {
+      "type": "string"
+    },
+    "cron": {
+      "type": "string"
     }
   },
   "validations": [],
@@ -17,19 +23,19 @@
       "model": "Sistema",
       "foreignKey": ""
     },
-    "pythonMetodoServers": {
-      "type": "hasMany",
-      "model": "PythonMetodoServer",
+    "processoJava": {
+      "type": "belongsTo",
+      "model": "ProcessoJava",
       "foreignKey": ""
     },
-    "pythonEntidadeEntrada": {
+    "pythonMetodoEntrada": {
       "type": "hasMany",
-      "model": "PythonEntidadeEntradaRel",
+      "model": "PythonMetodoEntrada",
       "foreignKey": ""
     },
-    "pythonEntidadeSaida": {
+    "pythonMetodoSaida": {
       "type": "hasMany",
-      "model": "PythonEntidadeSaidaRel",
+      "model": "PythonMetodoSaida",
       "foreignKey": ""
     }
   },

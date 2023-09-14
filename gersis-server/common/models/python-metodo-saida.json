@@ -1,12 +1,12 @@
 {
-  "name": "PythonEntidadeSaidaRel",
+  "name": "PythonMetodoSaida",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "entidadeId": {
+    "metodoServerId": {
       "type": "number",
       "id": true
     },
@@ -17,9 +17,9 @@
   },
   "validations": [],
   "relations": {
-    "entidade": {
+    "metodoServer": {
       "type": "belongsTo",
-      "model": "Entidade",
+      "model": "MetodoServer",
       "foreignKey": ""
     },
     "processoPython": {
@@ -30,7 +30,7 @@
   },
   "acls": [],
   "methods": {
-    "AtualizaPorProcessoSaidaPython": {
+    "AtualizaPorProcessoSaida": {
       "accepts": [
         {
           "arg": "idProcesso",
@@ -56,7 +56,7 @@
       "description": "",
       "http": [
         {
-          "path": "/atualizaPorProcessoSaidaPython",
+          "path": "/atualizaPorProcessoSaida",
           "verb": "post"
         }
       ]

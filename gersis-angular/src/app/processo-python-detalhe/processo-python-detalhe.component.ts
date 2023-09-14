@@ -22,8 +22,8 @@ export class ProcessoPythonDetalheComponent extends BaseItemIdComponent {
   getFiltro() {
     return {
       'include': [ 
-        { 'relation' : 'pythonEntidadeEntrada', 'scope' : {'include' : 'entidade'}},
-        { 'relation' : 'pythonEntidadeSaida' , 'scope' : {'include' : 'entidade'}}
+        { 'relation' : 'pythonMetodoEntrada', 'scope' : {'include' : {'relation': 'metodoServer' , 'scope' : {'include' : 'entidade'}}}},
+        { 'relation' : 'pythonMetodoSaida' , 'scope' : {'include' : {'relation': 'metodoServer' , 'scope' : {'include' : 'entidade'}}}}
       ]
     }
   }

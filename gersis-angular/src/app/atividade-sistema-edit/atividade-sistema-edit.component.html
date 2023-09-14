@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Atividades no Sistema</h2>
+
+<form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+ 
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="50" #nomeArquivo [(ngModel)]="item.nome" name="nome" placeholder="Nome" autocomplete="off" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea rows="6" matInput #descricao [(ngModel)]="item.descricao" name="descricao" placeholder="Descrição" ></textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea rows="3" matInput #ocorrencia [(ngModel)]="item.ocorrencia" name="ocorrencia" placeholder="Ocorrência" ></textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea rows="3" matInput #melhoria [(ngModel)]="item.melhoria" name="melhoria" placeholder="Melhoria" ></textarea>
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button>Salvar</button>
+    <button mat-raised-button mat-dialog-close>Fechar</button>
+  </mat-dialog-actions>

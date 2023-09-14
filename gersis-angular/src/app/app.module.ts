@@ -62,6 +62,8 @@ import { ProcessoPythonEditComponent } from './processo-python-edit/processo-pyt
 import { ProcessoPythonDetalheComponent } from './processo-python-detalhe/processo-python-detalhe.component';
 import { EscolheEntidadeSaidaParaPythonComponent } from './escolhe-entidade-saida-para-python/escolhe-entidade-saida-para-python.component';
 import { EscolheEntidadeEntradaParaPythonComponent } from './escolhe-entidade-entrada-para-python/escolhe-entidade-entrada-para-python.component';
+import { AtividadeSistemaListComponent } from './atividade-sistema-list/atividade-sistema-list.component';
+import { AtividadeSistemaEditComponent } from './atividade-sistema-edit/atividade-sistema-edit.component';
 
 //import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
@@ -99,7 +101,9 @@ registerLocaleData(localePt, 'pt-BR');
     ProcessoPythonEditComponent,
     ProcessoPythonDetalheComponent,
     EscolheEntidadeSaidaParaPythonComponent,
-    EscolheEntidadeEntradaParaPythonComponent
+    EscolheEntidadeEntradaParaPythonComponent,
+    AtividadeSistemaListComponent,
+    AtividadeSistemaEditComponent
   ],
   imports: [
     BrowserModule,
@@ -164,7 +168,8 @@ registerLocaleData(localePt, 'pt-BR');
     TelaFrontEditComponent,
     ProcessoPythonEditComponent,
     EscolheEntidadeSaidaParaPythonComponent,
-    EscolheEntidadeEntradaParaPythonComponent
+    EscolheEntidadeEntradaParaPythonComponent,
+    AtividadeSistemaEditComponent
   ],
   bootstrap: [AppComponent]
 })

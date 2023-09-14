@@ -18,9 +18,9 @@ import { DadoPassoProcessoSaidaRel } from '../../models/DadoPassoProcessoSaidaRe
 import { ProcessoMetodoRel } from '../../models/ProcessoMetodoRel';
 import { TelaFront } from '../../models/TelaFront';
 import { ProcessoPython } from '../../models/ProcessoPython';
-import { PythonMetodoServer } from '../../models/PythonMetodoServer';
-import { PythonEntidadeEntradaRel } from '../../models/PythonEntidadeEntradaRel';
-import { PythonEntidadeSaidaRel } from '../../models/PythonEntidadeSaidaRel';
+import { AtividadeSistema } from '../../models/AtividadeSistema';
+import { PythonMetodoEntrada } from '../../models/PythonMetodoEntrada';
+import { PythonMetodoSaida } from '../../models/PythonMetodoSaida';
 
 export interface Models { [name: string]: any }
 
@@ -46,9 +46,9 @@ export class SDKModels {
     ProcessoMetodoRel: ProcessoMetodoRel,
     TelaFront: TelaFront,
     ProcessoPython: ProcessoPython,
-    PythonMetodoServer: PythonMetodoServer,
-    PythonEntidadeEntradaRel: PythonEntidadeEntradaRel,
-    PythonEntidadeSaidaRel: PythonEntidadeSaidaRel,
+    AtividadeSistema: AtividadeSistema,
+    PythonMetodoEntrada: PythonMetodoEntrada,
+    PythonMetodoSaida: PythonMetodoSaida,
     
   };
 

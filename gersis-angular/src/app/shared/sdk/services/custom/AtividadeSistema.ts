@@ -9,16 +9,16 @@ import { LoopBackFilter,  } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { PythonMetodoServer } from '../../models/PythonMetodoServer';
+import { AtividadeSistema } from '../../models/AtividadeSistema';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { MetodoServer } from '../../models/MetodoServer';
+import { Sistema } from '../../models/Sistema';
 
 
 /**
- * Api services for the `PythonMetodoServer` model.
+ * Api services for the `AtividadeSistema` model.
  */
 @Injectable()
-export class PythonMetodoServerApi extends BaseLoopBackApi {
+export class AtividadeSistemaApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -31,9 +31,9 @@ export class PythonMetodoServerApi extends BaseLoopBackApi {
   }
 
   /**
-   * Busca relação metodoServer de belongsTo.
+   * Busca relação sistema de belongsTo.
    *
-   * @param {any} id PythonMetodoServer id
+   * @param {any} id AtividadeSistema id
    *
    * @param {boolean} refresh 
    *
@@ -43,13 +43,13 @@ export class PythonMetodoServerApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PythonMetodoServer` object.)
+   * This usually means the response is a `AtividadeSistema` object.)
    * </em>
    */
-  public getMetodoServer(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getSistema(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PythonMetodoServers/:id/metodoServer";
+    "/AtividadeSistemas/:id/sistema";
     let _routeParams: any = {
       id: id
     };
@@ -73,13 +73,13 @@ export class PythonMetodoServerApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PythonMetodoServer` object.)
+   * This usually means the response is a `AtividadeSistema` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PythonMetodoServers";
+    "/AtividadeSistemas";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -92,7 +92,7 @@ export class PythonMetodoServerApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id PythonMetodoServer id
+   * @param {any} id AtividadeSistema id
    *
    * @param {object} data Request data.
    *
@@ -104,13 +104,13 @@ export class PythonMetodoServerApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PythonMetodoServer` object.)
+   * This usually means the response is a `AtividadeSistema` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PythonMetodoServers/:id";
+    "/AtividadeSistemas/:id";
     let _routeParams: any = {
       id: id
     };
@@ -124,9 +124,9 @@ export class PythonMetodoServerApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `PythonMetodoServer`.
+   * i.e. `AtividadeSistema`.
    */
   public getModelName() {
-    return "PythonMetodoServer";
+    return "AtividadeSistema";
   }
 }

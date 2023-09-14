@@ -34,7 +34,7 @@ export class RelacionamentoEntidadeEditComponent extends BaseEditComponent {
 
   onEntidadeSelecionada(entidadeId: number) {
     console.log('Entidade selecionado:' , entidadeId);
-    if (this.tela.cardinal=='N') {
+    if (this.tela.cardinal=='N' || this.tela.cardinal=='1') {
       // Filtrar a lista de atributos com base no entidadeId selecionado
       this.srvAtributo.find({'where' : {'entidadeId' : entidadeId}})
         .subscribe((result:AtributoEntidade[]) => {

@@ -1,0 +1,33 @@
+<div class="dgc-painel" *ngIf="sistema">
+  <div class="dgc-painel-header">
+      <span>{{sistema.nome}} - </span>
+      <span>Atividades</span>
+      <button class="btn btn-primary btn-sm dgc-botao-comando dgc-direita" (click)="edita()">Nova</button>
+  </div>
+  <div *ngIf="listaBase" class="dgc-painel-principal">
+      <div class="dgc-card" *ngFor="let item of listaBase">
+          <div class="dgc-card-header">
+              <span>{{item.nome}}</span>
+          </div>
+          <div class="dgc-card-detalhe">
+            <span>{{item.descricao}}</span>
+          </div>
+          <div class="dgc-card-detalhe">
+            <span>Ocorrências:</span>
+          </div>
+          <div class="dgc-card-detalhe">
+            <span>{{item.ocorrencia}}</span>
+          </div>
+          <div class="dgc-card-detalhe">
+            <span>Melhoria:</span>
+          </div>
+          <div class="dgc-card-detalhe">
+            <span>{{item.melhoria}}</span>
+          </div>
+          <div class="dgc-card-comandos">
+            <button class="btn-primary btn-sm btn" (click)="edita(item)">Editar</button>
+          </div> 
+      </div>
+     
+  </div>
+</div>

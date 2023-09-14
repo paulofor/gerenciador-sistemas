@@ -5,30 +5,31 @@
 
   <div class="dgc-painel-principal">
 
-    <div class="dgc-card dgc-card-half">
-      <div class="dgc-card-header">
-        <span>Saídas</span>
-      </div>
-      <div class="dgc-card-detalhe" *ngFor="let rel of principal.pythonEntidadeSaida">
-        <span class="dgc-link" routerLink="/entidadeDetalhe/{{rel.entidade.id}}">{{rel.entidade.nome}}</span>
-      </div>
-      <div class="dgc-card-comandos">
-        <button class="btn-primary btn-sm btn" (click)="editaEntidadeSaida(principal)">Novo</button>
-      </div> 
-    </div>
+   
   
     <div class="dgc-card dgc-card-half">
       <div class="dgc-card-header">
         <span>Entradas</span>
       </div>
-      <div class="dgc-card-detalhe" *ngFor="let rel of principal.pythonEntidadeEntrada">
-        <span class="dgc-link" routerLink="/entidadeDetalhe/{{rel.entidade.id}}">{{rel.entidade.nome}}</span>
+      <div class="dgc-card-detalhe" *ngFor="let rel of principal.pythonMetodoEntrada">
+        <span class="dgc-link" routerLink="/entidadeDetalhe/{{rel.metodoServer.entidade.id}}">{{rel.metodoServer.entidade.nome}}.{{rel.metodoServer.nome}}</span>
       </div>
       <div class="dgc-card-comandos">
         <button class="btn-primary btn-sm btn" (click)="editaEntidadeEntrada(principal)">Novo</button>
       </div> 
     </div>
   
+    <div class="dgc-card dgc-card-half">
+      <div class="dgc-card-header">
+        <span>Saídas</span>
+      </div>
+      <div class="dgc-card-detalhe" *ngFor="let rel of principal.pythonMetodoSaida">
+        <span class="dgc-link" routerLink="/entidadeDetalhe/{{rel.metodoServer.entidade.id}}">{{rel.metodoServer.entidade.nome}}.{{rel.metodoServer.nome}}</span>
+      </div>
+      <div class="dgc-card-comandos">
+        <button class="btn-primary btn-sm btn" (click)="editaEntidadeSaida(principal)">Novo</button>
+      </div> 
+    </div>
   
   </div>
 

@@ -40,6 +40,16 @@
       "type": "hasMany",
       "model": "ProcessoMetodoRel",
       "foreignKey": ""
+    },
+    "processoPythonComoSaida" : {
+      "type" : "hasMany",
+      "model" : "PythonMetodoSaida",
+      "foreignKey": ""
+    },
+    "processoPythonComoEntrada" : {
+      "type" : "hasMany",
+      "model" : "PythonMetodoEntrada",
+      "foreignKey": ""
     }
   },
   "acls": [],
