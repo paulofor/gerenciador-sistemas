@@ -22,6 +22,15 @@
       </mat-select>
     </mat-form-field>
 
+    <mat-form-field class="example-full-width">
+      <textarea rows="3" matInput #descricao [(ngModel)]="item.descricao" name="descricao" placeholder="Descrição" ></textarea>
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+      <textarea rows="8" matInput #query [(ngModel)]="item.query" name="query" placeholder="Query" ></textarea>
+    </mat-form-field>
+
+
   </mat-dialog-content>
 
   <mat-dialog-actions>

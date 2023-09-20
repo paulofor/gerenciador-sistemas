@@ -26,6 +26,18 @@ public class GeraNodeLoopbackAplicacao {
 		}
 	}
 	
+	public void executa(int id) {
+		System.out.println("GeraLoopbackAplicacao");
+		imprimeDataHora();
+		try {
+			carregaProp();
+			GeraNodeLoopbackObj obj = new GeraNodeLoopbackObj();
+			obj.executa(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private static void imprimeDataHora() {
 		LocalDateTime dataHoraAtual = LocalDateTime.now();
 		// Crie um formatador de data e hora

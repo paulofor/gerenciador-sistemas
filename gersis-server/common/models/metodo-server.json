@@ -17,6 +17,12 @@
     },
     "tipoMetodo": {
       "type": "string"
+    },
+    "descricao" : {
+      "type" : "string"
+    },
+    "query" : {
+      "type" : "string"
     }
   },
   "validations": [],

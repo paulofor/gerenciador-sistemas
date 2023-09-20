@@ -23,6 +23,18 @@ public class GeraAngular6App {
 		}
 	}
 	
+	public void executa(int id) {
+		imprimeDataHora();
+		try {
+			carregaProp();
+			GeraAngular6Obj obj = new GeraAngular6Obj();
+			obj.executa(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	private static void imprimeDataHora() {
 		LocalDateTime dataHoraAtual = LocalDateTime.now();
 		// Crie um formatador de data e hora

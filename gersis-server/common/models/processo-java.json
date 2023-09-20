@@ -21,6 +21,7 @@
     "crontab": {
       "type": "string"
     }
+
   },
   "validations": [],
   "relations": {

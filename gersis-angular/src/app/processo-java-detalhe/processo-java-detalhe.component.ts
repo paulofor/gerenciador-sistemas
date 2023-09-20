@@ -28,6 +28,7 @@ export class ProcessoJavaDetalheComponent extends BaseItemIdComponent {
       'include': [ 
         { 'relation': 'passoProcessoJavas', 'scope' : {'order' : 'ordenacao', 'include' : 
           [ 
+            'metodoServer' ,
             {'relation' : 'dadoPassoEntrada' , 'scope' : {'include' : {'relation':'dadoProcesso', 'scope' : {'include' : 'tipoEntidade'}} }},
             {'relation' : 'dadoPassoSaida' , 'scope' : {'include' : {'relation':'dadoProcesso', 'scope' : {'include' : 'tipoEntidade'}} }}
           ]} },

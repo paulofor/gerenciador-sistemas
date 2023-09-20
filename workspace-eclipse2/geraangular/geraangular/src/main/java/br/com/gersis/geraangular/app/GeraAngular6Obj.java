@@ -6,6 +6,15 @@ import br.com.gersis.geraangular.loopback.DatasetGersis;
 
 public class GeraAngular6Obj {
 
+	public void executa(int idSistema) {
+		DatasetGersis ds = new DatasetGersis();
+		ds.setIdSistema(idSistema);
+		Sistema_ObtemParaGerarNode exec = new Sistema_ObtemParaGerarNode();
+		exec.setComum(ds);
+		exec.executa();
+	}
+	
+	
 	public void executa() {
 		DatasetGersis ds = new DatasetGersis();
 		ds.setIdSistema(getUserInput());

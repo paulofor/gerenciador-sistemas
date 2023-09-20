@@ -59,7 +59,7 @@ public class AtributoEntidade extends Model{
 		if (tipoBd.indexOf("VARCHAR")!=-1) return "string";
 		if (tipoBd.indexOf("DATETIME")!=-1) return "date";
 		if (tipoBd.indexOf("DATE")!=-1) return "date";
-		if (tipoBd.indexOf("TIME")!=-1) return "date";
+		if (tipoBd.indexOf("TIME")!=-1) return "string";
 		if (tipoBd.indexOf("LONGTEXT")!=-1) return "string";
 		if (tipoBd.indexOf("MEDIUMTEXT")!=-1) return "string";
 		if (tipoBd.indexOf("INT")!=-1) return "number";

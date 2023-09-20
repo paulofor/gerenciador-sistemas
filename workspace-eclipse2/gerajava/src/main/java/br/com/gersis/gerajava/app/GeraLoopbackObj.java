@@ -5,6 +5,14 @@ import java.util.Scanner;
 import br.com.gersis.gerajava.loopback.DatasetGersis;
 
 public class GeraLoopbackObj {
+	
+	public void executa(int id) {
+		DatasetGersis ds = new DatasetGersis();
+		ds.setIdSistema(id);
+		Sistema_ObtemParaGerarJava exec = new Sistema_ObtemParaGerarJava();
+		exec.setComum(ds);
+		exec.executa();
+	}
 
 	public void executa() {
 		DatasetGersis ds = new DatasetGersis();

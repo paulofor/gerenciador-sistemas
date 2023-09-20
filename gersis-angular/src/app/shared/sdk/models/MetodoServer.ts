@@ -14,6 +14,8 @@ export interface MetodoServerInterface {
   "resposta"?: string;
   "tipoResposta"?: string;
   "tipoMetodo"?: string;
+  "descricao"?: string;
+  "query"?: string;
   "id"?: number;
   "entidadeId"?: number;
   parametroMetodoServers?: ParametroMetodoServer[];
@@ -29,6 +31,8 @@ export class MetodoServer implements MetodoServerInterface {
   "resposta": string;
   "tipoResposta": string;
   "tipoMetodo": string;
+  "descricao": string;
+  "query": string;
   "id": number;
   "entidadeId": number;
   parametroMetodoServers: ParametroMetodoServer[];
@@ -84,6 +88,14 @@ export class MetodoServer implements MetodoServerInterface {
         },
         "tipoMetodo": {
           name: 'tipoMetodo',
+          type: 'string'
+        },
+        "descricao": {
+          name: 'descricao',
+          type: 'string'
+        },
+        "query": {
+          name: 'query',
           type: 'string'
         },
         "id": {
