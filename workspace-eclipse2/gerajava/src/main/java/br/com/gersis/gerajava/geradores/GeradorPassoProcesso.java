@@ -4,8 +4,7 @@ import java.io.IOException;
 
 import br.com.gersis.gerajava.GeradorArquivoJava;
 import br.com.gersis.gerajava.app.GeradorException;
-import br.com.gersis.loopback.modelo.DadoProcesso;
-import br.com.gersis.loopback.modelo.DadoProcessoEntradaRel;
+import br.com.gersis.loopback.modelo.DadoProcessoSaidaRel;
 import br.com.gersis.loopback.modelo.ParametroMetodoServer;
 import br.com.gersis.loopback.modelo.PassoProcessoJava;
 import br.com.gersis.loopback.modelo.ProcessoJava;
@@ -53,6 +52,12 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 				} else {
 					this.linha("	protected " + this.passo.getMetodoServer().getEntidade().getNome() + " " + param.getNome() + ";");
 				}
+			}
+		}
+		if (this.passo.getMetodoServer()==null) {
+			this.linha("	// campos saida");
+			for (DadoProcessoSaidaRel dado : this.passo.getDadoPassoSaida()) {
+				this.linha("	protected " + dado.getDadoProcesso().getTipoJava() + "  saida" + dado.getDadoProcesso().getNomePropriedade()+ ";");
 			}
 		}
 		this.linha();
@@ -114,10 +119,17 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 			this.linha("				}");
 			this.linha("			});");
 		} else {
+			for (DadoProcessoSaidaRel dado : this.passo.getDadoPassoSaida()) {
+				this.linha("			ds.set" + dado.getDadoProcesso().getNomePropriedade()+ "(saida" + dado.getDadoProcesso().getNomePropriedade()+ ");");
+			}
 			this.linha("			executaProximo();");
 		}
 		this.linha("		} else {");
-		this.linha("			executaProximo();");
+		if (this.passo.getMetodoServer()!=null) {
+			this.linha("			executaProximo();");
+		} else { 
+			this.linha("			finalizar();");		
+		}
 		this.linha("		}");
 		
 		this.linha("	}"); 
