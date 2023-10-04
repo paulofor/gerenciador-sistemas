@@ -68,7 +68,14 @@
     <div *ngFor="let item of principal.passoProcessoJavas">
       <div class="dgc-card-header" >
         <span *ngIf="item.dentroLoop==1">*</span>
-        <span title="{{(item.metodoServer?item.metodoServer.descricao:'')}}" >{{item.ordenacao}}<span *ngIf="item.finalizacao==1">F</span>. {{item.nomeClasse}}  </span>
+        <span *ngIf="(item.metodoServer!=null)">
+          <span class="dgc-link" routerLink="/entidadeDetalhe/{{item.metodoServer.entidadeId}}" title="{{item.metodoServer.descricao}}" >
+            {{item.ordenacao}}<span *ngIf="item.finalizacao==1">F</span>. {{item.nomeClasse}}  
+          </span>
+        </span>
+        <span *ngIf="(item.metodoServer==null)">
+          <span >{{item.ordenacao}}<span *ngIf="item.finalizacao==1">F</span>. {{item.nomeClasse}}  </span>
+        </span>
         <span *ngIf="item.dentroLoop==1"> (loop)</span>
         <div class="dgc-direita">
           <button class="btn-primary btn-sm btn" (click)="subirItem(item)">Subir</button>

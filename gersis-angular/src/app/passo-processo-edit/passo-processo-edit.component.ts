@@ -38,6 +38,10 @@ export class PassoProcessoEditComponent  extends BaseEditComponent {
       })
   }
 
+  preSubmit(): void {
+    delete this.item['metodoServer'];
+  }
+
   criaItem() {
     let novo : PassoProcessoJava = new PassoProcessoJava();
     console.log('Origem:' , this.origem);

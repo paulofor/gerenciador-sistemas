@@ -1,4 +1,4 @@
-<h2 mat-dialog-title *ngIf="origem && item">Passo {{item.ordenacao}} em {{origem.nomeClasseMain}}</h2>
+<h2 mat-dialog-title *ngIf="origem && item && listaEntidadeMetodo">Passo {{item.ordenacao}} em {{origem.nomeClasseMain}}</h2>
 
 <form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
 

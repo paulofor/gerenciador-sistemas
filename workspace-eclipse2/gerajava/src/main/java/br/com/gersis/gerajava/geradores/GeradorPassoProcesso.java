@@ -28,6 +28,9 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 	}
 	
 	public void gerar() throws IOException {
+		if ("CriaPixelMetaGoogle".equals(this.processo.getNomeClasseMain())) {
+			System.out.println("arqui");
+		}
 		this.criaArquivo();
 		this.linha();
 		this.linha("import gerador." + this.processo.getNomeClasseMain().toLowerCase() + ".loopback.DaoAplicacao;");
@@ -57,6 +60,9 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 		if (this.passo.getMetodoServer()==null) {
 			this.linha("	// campos saida");
 			for (DadoProcessoSaidaRel dado : this.passo.getDadoPassoSaida()) {
+				if ("produtoAfiliadoCorrente".equals(dado.getDadoProcesso().getNome())) {
+					System.out.println("aqui");
+				}
 				this.linha("	protected " + dado.getDadoProcesso().getTipoJava() + "  saida" + dado.getDadoProcesso().getNomePropriedade()+ ";");
 			}
 		}
