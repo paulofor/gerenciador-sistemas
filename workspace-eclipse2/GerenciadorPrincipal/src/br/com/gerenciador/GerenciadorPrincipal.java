@@ -37,6 +37,7 @@ public class GerenciadorPrincipal {
 		System.out.println("Gerador Completo - Selecione uma opção:");
 		System.out.println("1 - Sisacao");
 		System.out.println("2 - Marketing Digital");
+		System.out.println("4 - Sugar");
 		int opcao = scanner.nextInt();
 		scanner.close();
 		return opcao;
