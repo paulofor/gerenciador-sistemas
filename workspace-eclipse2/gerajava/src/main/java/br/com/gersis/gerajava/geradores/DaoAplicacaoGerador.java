@@ -47,7 +47,7 @@ public class DaoAplicacaoGerador extends GeradorBase {
 		arq.linha();
 		arq.linha("	@Override");
 		arq.linha("	protected long getTempo() {");
-		arq.linha("		return 10000;");
+		arq.linha("		return 5000;");
 		arq.linha("	}");
 		arq.linha();
 		arq.linha("	@Override");
