@@ -19,7 +19,9 @@ export class ProcessoJavaListComponent extends BaseListSistemaComponent {
   getFiltro() {
     return {
       'order' : 'nomeClasseMain',
-      'include' : ['linuxInternet']
+      'include' : ['linuxInternet',
+        {'relation' : 'processoEntidadeSaida' , 'scope' : {'include' : 'entidade'}}
+      ]
     }
   }
 

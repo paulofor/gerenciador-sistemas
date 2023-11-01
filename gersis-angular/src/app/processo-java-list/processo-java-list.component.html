@@ -10,13 +10,16 @@
               <span class="dgc-link" routerLink="/processoJavaDetalhe/{{item.id}}">{{item.nomeClasseMain}}</span>
           </div>
           <div class="dgc-card-detalhe">
-            <span>Projeto: {{item.projeto}}</span>
-          </div>
-          <div class="dgc-card-detalhe">
             <span>{{item.jar}}</span>
           </div>
           <div class="dgc-card-detalhe" *ngIf="item.linuxInternet">
             <span>{{item.linuxInternet.nome}}</span>
+          </div>
+          <div class="dgc-card-header" *ngIf="item.processoEntidadeSaida.length>0">
+            <span>Saidas:</span>
+          </div>
+          <div class="dgc-card-detalhe" *ngFor="let saida of item.processoEntidadeSaida">
+            <span>{{saida.entidade.nome}}</span>
           </div>
           <div class="dgc-card-comandos">
             <button class="btn-primary btn-sm btn" (click)="edita(item)">Editar</button>
