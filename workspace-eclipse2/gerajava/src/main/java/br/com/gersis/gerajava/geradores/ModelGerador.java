@@ -91,6 +91,7 @@ public class ModelGerador extends GeradorBase {
 			arq.linha("		this." + rel.getNomeN()  + " = new ArrayList<" + rel.getEntidadeN().getNome() + ">();");
 			arq.linha("		for (int i = 0; i < valores.size(); i++) {");
 			arq.linha("			Object objeto = new " + rel.getEntidadeN().getNome() + "();");
+			arq.linha("			System.out.println(\" --> ObjetoMap \");");
 			arq.linha("			BeanUtil.setProperties(objeto, (Map<String, ? extends Object>) valores.get(i), true);");
 			arq.linha("			this." + rel.getNomeN()  + ".add((" + rel.getEntidadeN().getNome() + ") objeto);");
 			arq.linha("		}");
