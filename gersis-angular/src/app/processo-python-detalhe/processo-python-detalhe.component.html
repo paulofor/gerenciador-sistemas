@@ -1,6 +1,6 @@
 <div class="dgc-painel" *ngIf="principal">
   <div class="dgc-painel-header" *ngIf="principal">
-      <span>Aquivo: {{principal.nomeArquivo}}</span>
+      <span>Arquivo Python: {{principal.nomeArquivo}}</span>
   </div>
 
   <div class="dgc-painel-principal">
@@ -9,11 +9,20 @@
   
     <div class="dgc-card dgc-card-half">
       <div class="dgc-card-header">
-        <span>Entradas</span>
+        <span>Entradas:</span>
       </div>
-      <div class="dgc-card-detalhe" *ngFor="let rel of principal.pythonMetodoEntrada">
-        <span class="dgc-link" routerLink="/entidadeDetalhe/{{rel.metodoServer.entidade.id}}">{{rel.metodoServer.entidade.nome}}.{{rel.metodoServer.nome}}</span>
+
+      <div  *ngFor="let rel of principal.pythonMetodoEntrada">
+        <div class="dgc-card-header" >
+          <span class="dgc-link" title="{{rel.metodoServer.descricao}}"  routerLink="/entidadeDetalhe/{{rel.metodoServer.entidade.id}}">{{rel.metodoServer.entidade.nome}}.{{rel.metodoServer.nome}} ({{rel.metodoServer.tipoMetodo}}) : {{rel.metodoServer.tipoResposta}}</span>
+        </div>
+        <div *ngFor="let parametro of rel.metodoServer.parametroMetodoServers">
+          <div class="dgc-card-detalhe" >
+            <span> -  {{parametro.nome}}&nbsp;&nbsp;</span><span>:{{parametro.tipo}} ({{parametro.posicao}})</span>
+          </div>
+        </div>
       </div>
+
       <div class="dgc-card-comandos">
         <button class="btn-primary btn-sm btn" (click)="editaEntidadeEntrada(principal)">Novo</button>
       </div> 

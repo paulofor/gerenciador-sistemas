@@ -81,10 +81,12 @@ public class GeraJsonClasse extends GeradorArquivo{
 			
 			if (i==(this.entidade.getAtributoEntidades().size()-1) &&  
 					((this.entidade.getRelacionamentos1().size()==0) || (this.todosEstrangeiro(this.entidade.getRelacionamentos1())) )) {
-				this.linha("		}");
+				this.linhaBuffer1("		}");
 			} else {
-				this.linha("		},");
+				this.linhaBuffer1("		},");
 			}
+			if (i<this.entidade.getAtributoEntidades().size()-1)
+				this.flush1();
 		}
 		
 		int qtde = this.entidade.getRelacionamentos1().size()-this.qtdeEstrangeiro1(this.entidade);
@@ -94,17 +96,20 @@ public class GeraJsonClasse extends GeradorArquivo{
 			if (!existeAtributo(relatributo,this.entidade.getAtributoEntidades())) {
 			//System.out.println(qtde + ") " + relatributo.getNome1Chave() );
 				if (relatributo.getAtributoChaveEstrangeira()==null) {
+					this.flush1();
 					this.linha("		\"" + relatributo.getNome1Chave() + "\": {");
 					this.linha("			\"type\": \"" + relatributo.getNome1TipoChaveNode() + "\"");
 					if (--qtde==0) {
-						this.linha("		}");
+						this.linhaBuffer1("		}");
 					} else {
-						this.linha("		},");
+						this.linhaBuffer1("		},");
 					}
 				}
 			}
 		}
-		
+		if (!this.executouFlush1()) {
+			this.linha("		}");
+		}
 		this.linha("	},");
 		this.linha("	\"validations\": [],");
 		this.linha("	\"relations\": {");
