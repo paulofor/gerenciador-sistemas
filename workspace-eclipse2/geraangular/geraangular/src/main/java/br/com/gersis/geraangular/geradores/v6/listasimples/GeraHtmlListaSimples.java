@@ -17,7 +17,7 @@ public class GeraHtmlListaSimples extends GeraHtml {
 		this.linha("		<span>" + this.getEntidade().getNome() + "</span>");
 		this.linha("  		<button class=\"btn btn-primary btn-sm dgc-botao-comando dgc-direita\" (click)=\"edita()\">novo</button>");
 		this.linha("	</div>");
-		this.linha("	<div *ngIf=\"listaBase\">");
+		this.linha("	<div class=\"dgc-painel-principal\" *ngIf=\"listaBase\">");
 		this.linha("		<div class=\"dgc-card\" *ngFor=\"let item of listaBase\">");
 		this.linha(" 			<div class=\"dgc-card-header\">");
 		this.linha(" 				<span>{{item.nome}}</span>");

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { TelaFront, TelaFrontApi } from '../shared/sdk';
+import { MetodoServer, MetodoServerApi, TelaFront, TelaFrontApi } from '../shared/sdk';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { BaseEditComponent } from '../base-component/base-edit-component';
 
@@ -10,12 +10,25 @@ import { BaseEditComponent } from '../base-component/base-edit-component';
 })
 export class TelaFrontEditComponent extends BaseEditComponent {
 
+  private listaMetodo : MetodoServer[];
+
   constructor(protected dialogRef: MatDialogRef<any>
-    , @Inject(MAT_DIALOG_DATA) protected data: any, protected servico: TelaFrontApi,
+    , @Inject(MAT_DIALOG_DATA) protected data: any, protected servico: TelaFrontApi,private srvMetodo:MetodoServerApi
   ) {
     super(dialogRef,data,servico);
   }
 
+
+  montaCombos() {
+    let filtro = {
+      'where' : {'entidadeId' : this.origem.id}
+    }
+    this.srvMetodo.find(filtro)
+      .subscribe((result:MetodoServer[]) => {
+        console.log('listaMetodo:' , result);
+        this.listaMetodo = result;
+      }) 
+  }
 
   criaItem() {
     let novo = new TelaFront();

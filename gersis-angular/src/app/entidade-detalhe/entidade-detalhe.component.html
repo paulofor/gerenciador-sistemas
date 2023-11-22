@@ -86,6 +86,7 @@
     <div *ngFor="let tela of principal.telaFronts">
       <div class="dgc-card-detalhe">
         <span>{{tela.nome}} : {{tela.tipo}}</span>
+        <span *ngIf="tela.metodoServer"> [{{tela.metodoServer.nome}}]</span>
         <div class="dgc-direita">
           <button class="btn-primary btn-sm btn" (click)="editaTela(tela)">Altera Tela</button>
         </div>

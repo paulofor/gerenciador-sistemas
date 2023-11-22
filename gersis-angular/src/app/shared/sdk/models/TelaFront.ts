@@ -1,18 +1,25 @@
 /* tslint:disable */
+import {
+  MetodoServer
+} from '../index';
 
 declare var Object: any;
 export interface TelaFrontInterface {
   "nome"?: string;
   "tipo"?: string;
   "id"?: number;
+  "metodoServerId"?: number;
   "entidadeId"?: number;
+  metodoServer?: MetodoServer;
 }
 
 export class TelaFront implements TelaFrontInterface {
   "nome": string;
   "tipo": string;
   "id": number;
+  "metodoServerId": number;
   "entidadeId": number;
+  metodoServer: MetodoServer;
   constructor(data?: TelaFrontInterface) {
     Object.assign(this, data);
   }
@@ -58,12 +65,24 @@ export class TelaFront implements TelaFrontInterface {
           name: 'id',
           type: 'number'
         },
+        "metodoServerId": {
+          name: 'metodoServerId',
+          type: 'number'
+        },
         "entidadeId": {
           name: 'entidadeId',
           type: 'number'
         },
       },
       relations: {
+        metodoServer: {
+          name: 'metodoServer',
+          type: 'MetodoServer',
+          model: 'MetodoServer',
+          relationType: 'belongsTo',
+                  keyFrom: 'metodoServerId',
+          keyTo: 'id'
+        },
       }
     }
   }

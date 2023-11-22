@@ -18,7 +18,13 @@
       <input matInput maxlength="150" #nome [(ngModel)]="item.nome" name="nome" placeholder="Nome" autocomplete="off" />
     </mat-form-field>
     
-
+    <mat-form-field class="example-full-width" *ngIf="listaMetodo">
+      <mat-select placeholder="Método Server"  #metodoServerId [(ngModel)]="item.metodoServerId" name="metodoServerId">
+        <mat-option *ngFor="let metodo of listaMetodo" [value]="metodo.id">
+          {{ metodo.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
   </mat-dialog-content>
 
