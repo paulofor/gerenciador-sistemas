@@ -19,7 +19,7 @@ module.exports = function(Sistema) {
                         { 'relation' : 'metodoServers' , 'scope' : {'include' : [
                             {'relation' : 'parametroMetodoServers', 'scope' : {'order' : 'posicao'} }
                         ]}},
-                        { 'relation' : 'telaFronts'}
+                        { 'relation' : 'telaFronts' , 'scope' : {'include' : 'metodoServer' }}
                     ]
                 }},
                 { 'relation' : 'processoJavas' , 'scope' : {

@@ -23,16 +23,23 @@ public class GeraTsDetalhe extends GeraTs{
 		this.linha("	idPrincipal: number;");
 		this.linha("	constructor(protected srv: " + this.getEntidade().getNome() +"Api, protected router: ActivatedRoute, protected dialog: MatDialog) { }");
 		this.linha();
+		this.linha("	posCarregaTela() {}");
+		this.linha();
 		this.linha("	ngOnInit() {");
 		this.linha("		this.carregaTela()");
 		this.linha("	}");
 		this.linha("	carregaTela() {");
 		this.linha("		this.router.params.subscribe((params) => {");
 		this.linha("		this.idPrincipal = params['id'];");
-		this.linha("		this.srv.findById(this.idPrincipal, this.getFiltro())");
+		if (this.getTela().getMetodoServer()==null) {
+			this.linha("		this.srv.findById(this.idPrincipal, this.getFiltro())");
+		} else {
+			this.linha("        this.srv." + this.getTela().getMetodoServer().getNome() + "(this.idPrincipal)");
+		}
 		this.linha("	 		.subscribe((result: " + this.getEntidade().getNome() + ") => {");
 		this.linha("				this.principal = result;");
 		this.linha("				console.log('principal:', this.principal);");
+		this.linha("            	this.posCarregaTela();");
 		this.linha("			})");
 		this.linha("		})");
 		this.linha("	}");

@@ -11,6 +11,7 @@ public abstract class GeradorArquivoTela extends GeradorArquivo {
 	private Entidade entidade;
 	private TelaFront tela;
 	
+	
 	public GeradorArquivoTela(String nome) {
 		super(nome);
 	}

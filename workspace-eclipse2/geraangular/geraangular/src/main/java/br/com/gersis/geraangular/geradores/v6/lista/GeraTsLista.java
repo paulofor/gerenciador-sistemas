@@ -34,7 +34,11 @@ public class GeraTsLista extends GeraTs{
 		this.linha("	posCarregaLista() {}");
 		this.linha();
 		this.linha("    carregaTela() {");
-		this.linha("        this.srv.find(this.getFiltro())");
+		if (this.getTela().getMetodoServer()==null) {
+			this.linha("        this.srv.find(this.getFiltro())");
+		} else {
+			this.linha("        this.srv." + this.getTela().getMetodoServer().getNome() + "()");
+		}
 		this.linha("	     .subscribe((result:" + this.getEntidade().getNome() + "[]) => {");
 		this.linha("            console.log('result: ' , result);");
 		this.linha("            this.listaBase = result;");

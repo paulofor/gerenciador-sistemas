@@ -24,7 +24,7 @@ public class Entidade extends Model{
 	
 	
 	public boolean temSLoopback() {
-		if (nome.endsWith("ia")) return false;
+		if (nome.endsWith("ia") || nome.endsWith("s")) return false;
 		else return true;
 	}
 	
