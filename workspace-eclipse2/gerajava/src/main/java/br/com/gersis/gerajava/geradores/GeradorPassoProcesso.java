@@ -71,6 +71,19 @@ public class GeradorPassoProcesso extends GeradorArquivoJava {
 		this.linha("	protected final void executaImpl() {");
 		this.linha("		final DatasetAplicacao ds = (DatasetAplicacao) this.getComum();");
 		this.linha("		if (executaCustom(" + this.passo.parametrosEntrada() + ")) {");
+		
+		
+		if (this.passo.getMetodoServer()!=null && this.passo.getMetodoServer().getParametroMetodoServers() != null) {
+			for (ParametroMetodoServer param : this.passo.getMetodoServer().getParametroMetodoServers()) {
+				if (param.testaNull()) {
+					this.linha("			if (" + param.getNome() + "==null) {");
+					this.linha("				throw new RuntimeException(\"" + param.getNome() + " precisa ser atribuido em " + this.getNomeClasse() + "Impl \");");	
+					this.linha("			}");
+				}
+			}
+		}
+
+		
 		if (this.passo.getMetodoServer()!=null) {
 			if (this.passo.getMetodoServer().isList()) {
 				String entradaFuncao = "";

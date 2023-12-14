@@ -31,6 +31,15 @@ public class ParametroMetodoServer extends Model{
 		if (tipo.indexOf("object")!=-1) return "object";
 		return tipo;
 	}
+	public boolean testaNull() {
+		if (tipo.indexOf("number-int")!=-1) return false;
+		if (tipo.indexOf("number-double")!=-1) return false;
+		if (tipo.indexOf("string")!=-1) return true;
+		if (tipo.indexOf("date")!=-1) return true;
+		if (tipo.indexOf("object")!=-1) return true;
+		return false;
+	}
+	
 	
 	public boolean isObject() {
 		return (tipo.indexOf("object")!=-1);

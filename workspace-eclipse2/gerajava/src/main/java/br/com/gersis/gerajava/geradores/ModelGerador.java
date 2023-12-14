@@ -39,7 +39,9 @@ public class ModelGerador extends GeradorBase {
 		
 		arq.linha();
 		for (AtributoEntidade atributo : entidade.getAtributoEntidades()) {
-			arq.linha("	private " + atributo.getTipoJava() + " " + atributo.getNomeVariavel() + ";");
+			if (!"id".equals(atributo.getNomeVariavel())) {
+				arq.linha("	private " + atributo.getTipoJava() + " " + atributo.getNomeVariavel() + ";");
+			}
 		}
 		arq.linha("	// Relacionamentos 1");
 		for (RelacionamentoEntidade rel : entidade.getRelacionamentos1()) {
@@ -49,14 +51,22 @@ public class ModelGerador extends GeradorBase {
 		for (RelacionamentoEntidade rel : entidade.getRelacionamentosN()) {
 			arq.linha("	private List<" + rel.getEntidadeN().getNome() + "> " + rel.getNomeN()  + ";");
 		}
-		
+		arq.linha();
+		arq.linha("	public void setId(Long id) {");
+		arq.linha("		this.setIdObjeto(id);");
+		arq.linha("	}");
+		arq.linha("	public void setId(Integer id) {");
+		arq.linha("		this.setIdObjeto(id);");
+		arq.linha("	}");
 		arq.linha();
 		arq.linha("	public JSONObject getJSON() {");
 		arq.linha("		JSONObject obj = new JSONObject();");
 		arq.linha("		try {");
 		arq.linha("			obj.put(\"id\",getId());");
 		for (AtributoEntidade atributo : entidade.getAtributoEntidades()) {
-			arq.linha("			obj.put(\"" + atributo.getNomeVariavel() + "\", " + atributo.getNomeVariavel() + ");");
+			if (!"id".equals(atributo.getNomeVariavel())) {
+				arq.linha("			obj.put(\"" + atributo.getNomeVariavel() + "\", " + atributo.getNomeVariavel() + ");");
+			}
 		}
 		arq.linha("		} catch (Exception e) {");
 		arq.linha("			e.printStackTrace();");
@@ -66,12 +76,15 @@ public class ModelGerador extends GeradorBase {
 		arq.linha();
 		arq.linha();
 		for (AtributoEntidade atributo : entidade.getAtributoEntidades()) {
-			arq.linha("	public void set" + atributo.getNomePropriedade() + "(" + atributo.getTipoJava() + " valor) { ");
-			arq.linha("		this." + atributo.getNomeVariavel() + " = valor;");
-			arq.linha("	}");
-			arq.linha("	public " + atributo.getTipoJava() + " get" + atributo.getNomePropriedade() + "() { ");
-			arq.linha("		return this." + atributo.getNomeVariavel() + ";");
-			arq.linha("	}");
+			if (!"id".equals(atributo.getNomeVariavel())) {
+				arq.linha("	public void set" + atributo.getNomePropriedade() + "(" + atributo.getTipoJava() + " valor) { ");
+				arq.linha("		this." + atributo.getNomeVariavel() + " = valor;");
+				arq.linha("	}");
+				arq.linha("	public " + atributo.getTipoJava() + " get" + atributo.getNomePropriedade() + "() { ");
+				arq.linha("		return this." + atributo.getNomeVariavel() + ";");
+				arq.linha("	}");
+			}
+			
 		}
 		arq.linha();
 		for (RelacionamentoEntidade rel : entidade.getRelacionamentos1()) {
