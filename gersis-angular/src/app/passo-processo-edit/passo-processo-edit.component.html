@@ -30,6 +30,14 @@
       </mat-select>
     </mat-form-field>
 
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Tipo" #tipoPasso [(ngModel)]="item.tipoPasso" name="tipoPasso">
+        <mat-option value="NORMAL">Normal</mat-option>
+        <mat-option value="GOOGLE_ADS_QUERY">Google Ads Query</mat-option>
+      </mat-select>
+    </mat-form-field>
+
   </mat-dialog-content>
 
   <mat-dialog-actions>
