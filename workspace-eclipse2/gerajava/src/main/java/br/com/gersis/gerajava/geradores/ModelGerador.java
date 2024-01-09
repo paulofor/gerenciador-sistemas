@@ -59,10 +59,10 @@ public class ModelGerador extends GeradorBase {
 		arq.linha("		this.setIdObjeto(id);");
 		arq.linha("	}");
 		arq.linha();
-		arq.linha("	public int setIdInteger() {");
+		arq.linha("	public int getIdInteger() {");
 		arq.linha("		return new Integer(getId().toString());");
 		arq.linha("	}");
-		arq.linha("	public long setIdLong() {");
+		arq.linha("	public long getIdLong() {");
 		arq.linha("		return new Long(getId().toString());");
 		arq.linha("	}");
 		arq.linha();
