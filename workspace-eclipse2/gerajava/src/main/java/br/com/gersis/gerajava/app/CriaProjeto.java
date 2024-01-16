@@ -33,6 +33,9 @@ public class CriaProjeto extends DaoAplicacao {
         try {
         	criaWorkspace();
         	for (ProcessoJava processo:sistema.getProcessoJavas()) {
+        		if ("PlanejadorPalavraGoogleAds".equals(processo.getNomeClasseMain())) {
+        			System.out.println("meu teste");
+        		}
            		ds.setProcessoCorrente(processo);
          		criaProjeto(processo);
         		executaProximoSemFinalizar();
