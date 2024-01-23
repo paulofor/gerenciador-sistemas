@@ -14,6 +14,7 @@ public class ProcessoJava extends Model{
 	private String projeto;
 	private String jar;
 	private String crontab;
+	private String pom;
 	
 	private List<PassoProcessoJava> passoProcessoJavas;
 	
@@ -104,6 +105,12 @@ public class ProcessoJava extends Model{
 	}
 	public void setCrontab(String crontab) {
 		this.crontab = crontab;
+	}
+	public String getPom() {
+		return pom;
+	}
+	public void setPom(String pom) {
+		this.pom = pom;
 	}
 	
 	

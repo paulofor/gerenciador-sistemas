@@ -23,6 +23,9 @@
       <input matInput maxlength="150" #crontab [(ngModel)]="item.crontab" name="crontab" placeholder="Crontab" autocomplete="off" />
     </mat-form-field>
 
+    <mat-form-field class="example-full-width">
+      <textarea rows="6" matInput #pom [(ngModel)]="item.pom" name="pom" placeholder="Pom" ></textarea>
+    </mat-form-field>
 
     <mat-form-field class="example-full-width" *ngIf="listaLinux">
       <mat-select placeholder="Servidores"  #linuxInternetId [(ngModel)]="item.linuxInternetId" name="linuxInternetId">

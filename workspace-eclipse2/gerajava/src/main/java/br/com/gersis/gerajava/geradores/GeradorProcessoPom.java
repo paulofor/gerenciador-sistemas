@@ -36,6 +36,7 @@ public class GeradorProcessoPom extends GeradorArquivo{
 		this.linha("	<version>1.0.0</version>");
 		this.linha("	<!-- Outras configurações -->");
 		this.linha("	<dependencies>");
+		if (this.processo.getPom()!=null) this.linha(this.processo.getPom());
 		this.linha("		<dependency>");
 		this.linha("			<groupId>com.squareup.okhttp3</groupId>");
 		this.linha("			<artifactId>okhttp</artifactId>");

@@ -16,6 +16,7 @@ export interface ProcessoJavaInterface {
   "projeto"?: string;
   "jar"?: string;
   "crontab"?: string;
+  "pom"?: string;
   "id"?: number;
   "sistemaId"?: number;
   "linuxInternetId"?: number;
@@ -34,6 +35,7 @@ export class ProcessoJava implements ProcessoJavaInterface {
   "projeto": string;
   "jar": string;
   "crontab": string;
+  "pom": string;
   "id": number;
   "sistemaId": number;
   "linuxInternetId": number;
@@ -95,6 +97,10 @@ export class ProcessoJava implements ProcessoJavaInterface {
         },
         "crontab": {
           name: 'crontab',
+          type: 'string'
+        },
+        "pom": {
+          name: 'pom',
           type: 'string'
         },
         "id": {

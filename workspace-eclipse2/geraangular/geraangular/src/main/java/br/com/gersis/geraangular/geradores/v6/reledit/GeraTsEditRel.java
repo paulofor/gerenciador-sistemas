@@ -66,6 +66,7 @@ public class GeraTsEditRel extends GeraTs {
 		this.linha("	carregaTela() {");
 		this.linha("		this.srvDestino.find(this.getFiltro())");
 		this.linha("			.subscribe((result:any[]) => {");
+		this.linha("				console.log('" + this.getTela().getNome() + "Component:', result);");
 		this.linha("				this.listaBase = result;");
 		this.linha("			})");
 		this.linha("	}");

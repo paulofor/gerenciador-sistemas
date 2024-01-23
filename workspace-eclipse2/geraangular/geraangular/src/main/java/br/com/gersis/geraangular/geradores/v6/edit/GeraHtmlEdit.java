@@ -25,6 +25,11 @@ public class GeraHtmlEdit extends GeraHtml {
 		this.linha("		<input matInput #nome [(ngModel)]=\"item.nome\" name=\"nome\" placeholder=\"Nome\" />");
 		this.linha("		</mat-form-field>");
 		this.linha();
+		this.linha("		<mat-form-field class=\"example-full-width\">");
+		this.linha("		<textarea rows=\"4\" matInput #descricao [(ngModel)]=\"item.descricao\" name=\"descricao\" placeholder=\"Descrição\">");
+		this.linha("		</textarea>");
+		this.linha("		</mat-form-field>");
+		this.linha();
 		this.linha();
 		this.linha("	</mat-dialog-content>");
 		this.linha();

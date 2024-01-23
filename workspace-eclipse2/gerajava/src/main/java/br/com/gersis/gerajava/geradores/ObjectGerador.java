@@ -38,8 +38,9 @@ public class ObjectGerador extends GeradorPassoProcesso {
 		this.linha("		finalizar();");
 		this.linha("	}"); 
 		this.linha("	private void executaFinalizacao(DatasetAplicacao ds) {");
+		int i = 0;
 		for (PassoProcessoJava passo : this.processo.getPassoProcessoJavas()) {
-			int i = 0;
+		
 			if (passo.isFinalizacao()) {
 				i++;
 				this.linha("		DaoBase finalizacao" + i + " = new " + passo.getNomeClasse() + "Impl();");
