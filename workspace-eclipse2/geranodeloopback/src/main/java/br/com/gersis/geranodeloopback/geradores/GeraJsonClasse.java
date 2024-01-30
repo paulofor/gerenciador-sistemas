@@ -50,6 +50,7 @@ public class GeraJsonClasse extends GeradorArquivo{
 		this.criaArquivo();
 		this.linha("{");
 		this.linha("	\"name\": \"" + this.entidade.getNome() + "\",");
+		//this.linha("	\"plural\": \"" + this.entidade.getNome() + "s\",");
 		this.linha("	\"base\": \"PersistedModel\",");
 		this.linha("	\"idInjection\": true,");
 		this.linha("	\"options\": {");
@@ -180,7 +181,7 @@ public class GeraJsonClasse extends GeradorArquivo{
 			this.linha("			\"description\": \"\",");
 			this.linha("			\"http\": [");
 			this.linha("         		{");
-			this.linha("          			\"path\": \"/" + metodo.getNomeHungara() + "\",");
+			this.linha("          			\"path\": \"/" + metodo.getNomeHungara().trim() + "\",");
 			this.linha("   					\"verb\": \"" + metodo.getTipoMetodo().toLowerCase() + "\"");
 			this.linha(" 				}");
 			this.linha(" 			]");

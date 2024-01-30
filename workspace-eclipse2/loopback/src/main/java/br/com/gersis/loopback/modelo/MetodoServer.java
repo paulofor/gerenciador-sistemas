@@ -122,25 +122,25 @@ public class MetodoServer extends Model{
 		return nome;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nome = nome.trim();
 	}
 	public String getResposta() {
 		return resposta;
 	}
 	public void setResposta(String resposta) {
-		this.resposta = resposta;
+		this.resposta = resposta.trim();
 	}
 	public String getTipoResposta() {
 		return tipoResposta;
 	}
 	public void setTipoResposta(String tipoResposta) {
-		this.tipoResposta = tipoResposta;
+		this.tipoResposta = tipoResposta.trim();
 	}
 	public String getTipoMetodo() {
 		return tipoMetodo;
 	}
 	public void setTipoMetodo(String tipoMetodo) {
-		this.tipoMetodo = tipoMetodo;
+		this.tipoMetodo = tipoMetodo.trim();
 	}
 	
 	
