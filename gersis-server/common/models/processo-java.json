@@ -23,6 +23,9 @@
     },
     "pom" : {
       "type" : "string"
+    },
+    "pomOutrasConfiguracoes" : {
+      "type" : "string"
     }
 
   },

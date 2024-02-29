@@ -35,6 +35,7 @@ public class GeradorProcessoPom extends GeradorArquivo{
 		this.linha("	<artifactId>" + processo.getNomeClasseMain().toLowerCase() + "</artifactId>");
 		this.linha("	<version>1.0.0</version>");
 		this.linha("	<!-- Outras configurações -->");
+		if (this.processo.getPomOutrasConfiguracoes()!=null) this.linha(this.processo.getPomOutrasConfiguracoes());
 		this.linha("	<dependencies>");
 		if (this.processo.getPom()!=null) this.linha(this.processo.getPom());
 		this.linha("		<dependency>");

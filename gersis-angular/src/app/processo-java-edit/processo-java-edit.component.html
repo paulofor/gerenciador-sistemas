@@ -27,6 +27,10 @@
       <textarea rows="6" matInput #pom [(ngModel)]="item.pom" name="pom" placeholder="Pom" ></textarea>
     </mat-form-field>
 
+    <mat-form-field class="example-full-width">
+      <textarea rows="6" matInput #pomOutrasConfiguracoes [(ngModel)]="item.pomOutrasConfiguracoes" name="pomOutrasConfiguracoes" placeholder="Pom Outros" ></textarea>
+    </mat-form-field>
+
     <mat-form-field class="example-full-width" *ngIf="listaLinux">
       <mat-select placeholder="Servidores"  #linuxInternetId [(ngModel)]="item.linuxInternetId" name="linuxInternetId">
         <mat-option *ngFor="let servidor of listaLinux" [value]="servidor.id">

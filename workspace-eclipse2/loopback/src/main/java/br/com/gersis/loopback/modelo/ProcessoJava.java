@@ -15,6 +15,7 @@ public class ProcessoJava extends Model{
 	private String jar;
 	private String crontab;
 	private String pom;
+	private String pomOutrasConfiguracoes;
 	
 	private List<PassoProcessoJava> passoProcessoJavas;
 	
@@ -111,6 +112,12 @@ public class ProcessoJava extends Model{
 	}
 	public void setPom(String pom) {
 		this.pom = pom;
+	}
+	public String getPomOutrasConfiguracoes() {
+		return pomOutrasConfiguracoes;
+	}
+	public void setPomOutrasConfiguracoes(String pomOutrasConfiguracoes) {
+		this.pomOutrasConfiguracoes = pomOutrasConfiguracoes;
 	}
 	
 	
