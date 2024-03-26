@@ -18,6 +18,7 @@ export interface ProcessoJavaInterface {
   "crontab"?: string;
   "pom"?: string;
   "pomOutrasConfiguracoes"?: string;
+  "fazSsh"?: number;
   "id"?: number;
   "sistemaId"?: number;
   "linuxInternetId"?: number;
@@ -38,6 +39,7 @@ export class ProcessoJava implements ProcessoJavaInterface {
   "crontab": string;
   "pom": string;
   "pomOutrasConfiguracoes": string;
+  "fazSsh": number;
   "id": number;
   "sistemaId": number;
   "linuxInternetId": number;
@@ -108,6 +110,10 @@ export class ProcessoJava implements ProcessoJavaInterface {
         "pomOutrasConfiguracoes": {
           name: 'pomOutrasConfiguracoes',
           type: 'string'
+        },
+        "fazSsh": {
+          name: 'fazSsh',
+          type: 'number'
         },
         "id": {
           name: 'id',

@@ -24,7 +24,7 @@ public class Entidade extends Model{
 	
 	
 	public boolean temSLoopback() {
-		if (nome.endsWith("ia") || nome.endsWith("s")) return false;
+		if (nome.endsWith("ta") || nome.endsWith("ia") || nome.endsWith("s")) return false;
 		else return true;
 	}
 	
@@ -95,6 +95,14 @@ public class Entidade extends Model{
 
 	public String getNome() {
 		return nome;
+	}
+	
+	public String getNomePlural() {
+		if (nome.endsWith("y")) {
+		    String substringWithoutLastChar = nome.substring(0, nome.length() - 1);
+			return substringWithoutLastChar + "ies";
+		}
+		return this.getNome() + (this.temSLoopback()?"s/":"/");
 	}
 
 	public void setNome(String nome) {

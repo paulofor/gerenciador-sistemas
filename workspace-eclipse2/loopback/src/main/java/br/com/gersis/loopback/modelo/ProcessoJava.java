@@ -16,6 +16,7 @@ public class ProcessoJava extends Model{
 	private String crontab;
 	private String pom;
 	private String pomOutrasConfiguracoes;
+	private int fazSsh;
 	
 	private List<PassoProcessoJava> passoProcessoJavas;
 	
@@ -118,6 +119,12 @@ public class ProcessoJava extends Model{
 	}
 	public void setPomOutrasConfiguracoes(String pomOutrasConfiguracoes) {
 		this.pomOutrasConfiguracoes = pomOutrasConfiguracoes;
+	}
+	public int getFazSsh() {
+		return fazSsh;
+	}
+	public void setFazSsh(int fazSsh) {
+		this.fazSsh = fazSsh;
 	}
 	
 	

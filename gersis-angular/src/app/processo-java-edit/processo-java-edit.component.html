@@ -13,6 +13,10 @@
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
+      <input matInput maxlength="5" #fazSsh [(ngModel)]="item.fazSsh" name="fazSsh" placeholder="Faz Ssh (0/1)" autocomplete="off" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
       <input matInput maxlength="150" #projeto [(ngModel)]="item.projeto" name="projeto" placeholder="Projeto" autocomplete="off" />
     </mat-form-field>
     <mat-form-field class="example-full-width">

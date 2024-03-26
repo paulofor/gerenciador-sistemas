@@ -26,6 +26,9 @@
     },
     "pomOutrasConfiguracoes" : {
       "type" : "string"
+    },
+    "fazSsh" : {
+      "type" : "number"
     }
 
   },
