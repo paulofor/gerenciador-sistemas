@@ -1,5 +1,7 @@
 package br.com.gerenciador;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import br.com.gersis.geraangular.app.GeraAngular6App;
@@ -18,7 +20,10 @@ public class GerenciadorPrincipal {
 		obj2.executa(idSistema);
 		GeraNodeLoopbackAplicacao obj3 = new GeraNodeLoopbackAplicacao();
 		obj3.executa(idSistema);
-		System.out.println("concluido");
+		LocalDateTime dataHoraAtual = LocalDateTime.now();
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		String dataHoraFormatada = dataHoraAtual.format(formatador);
+		System.out.println("finalizou " + dataHoraFormatada);
 		System.exit(0);
 	}
 

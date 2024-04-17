@@ -45,6 +45,9 @@ public class ModelGerador extends GeradorBase {
 		}
 		arq.linha("	// Relacionamentos 1");
 		for (RelacionamentoEntidade rel : entidade.getRelacionamentos1()) {
+			if (rel.getEntidade1()==null) {
+				throw new RuntimeException("Relacionamento sem entidade : entidade1Id: " + rel.getEntidade1Id());
+			}
 			arq.linha("	private " + rel.getEntidade1().getNome() + " " + rel.getNome1() + ";");
 		}
 		arq.linha("	// Relacionamentos N");

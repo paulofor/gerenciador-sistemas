@@ -217,6 +217,8 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		arq.linha("import java.util.Properties;");
 		arq.linha("import java.io.FileWriter;");
 		arq.linha("import java.io.PrintWriter;");
+		arq.linha("import java.time.LocalDateTime;");
+		arq.linha("import java.time.format.DateTimeFormatter;");
 		arq.linha();
 		arq.linha("import " + this.converteNomePacote(diretorioPasso) + ".*;");
 		arq.linha("import " + this.converteNomePacote(diretorioPasso) + ".impl.*;");
@@ -242,7 +244,10 @@ public class CriaClasseBasicaProjeto extends DaoAplicacao {
 		PassoProcessoJava objeto = this.processo.getPassoProcessoJavas().get(0);
 		arq.linha("			" + objeto.getNomeClasse() + " obj = new " + objeto.getNomeClasse() + "();");
 		arq.linha("			obj.executa();");
-		arq.linha("			System.out.println(\"finalizou\");");
+		arq.linha("			LocalDateTime dataHoraAtual = LocalDateTime.now();");
+		arq.linha("			DateTimeFormatter formatador = DateTimeFormatter.ofPattern(\"dd/MM/yyyy HH:mm:ss\");");
+		arq.linha("			String dataHoraFormatada = dataHoraAtual.format(formatador);");
+		arq.linha("			System.out.println(\"finalizou \" + dataHoraFormatada);");
 		arq.linha("			System.exit(0);");
 		arq.linha("		} catch (Exception e) {");
 		arq.linha("			gravarErro(e);");
