@@ -14,6 +14,9 @@ public class ParametroMetodoServer extends Model{
 	private int posicao;
 	
 	public String getTipoJava(Entidade entidade) {
+		if (tipo==null) {
+			throw new RuntimeException("Problema com o tipo de " + this.nome );
+		}
 		if (tipo.indexOf("number-int")!=-1) return "int";
 		if (tipo.indexOf("number-double")!=-1) return "double";
 		if (tipo.indexOf("string")!=-1) return "String";
