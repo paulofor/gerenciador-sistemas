@@ -98,7 +98,7 @@ public class Entidade extends Model{
 	}
 	
 	public String getNomePlural() {
-		if (nome.endsWith("y")) {
+		if (nome.endsWith("fy")) {
 		    String substringWithoutLastChar = nome.substring(0, nome.length() - 1);
 			return substringWithoutLastChar + "ies/";
 		}
