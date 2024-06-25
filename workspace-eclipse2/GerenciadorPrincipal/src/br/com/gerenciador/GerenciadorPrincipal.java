@@ -43,6 +43,7 @@ public class GerenciadorPrincipal {
 		System.out.println("1 - Sisacao");
 		System.out.println("2 - Marketing Digital");
 		System.out.println("4 - Sugar");
+		System.out.println("7 - CurriculoSis");
 		int opcao = scanner.nextInt();
 		scanner.close();
 		return opcao;
