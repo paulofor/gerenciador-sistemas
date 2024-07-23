@@ -28,6 +28,7 @@ export class EntidadeDetalheComponent extends BaseItemIdComponent {
         { 'relation': 'relacionamentos1', 'scope': { 'include': ['entidade1','atributoChaveEstrangeira'] } },
         { 'relation': 'relacionamentosN', 'scope': { 'include': ['entidadeN','atributoChaveEstrangeira'] } },
         { 'relation': 'processoJavaComoSaida', 'scope': { 'include': 'processoJava' } },
+        { 'relation': 'processoJavaComoEntrada', 'scope': { 'include': 'processoJava' } },
         { 'relation': 'telaFronts' , 'scope' : {'include' : 'metodoServer'}}
       ]
     }

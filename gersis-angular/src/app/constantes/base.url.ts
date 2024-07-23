@@ -1,7 +1,7 @@
 //
 
-export const BASE_URL = 'http://vps-40d69db1.vps.ovh.ca:23102'; 
-//export const BASE_URL = 'http://localhost:23102'; 
+//export const BASE_URL = 'http://vps-40d69db1.vps.ovh.ca:23102'; 
+export const BASE_URL = 'http://localhost:23102'; 
 
 export const API_VERSION = 'api';
 

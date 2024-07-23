@@ -69,7 +69,18 @@
 
   <div class="dgc-card">
     <div class="dgc-card-header">
-        <span>Processos Gravação</span>
+        <span>Processos como Entrada</span>
+    </div>
+    <div *ngFor="let processoRel of principal.processoJavaComoEntrada">
+      <div class="dgc-card-detalhe">
+        <span class="dgc-link" routerLink="/processoJavaDetalhe/{{processoRel.processoJava.id}}">{{processoRel.processoJava.nomeClasseMain}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dgc-card">
+    <div class="dgc-card-header">
+        <span>Processos como Saída</span>
     </div>
     <div *ngFor="let processoRel of principal.processoJavaComoSaida">
       <div class="dgc-card-detalhe">
@@ -78,6 +89,7 @@
     </div>
   </div>
 
+ 
 
   <div class="dgc-card">
     <div class="dgc-card-header">
